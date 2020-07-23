@@ -7,7 +7,11 @@ package ec.edu.ups.DAO;
 
 import ec.edu.ups.IDAO.IUsuario;
 import ec.edu.ups.modelo.Usuario;
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,9 +19,50 @@ import java.util.List;
  */
 public class UsuarioDAO implements IUsuario {
 
+    private List<Usuario> listaDeUsuarios;
+    private static final Logger LOG = Logger.getLogger(UsuarioDAO.class.getName());
+    private RandomAccessFile archivo;
+
+    /**
+     * String cedula  = 10 caracteres
+     * String nombre = 25 caracteres
+     * String apellido = 25 caracteres
+     * String Correo = 50 caracteres 
+     * String contrasena = 8 caracteres
+     * 
+     * int registro = 128 bytes
+     *
+     */
+    public UsuarioDAO() {
+
+        try {
+            archivo = new RandomAccessFile("datos/usuario.dat", "rw");
+        } catch (IOException ex) {
+            System.out.println("Error lectrura escritura");
+            ex.printStackTrace();
+        }
+
+    }
+
     @Override
     public void create(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
+
+            archivo.seek(archivo.length());
+            archivo.writeUTF(usuario.getCedula());
+            archivo.writeUTF(usuario.getNombre());
+            archivo.writeUTF(usuario.getApellido());
+            archivo.writeUTF(usuario.getCorreo());
+            archivo.writeUTF(usuario.getContraseña());
+
+        } catch (IOException ex) {
+
+            System.out.println("Error de lectura y escritura");
+            ex.printStackTrace();
+
+        }
+
     }
 
     @Override
@@ -42,7 +87,29 @@ public class UsuarioDAO implements IUsuario {
 
     @Override
     public Usuario login(String correo, String contraseña) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        int salto = 66;
+        int registro = 128;
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String correoArchivo = archivo.readUTF();
+                String contraseñaArchivo = archivo.readUTF();
+
+                if (correo.equals(correoArchivo.trim()) && contraseña.equals(contraseñaArchivo.trim())) {
+                    salto = salto - 66;
+                    archivo.seek(salto);
+                    Usuario usuario = new Usuario(archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), correoArchivo, contraseñaArchivo);
+                    return usuario;
+                }
+                salto += registro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error lectrura escritura (UsuarioDao:login)");
+            ex.printStackTrace();
+        }
+        return null;
+
     }
-    
+
 }
