@@ -21,9 +21,9 @@ public class Persona {
     }
 
     public Persona(String cedula, String nombre, String apellido) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.setCedula(cedula);
+        this.setNombre(nombre);
+        this.setApellido(apellido);
     }
 
     public String getCedula() {
@@ -31,7 +31,7 @@ public class Persona {
     }
 
     public void setCedula(String cedula) {
-        this.cedula = cedula;
+        this.cedula = validarEspacios(cedula, 10);
     }
 
     public String getNombre() {
@@ -39,7 +39,7 @@ public class Persona {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = validarEspacios(nombre, 25);
     }
 
     public String getApellido() {
@@ -47,7 +47,23 @@ public class Persona {
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido = validarEspacios(apellido, 25);
+    }
+    
+    public String validarEspacios(String cadena, int numero){
+        if(cadena.length()==numero){
+            return cadena;
+        }else{
+            if(cadena.length()>numero){
+                cadena = cadena.substring(0,numero);
+                return cadena;
+            }else{
+                for (int i = cadena.length(); i < numero; i++) {
+                    cadena+=" ";
+                }
+                return cadena;
+            }
+        }
     }
 
     @Override
