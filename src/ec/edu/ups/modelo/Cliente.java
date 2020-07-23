@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Dutan2000
  */
-public class Cliente extends Usuario{
+public class Cliente extends Persona{
     
     private String nombreDelLocal;
     private String telefono;
@@ -26,8 +26,8 @@ public class Cliente extends Usuario{
         this.direccion = direccion;
     }
 
-    public Cliente(String nombreDelLocal, String telefono, String direccion, String cedula, String nombre, String apellido, String correo, String contraseña) {
-        super(cedula, nombre, apellido, correo, contraseña);
+    public Cliente(String nombreDelLocal, String telefono, String direccion, String cedula, String nombre, String apellido) {
+        super(cedula, nombre, apellido);
         this.nombreDelLocal = nombreDelLocal;
         this.telefono = telefono;
         this.direccion = direccion;
