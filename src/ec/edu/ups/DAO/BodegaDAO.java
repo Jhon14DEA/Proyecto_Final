@@ -105,6 +105,24 @@ public class BodegaDAO  implements IBodega{
 
     @Override
     public void delete(String nombre) {
+        String cadena = "";
+        int salto = 0;
+        try {
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String nombreArchivo = archivo.readUTF();
+                if (nombreArchivo.equals(nombre)){
+                    archivo.seek(salto);
+                    archivo.writeUTF(String.format("%-" + 25 + "s", cadena));
+                    archivo.writeUTF(String.format("%-" + 50 + "s", cadena));
+                }
+                salto += tamañoRegistro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error lectrura escritura (Delte :Bodega DAO)");
+            ex.printStackTrace();
+
+        }
       
     }
 
