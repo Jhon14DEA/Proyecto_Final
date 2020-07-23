@@ -79,7 +79,28 @@ public class BodegaDAO  implements IBodega{
 
     @Override
     public void update(Bodega bodega) {
-     
+     try {
+            int salto = 0;
+            
+            while (salto < archivo.length()) {
+                archivo.seek(salto);
+                String nombreArchivo = archivo.readUTF();
+                
+                if (nombreArchivo.equals(bodega.getNombre())) {
+                    archivo.writeUTF(bodega.getDireccion());
+                    archivo.writeUTF(bodega.getNombre());
+                    break;
+                    
+                }
+                salto += tamañoRegistro;
+
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error de lectura (update: BodegaDAO)");
+            e.printStackTrace();
+
+        }
     }
 
     @Override
