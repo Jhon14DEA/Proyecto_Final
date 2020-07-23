@@ -21,16 +21,16 @@ public class Cliente extends Persona{
     }
 
     public Cliente(String nombreDelLocal, String telefono, String direccion) {
-        this.nombreDelLocal = nombreDelLocal;
-        this.telefono = telefono;
-        this.direccion = direccion;
+        this.setNombreDelLocal(nombreDelLocal);
+        this.setTelefono(telefono);
+        this.setDireccion(direccion);
     }
 
     public Cliente(String nombreDelLocal, String telefono, String direccion, String cedula, String nombre, String apellido) {
         super(cedula, nombre, apellido);
-        this.nombreDelLocal = nombreDelLocal;
-        this.telefono = telefono;
-        this.direccion = direccion;
+        this.setNombreDelLocal(nombreDelLocal);
+        this.setTelefono(telefono);
+        this.setDireccion(direccion);
     }
 
     public String getNombreDelLocal() {
@@ -38,7 +38,7 @@ public class Cliente extends Persona{
     }
 
     public void setNombreDelLocal(String nombreDelLocal) {
-        this.nombreDelLocal = nombreDelLocal;
+        this.nombreDelLocal = validarEspacios(nombreDelLocal, 25);
     }
 
     public String getTelefono() {
@@ -46,7 +46,7 @@ public class Cliente extends Persona{
     }
 
     public void setTelefono(String telefono) {
-        this.telefono = telefono;
+        this.telefono = validarEspacios(telefono, 25);
     }
 
     public String getDireccion() {
@@ -54,7 +54,23 @@ public class Cliente extends Persona{
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        this.direccion = validarEspacios(direccion, 50);
+    }
+    
+    public String validarEspacios(String cadena, int numero){
+        if(cadena.length()==numero){
+            return cadena;
+        }else{
+            if(cadena.length()>numero){
+                cadena = cadena.substring(0,numero);
+                return cadena;
+            }else{
+                for (int i = cadena.length(); i < numero; i++) {
+                    cadena+=" ";
+                }
+                return cadena;
+            }
+        }
     }
 
     @Override
