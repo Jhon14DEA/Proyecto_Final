@@ -5,10 +5,39 @@
  */
 package ec.edu.ups.DAO;
 
+import ec.edu.ups.IDAO.ICliente;
+import ec.edu.ups.modelo.Cliente;
+import java.util.List;
+
 /**
  *
  * @author JHON FAREZ
  */
-public class ClienteDAO {
+public class ClienteDAO implements  ICliente{
+
+    @Override
+    public void create(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Cliente read(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Cliente cliente) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Cliente> findAllClientes() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

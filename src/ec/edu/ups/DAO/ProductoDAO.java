@@ -5,10 +5,39 @@
  */
 package ec.edu.ups.DAO;
 
+import ec.edu.ups.IDAO.IProducto;
+import ec.edu.ups.modelo.Producto;
+import java.util.List;
+
 /**
  *
  * @author JHON FAREZ
  */
-public class ProductoDAO {
+public class ProductoDAO implements  IProducto {
+
+    @Override
+    public void create(Producto producto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Producto read(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Producto producto) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(String codigo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Producto> findAllProductos() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

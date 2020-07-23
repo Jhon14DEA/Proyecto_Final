@@ -5,10 +5,44 @@
  */
 package ec.edu.ups.DAO;
 
+import ec.edu.ups.IDAO.IUsuario;
+import ec.edu.ups.modelo.Usuario;
+import java.util.List;
+
 /**
  *
  * @author JHON FAREZ
  */
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuario {
+
+    @Override
+    public void create(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario read(String cedula) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Usuario usuario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Usuario> findAll() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Usuario login(String correo, String contraseña) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
