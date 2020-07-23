@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ec.edu.ups.idao;
+package ec.edu.ups.DAO;
 
 /**
  *
  * @author JHON FAREZ
  */
-public interface IBodegaDAO {
+public class ProductoDAO {
     
 }
