@@ -65,22 +65,120 @@ public class UsuarioDAO implements IUsuario {
 
     @Override
     public Usuario read(String cedula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int salto = 0;
+        int registro = 128;
+        try{
+        while(salto<archivo.length()){
+            
+            archivo.seek(salto);
+            String cedulaArchivo = archivo.readUTF();
+            
+            if(cedula.equals(cedulaArchivo.trim())){
+                Usuario usuario = new Usuario(cedulaArchivo, archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
+                return usuario;
+            }
+            
+            salto+=registro;
+            
+        }
+        return null;
+        }catch(IOException ex){
+            System.out.println("Error lectura escritura (UsuarioDao:Read)");
+            ex.printStackTrace();
+        }
+        return null;
+        
     }
 
     @Override
-    public void update(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean update(Usuario usuario) {
+        
+        int salto = 0;
+        int registro = 128;
+        try {
+            
+            while (salto<archivo.length()) {
+                archivo.seek(salto);
+                String cedula = archivo.readUTF();   
+                if(cedula.equals(usuario.getCedula())){
+                    archivo.seek(salto+12);
+                    archivo.writeUTF(usuario.getNombre());
+                    archivo.writeUTF(usuario.getApellido());
+                    archivo.writeUTF(usuario.getCorreo());
+                    archivo.writeUTF(usuario.getContraseña());
+                    return true;
+                }
+                salto+=registro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error lectrura escritura (UsuarioDao:Update)");
+            ex.printStackTrace();
+        }
+        return false;
     }
+    
 
     @Override
     public void delete(Usuario usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        int salto = 0;
+        int registro = 128;
+        
+        try{
+            
+        while(salto < archivo.length()){
+        archivo.seek(salto);
+        String cedula = archivo.readUTF();
+            if (cedula.equals(usuario.getCedula())) {
+                
+                archivo.seek(salto);
+                
+                archivo.writeUTF(String.format("%-"+10+"s"));
+                archivo.writeUTF(String.format("%-"+25+"s"));
+                archivo.writeUTF(String.format("%-"+25+"s"));
+                archivo.writeUTF(String.format("%-"+50+"s"));
+                archivo.writeUTF(String.format("%-"+8+"s"));
+            }
+        
+            salto += registro;
+            
+            }
+        }catch(IOException ex){
+            
+            System.out.println("Error de lectura y escritura");
+            ex.printStackTrace();
+            
+            
+        }
     }
 
     @Override
     public List<Usuario> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+              List<Usuario> lista = new ArrayList<Usuario>();
+        int salto = 0;
+        int registro = 128;
+        try {
+            while(salto<archivo.length()){
+                archivo.seek(salto);
+                String cedula = archivo.readUTF().trim();
+                String nombre = archivo.readUTF().trim();
+                String apellido = archivo.readUTF().trim();
+                String correo = archivo.readUTF().trim();
+                String contraseña = archivo.readUTF().trim();
+                Usuario usuario = new Usuario(cedula, nombre, apellido, correo, contraseña);
+                lista.add(usuario);
+                
+                salto += registro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error lectrura escritura (UsuarioDao:Update)");
+            ex.printStackTrace();
+        }
+        return lista;
+        
+        
     }
 
     @Override
