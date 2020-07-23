@@ -128,7 +128,22 @@ public class BodegaDAO  implements IBodega{
 
     @Override
     public List<Bodega> findAllBodegas() {
-       
+       List<Bodega> bodegaLista = new ArrayList<>();
+        int salto = 0;
+        int registro = 128;
+        try {
+            while(salto<archivo.length()){
+                archivo.seek(salto);
+                Bodega  bodega = new Bodega(archivo.readUTF(), archivo.readUTF());
+                
+                bodegaLista.add(bodega);
+                salto += registro;
+            }
+        } catch (IOException ex) {
+            System.out.println("Error lectrura escritura (List : BodegaDAO)");
+            ex.printStackTrace();
+        }
+        return bodegaLista;
     }
 
     
