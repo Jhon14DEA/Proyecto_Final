@@ -19,8 +19,6 @@ import java.util.logging.Logger;
  */
 public class UsuarioDAO implements IUsuario {
 
-    private List<Usuario> listaDeUsuarios;
-    private static final Logger LOG = Logger.getLogger(UsuarioDAO.class.getName());
     private RandomAccessFile archivo;
 
     /**
