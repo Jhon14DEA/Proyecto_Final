@@ -42,7 +42,17 @@ public class BodegaDAO  implements IBodega{
     }
     @Override
     public void create(Bodega bodega) {
-       
+         try {
+            archivo.seek(archivo.length());
+            archivo.writeUTF(bodega.getDireccion());
+            archivo.writeUTF(bodega.getNombre());
+            
+
+        } catch (IOException e) {
+            System.out.println("Error de  lectura y escritura(create: BodegaDAO)");
+            e.printStackTrace();
+
+        }
     }
     
 
