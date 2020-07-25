@@ -9,14 +9,21 @@ import ec.edu.ups.modelo.Producto;
 import java.util.List;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public interface IProducto {
+
     public void create(Producto producto);
+
     public Producto read(String codigo);
+
     public void update(Producto producto);
+
     public void delete(String codigo);
+
     public List<Producto> findAllProductos();
-    
+
 }

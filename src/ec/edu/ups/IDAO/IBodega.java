@@ -9,14 +9,21 @@ import ec.edu.ups.modelo.Bodega;
 import java.util.List;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public interface IBodega {
+
     public void create(Bodega bodega);
+
     public Bodega read(String nombre);
+
     public void update(Bodega bodega);
+
     public void delete(String nombre);
+
     public List<Bodega> findAllBodegas();
-    
+
 }

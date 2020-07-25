@@ -9,17 +9,24 @@ import ec.edu.ups.modelo.Usuario;
 import java.util.List;
 
 /**
- *
- * @author JHON FAREZ
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public interface IUsuario {
-    
-  //Metodos CRUD
+
+    //Metodos CRUD
     public void create(Usuario usuario);
+
     public Usuario read(String cedula);
+
     public boolean update(Usuario usuario);
-    public void delete(Usuario usuario);   
+
+    public void delete(Usuario usuario);
+
     public List<Usuario> findAll();
+
     public Usuario login(String correo, String contraseña);
-    
+
 }

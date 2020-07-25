@@ -9,14 +9,20 @@ import ec.edu.ups.modelo.Factura;
 import java.util.List;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public interface IFactura {
-    
+
     public void create(Factura factura);
+
     public Factura read(int numeroDeFactura);
+
     public List<Factura> findAllFacturas();
+
     public List<Factura> findAllFacturasAnuladas();
+
     public int getCodigoActual();
 }

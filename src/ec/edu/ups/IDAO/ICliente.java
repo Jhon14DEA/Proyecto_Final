@@ -5,18 +5,24 @@
  */
 package ec.edu.ups.IDAO;
 
-
 import ec.edu.ups.modelo.Cliente;
 import java.util.List;
 
 /**
- *
- * @author JHON FAREZ
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public interface ICliente {
-     public void create(Cliente cliente);
+
+    public void create(Cliente cliente);
+
     public Cliente read(String codigo);
+
     public void update(Cliente cliente);
+
     public void delete(String codigo);
+
     public List<Cliente> findAllClientes();
 }
