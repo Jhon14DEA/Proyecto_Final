@@ -12,8 +12,7 @@ import java.util.Objects;
  * @author Estudiantes
  */
 public class Persona {
-    
-    private String cedula;
+   private String cedula;
     private String nombre;
     private String apellido;
 
@@ -95,6 +94,7 @@ public class Persona {
     public String toString() {
         return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + '}';
     }
+    
     
     
 }

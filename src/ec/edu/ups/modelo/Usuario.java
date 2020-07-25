@@ -11,47 +11,24 @@ import java.util.Objects;
  *
  * @author Dutan2000
  */
-public class Usuario {
+public class Usuario  extends Persona{
     
-    private String cedula;
-    private String nombre;
-    private String apellido;
+    
     private String correo;
     private String contraseña;
 
     public Usuario() {
     }
 
-    public Usuario(String cedula, String nombre, String apellido, String correo, String contraseña) {
-        this.cedula = cedula;
-        this.nombre = nombre;
-        this.apellido = apellido;
+    public Usuario(String correo, String contraseña) {
         this.correo = correo;
         this.contraseña = contraseña;
     }
 
-    public String getCedula() {
-        return cedula;
-    }
-
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
+    public Usuario(String correo, String contraseña, String cedula, String nombre, String apellido) {
+        super(cedula, nombre, apellido);
+        this.correo = correo;
+        this.contraseña = contraseña;
     }
 
     public String getCorreo() {
@@ -73,8 +50,8 @@ public class Usuario {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.correo);
-        hash = 71 * hash + Objects.hashCode(this.contraseña);
+        hash = 47 * hash + Objects.hashCode(this.correo);
+        hash = 47 * hash + Objects.hashCode(this.contraseña);
         return hash;
     }
 
@@ -99,12 +76,9 @@ public class Usuario {
         return true;
     }
 
-    
-
     @Override
     public String toString() {
-        return "Usuario{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" 
-                + apellido + ", correo=" + correo + ", contraseña=" + contraseña + '}';
+        return "Usuario{" + "correo=" + correo + ", contrase\u00f1a=" + contraseña + '}';
     }
     
     
