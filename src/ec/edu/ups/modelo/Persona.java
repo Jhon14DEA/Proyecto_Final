@@ -8,11 +8,14 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
- *
- * @author Estudiantes
+ * @author Sebastian Uyaguari
+ * @author Denys Dutan
+ * @author John Fárez
+ * @author Santiago Cabrera
  */
 public class Persona {
-   private String cedula;
+
+    private String cedula;
     private String nombre;
     private String apellido;
 
@@ -48,17 +51,17 @@ public class Persona {
     public void setApellido(String apellido) {
         this.apellido = validarEspacios(apellido, 25);
     }
-    
-    public String validarEspacios(String cadena, int numero){
-        if(cadena.length()==numero){
+
+    public String validarEspacios(String cadena, int numero) {
+        if (cadena.length() == numero) {
             return cadena;
-        }else{
-            if(cadena.length()>numero){
-                cadena = cadena.substring(0,numero);
+        } else {
+            if (cadena.length() > numero) {
+                cadena = cadena.substring(0, numero);
                 return cadena;
-            }else{
+            } else {
                 for (int i = cadena.length(); i < numero; i++) {
-                    cadena+=" ";
+                    cadena += " ";
                 }
                 return cadena;
             }
@@ -94,7 +97,5 @@ public class Persona {
     public String toString() {
         return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + '}';
     }
-    
-    
-    
+
 }

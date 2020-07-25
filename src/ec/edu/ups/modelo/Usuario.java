@@ -8,12 +8,13 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
-public class Usuario  extends Persona{
-    
-    
+public class Usuario extends Persona {
+
     private String correo;
     private String contraseña;
 
@@ -80,8 +81,5 @@ public class Usuario  extends Persona{
     public String toString() {
         return "Usuario{" + "correo=" + correo + ", contrase\u00f1a=" + contraseña + '}';
     }
-    
-    
-    
-    
+
 }

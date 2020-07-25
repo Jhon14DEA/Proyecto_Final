@@ -6,10 +6,13 @@
 package ec.edu.ups.modelo;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public class Factura {
+
     private int numeroDeFactura;
     private int cantidadVendida;
     private Cliente cliente;
@@ -90,5 +93,5 @@ public class Factura {
     public String toString() {
         return "Factura{" + "numeroDeFactura=" + numeroDeFactura + ", cantidadVendida=" + cantidadVendida + ", cliente=" + cliente + ", producto=" + producto + ", bodega=" + bodega + '}';
     }
-    
+
 }

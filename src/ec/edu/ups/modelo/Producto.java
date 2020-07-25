@@ -8,16 +8,18 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public class Producto {
+
     private String codigo;
     private String nombreDeProducto;
     private double precioDeProdcuto;
     private int cantidad;
     private Bodega bodega;
-    
 
     public Producto() {
     }
@@ -68,8 +70,6 @@ public class Producto {
     public void setBodega(Bodega bodega) {
         this.bodega = bodega;
     }
-    
-    
 
     @Override
     public int hashCode() {
@@ -100,6 +100,5 @@ public class Producto {
     public String toString() {
         return "Producto{" + "codigo=" + codigo + ", nombreDeProducto=" + nombreDeProducto + ", precioDeProdcuto=" + precioDeProdcuto + '}';
     }
-    
-    
+
 }

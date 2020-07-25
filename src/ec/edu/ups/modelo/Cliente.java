@@ -8,11 +8,13 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
-public class Cliente extends Persona{
-    
+public class Cliente extends Persona {
+
     private String nombreDelLocal;
     private String telefono;
     private String direccion;
@@ -56,17 +58,17 @@ public class Cliente extends Persona{
     public void setDireccion(String direccion) {
         this.direccion = validarEspacios(direccion, 50);
     }
-    
-    public String validarEspacios(String cadena, int numero){
-        if(cadena.length()==numero){
+
+    public String validarEspacios(String cadena, int numero) {
+        if (cadena.length() == numero) {
             return cadena;
-        }else{
-            if(cadena.length()>numero){
-                cadena = cadena.substring(0,numero);
+        } else {
+            if (cadena.length() > numero) {
+                cadena = cadena.substring(0, numero);
                 return cadena;
-            }else{
+            } else {
                 for (int i = cadena.length(); i < numero; i++) {
-                    cadena+=" ";
+                    cadena += " ";
                 }
                 return cadena;
             }
@@ -102,6 +104,5 @@ public class Cliente extends Persona{
     public String toString() {
         return "Cliente{" + "nombreDelLocal=" + nombreDelLocal + ", telefono=" + telefono + ", direccion=" + direccion + '}';
     }
-    
-    
+
 }

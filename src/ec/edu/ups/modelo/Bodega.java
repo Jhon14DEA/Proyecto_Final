@@ -8,10 +8,13 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyagauri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public class Bodega {
+
     private String nombre;
     //private int cantidadDeProducto;
     private String direccion;
@@ -40,7 +43,6 @@ public class Bodega {
     public void setCantidadDeProducto(int cantidadDeProducto) {
         this.cantidadDeProducto = cantidadDeProducto;
     }*/
-
     public String getDireccion() {
         return direccion;
     }
@@ -78,7 +80,5 @@ public class Bodega {
     public String toString() {
         return "Bodega{" + "nombre=" + nombre + ", direccion=" + direccion + '}';
     }
-    
-    
-    
+
 }
