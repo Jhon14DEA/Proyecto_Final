@@ -10,8 +10,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
- *
- * @author santi
+ * @author Sebastian Uyaguari
+ * @author Denys Dutan
+ * @author John Fárez
+ * @author Santiago Cabrera
  */
 public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
 
@@ -20,7 +22,6 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
      */
     public VentanaIniciarSesion() {
         initComponents();
-
 
     }
 

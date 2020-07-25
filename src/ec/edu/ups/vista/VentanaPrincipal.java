@@ -6,8 +6,10 @@
 package ec.edu.ups.vista;
 
 /**
- *
- * @author santi
+ * @author Sebastian Uyaguari
+ * @author Denys Dutan
+ * @author John Fárez
+ * @author Santiago Cabrera
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
@@ -25,7 +27,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaBodega = new VentanaBodega();
         ventanaProductos = new VentanaProductos();
         ventanaFactura = new VentanaFactura();
-        
 
     }
 
@@ -152,10 +153,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemSalirActionPerformed
 
     private void menuItemBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemBodegaActionPerformed
-        
+
         desktopPane.add(ventanaBodega);
         ventanaBodega.setVisible(true);
-        
+
     }//GEN-LAST:event_menuItemBodegaActionPerformed
 
     private void menuItemIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemIniciarSesionActionPerformed
@@ -170,23 +171,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         desktopPane.add(ventanCliente);
         ventanCliente.setVisible(true);
-        
+
     }//GEN-LAST:event_menuItemClientesActionPerformed
 
     private void menuItemProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemProductosActionPerformed
 
         desktopPane.add(ventanaProductos);
         ventanaProductos.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_menuItemProductosActionPerformed
 
     private void menuItemFacturasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemFacturasActionPerformed
-        
+
         desktopPane.add(ventanaFactura);
         ventanaFactura.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_menuItemFacturasActionPerformed
 
     /**

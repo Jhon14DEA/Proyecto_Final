@@ -6,8 +6,10 @@
 package ec.edu.ups.vista;
 
 /**
- *
- * @author santi
+ * @author Sebastian Uyaguari
+ * @author Denys Dutan
+ * @author John Fárez
+ * @author Santiago Cabrera
  */
 public class VentanaFactura extends javax.swing.JInternalFrame {
 
