@@ -14,20 +14,21 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  *
- * @author JHON FAREZ
  */
 public class UsuarioDAO implements IUsuario {
 
     private RandomAccessFile archivo;
 
     /**
-     * String cedula  = 10 caracteres
-     * String nombre = 25 caracteres
-     * String apellido = 25 caracteres
-     * String Correo = 50 caracteres 
-     * String contrasena = 8 caracteres
-     * 
+     * String cedula = 10 caracteres String nombre = 25 caracteres String
+     * apellido = 25 caracteres String Correo = 50 caracteres String contrasena
+     * = 8 caracteres
+     *
      * int registro = 128 bytes
      *
      */
@@ -65,51 +66,51 @@ public class UsuarioDAO implements IUsuario {
 
     @Override
     public Usuario read(String cedula) {
-        
+
         int salto = 0;
         int registro = 128;
-        try{
-        while(salto<archivo.length()){
-            
-            archivo.seek(salto);
-            String cedulaArchivo = archivo.readUTF();
-            
-            if(cedula.equals(cedulaArchivo.trim())){
-                Usuario usuario = new Usuario(cedulaArchivo, archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
-                return usuario;
+        try {
+            while (salto < archivo.length()) {
+
+                archivo.seek(salto);
+                String cedulaArchivo = archivo.readUTF();
+
+                if (cedula.equals(cedulaArchivo.trim())) {
+                    Usuario usuario = new Usuario(cedulaArchivo, archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
+                    return usuario;
+                }
+
+                salto += registro;
+
             }
-            
-            salto+=registro;
-            
-        }
-        return null;
-        }catch(IOException ex){
+            return null;
+        } catch (IOException ex) {
             System.out.println("Error lectura escritura (UsuarioDao:Read)");
             ex.printStackTrace();
         }
         return null;
-        
+
     }
 
     @Override
     public boolean update(Usuario usuario) {
-        
+
         int salto = 0;
         int registro = 128;
         try {
-            
-            while (salto<archivo.length()) {
+
+            while (salto < archivo.length()) {
                 archivo.seek(salto);
-                String cedula = archivo.readUTF();   
-                if(cedula.equals(usuario.getCedula())){
-                    archivo.seek(salto+12);
+                String cedula = archivo.readUTF();
+                if (cedula.equals(usuario.getCedula())) {
+                    archivo.seek(salto + 12);
                     archivo.writeUTF(usuario.getNombre());
                     archivo.writeUTF(usuario.getApellido());
                     archivo.writeUTF(usuario.getCorreo());
                     archivo.writeUTF(usuario.getContraseña());
                     return true;
                 }
-                salto+=registro;
+                salto += registro;
             }
         } catch (IOException ex) {
             System.out.println("Error lectrura escritura (UsuarioDao:Update)");
@@ -117,50 +118,48 @@ public class UsuarioDAO implements IUsuario {
         }
         return false;
     }
-    
 
     @Override
     public void delete(Usuario usuario) {
-        
+
         int salto = 0;
         int registro = 128;
-        
-        try{
-            
-        while(salto < archivo.length()){
-        archivo.seek(salto);
-        String cedula = archivo.readUTF();
-            if (cedula.equals(usuario.getCedula())) {
-                
+
+        try {
+
+            while (salto < archivo.length()) {
                 archivo.seek(salto);
-                
-                archivo.writeUTF(String.format("%-"+10+"s"));
-                archivo.writeUTF(String.format("%-"+25+"s"));
-                archivo.writeUTF(String.format("%-"+25+"s"));
-                archivo.writeUTF(String.format("%-"+50+"s"));
-                archivo.writeUTF(String.format("%-"+8+"s"));
+                String cedula = archivo.readUTF();
+                if (cedula.equals(usuario.getCedula())) {
+
+                    archivo.seek(salto);
+
+                    archivo.writeUTF(String.format("%-" + 10 + "s"));
+                    archivo.writeUTF(String.format("%-" + 25 + "s"));
+                    archivo.writeUTF(String.format("%-" + 25 + "s"));
+                    archivo.writeUTF(String.format("%-" + 50 + "s"));
+                    archivo.writeUTF(String.format("%-" + 8 + "s"));
+                }
+
+                salto += registro;
+
             }
-        
-            salto += registro;
-            
-            }
-        }catch(IOException ex){
-            
+        } catch (IOException ex) {
+
             System.out.println("Error de lectura y escritura");
             ex.printStackTrace();
-            
-            
+
         }
     }
 
     @Override
     public List<Usuario> findAll() {
-        
-              List<Usuario> lista = new ArrayList<Usuario>();
+
+        List<Usuario> lista = new ArrayList<Usuario>();
         int salto = 0;
         int registro = 128;
         try {
-            while(salto<archivo.length()){
+            while (salto < archivo.length()) {
                 archivo.seek(salto);
                 String cedula = archivo.readUTF().trim();
                 String nombre = archivo.readUTF().trim();
@@ -169,7 +168,7 @@ public class UsuarioDAO implements IUsuario {
                 String contraseña = archivo.readUTF().trim();
                 Usuario usuario = new Usuario(cedula, nombre, apellido, correo, contraseña);
                 lista.add(usuario);
-                
+
                 salto += registro;
             }
         } catch (IOException ex) {
@@ -177,8 +176,7 @@ public class UsuarioDAO implements IUsuario {
             ex.printStackTrace();
         }
         return lista;
-        
-        
+
     }
 
     @Override

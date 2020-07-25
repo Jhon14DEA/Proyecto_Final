@@ -13,26 +13,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author JHON FAREZ
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
-public class BodegaDAO  implements IBodega{
+public class BodegaDAO implements IBodega {
 
-    
     /**
-     * Dimensiones del archivo 
-     * 
-     * String nombre -> 25 bytes
-     * String direccion -> 50 bytes
-     * 
+     * Dimensiones del archivo
+     *
+     * String nombre -> 25 bytes String direccion -> 50 bytes
+     *
      * total registro = 90
      */
-    
     private RandomAccessFile archivo;
     private int tamañoRegistro;
-    
-    public BodegaDAO(){
-     tamañoRegistro = 90;
+
+    public BodegaDAO() {
+        tamañoRegistro = 90;
         try {
             archivo = new RandomAccessFile("datos/bodega.dat", "rw");
         } catch (IOException e) {
@@ -40,13 +39,13 @@ public class BodegaDAO  implements IBodega{
             e.printStackTrace();
         }
     }
+
     @Override
     public void create(Bodega bodega) {
-         try {
+        try {
             archivo.seek(archivo.length());
             archivo.writeUTF(bodega.getDireccion());
             archivo.writeUTF(bodega.getNombre());
-            
 
         } catch (IOException e) {
             System.out.println("Error de  lectura y escritura(create: BodegaDAO)");
@@ -54,7 +53,6 @@ public class BodegaDAO  implements IBodega{
 
         }
     }
-    
 
     @Override
     public Bodega read(String nombre) {
@@ -62,13 +60,13 @@ public class BodegaDAO  implements IBodega{
             int salto = 0;
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                String bodegaArchivo  = archivo.readUTF();
-                if(bodegaArchivo.equals(bodegaArchivo)) {
-                    Bodega bodega  = new Bodega(nombre, bodegaArchivo);
+                String bodegaArchivo = archivo.readUTF();
+                if (bodegaArchivo.equals(bodegaArchivo)) {
+                    Bodega bodega = new Bodega(nombre, bodegaArchivo);
                     return bodega;
                 }
                 salto += tamañoRegistro;
-                
+
             }
         } catch (IOException e) {
             System.out.println("Error de lectura (read: BodegaDAO)");
@@ -79,18 +77,18 @@ public class BodegaDAO  implements IBodega{
 
     @Override
     public void update(Bodega bodega) {
-     try {
+        try {
             int salto = 0;
-            
+
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 String nombreArchivo = archivo.readUTF();
-                
+
                 if (nombreArchivo.equals(bodega.getNombre())) {
                     archivo.writeUTF(bodega.getDireccion());
                     archivo.writeUTF(bodega.getNombre());
                     break;
-                    
+
                 }
                 salto += tamañoRegistro;
 
@@ -111,7 +109,7 @@ public class BodegaDAO  implements IBodega{
             while (salto < archivo.length()) {
                 archivo.seek(salto);
                 String nombreArchivo = archivo.readUTF();
-                if (nombreArchivo.equals(nombre)){
+                if (nombreArchivo.equals(nombre)) {
                     archivo.seek(salto);
                     archivo.writeUTF(String.format("%-" + 25 + "s", cadena));
                     archivo.writeUTF(String.format("%-" + 50 + "s", cadena));
@@ -123,19 +121,19 @@ public class BodegaDAO  implements IBodega{
             ex.printStackTrace();
 
         }
-      
+
     }
 
     @Override
     public List<Bodega> findAllBodegas() {
-       List<Bodega> bodegaLista = new ArrayList<>();
+        List<Bodega> bodegaLista = new ArrayList<>();
         int salto = 0;
         int registro = 128;
         try {
-            while(salto<archivo.length()){
+            while (salto < archivo.length()) {
                 archivo.seek(salto);
-                Bodega  bodega = new Bodega(archivo.readUTF(), archivo.readUTF());
-                
+                Bodega bodega = new Bodega(archivo.readUTF(), archivo.readUTF());
+
                 bodegaLista.add(bodega);
                 salto += registro;
             }
@@ -146,6 +144,4 @@ public class BodegaDAO  implements IBodega{
         return bodegaLista;
     }
 
-    
-    
 }

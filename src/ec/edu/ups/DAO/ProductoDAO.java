@@ -15,19 +15,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author JHON FAREZ
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
-public class ProductoDAO implements  IProducto {
+public class ProductoDAO implements IProducto {
 
     /**
      *
-     * private String codigo | 10 caracteres + 2 bytes 
-     * private String nombreDeProducto | 25 caracteres + 2 bytes 
-     * private double precioDeProdcuto | 8 bytes 
-     * private int cantidad | 4 bytes 
-     * private Bodega bodega (nombre de Bodega) | 25 caracteres + 2 bytes
-     * 
+     * private String codigo | 10 caracteres + 2 bytes private String
+     * nombreDeProducto | 25 caracteres + 2 bytes private double
+     * precioDeProdcuto | 8 bytes private int cantidad | 4 bytes private Bodega
+     * bodega (nombre de Bodega) | 25 caracteres + 2 bytes
+     *
      * total= 78 bytes
      *
      */
@@ -37,19 +38,18 @@ public class ProductoDAO implements  IProducto {
     private Producto productoInterno;
     private Bodega bodegaInterna;
     private BodegaDAO bodegaDao;
-    
+
     private String eliminar10bytes;
     private String eliminar25bytes;
-    
 
     public ProductoDAO(BodegaDAO bodegaDao) {
         try {
             archivoProductos = new RandomAccessFile("datos/producto.dat", "rw");
-            this.bodegaDao=bodegaDao;
-            productoInterno=new Producto();
+            this.bodegaDao = bodegaDao;
+            productoInterno = new Producto();
             tamañoDeArchivo = 78;
-            eliminar10bytes= "          ";
-            eliminar25bytes= "                         ";
+            eliminar10bytes = "          ";
+            eliminar25bytes = "                         ";
         } catch (FileNotFoundException e) {
             System.out.println("Error escritura y lectura [ProductoDAO]");
             System.out.println(e);
@@ -82,15 +82,15 @@ public class ProductoDAO implements  IProducto {
                 productoInterno.setNombreDeProducto(archivoProductos.readUTF());
                 productoInterno.setPrecioDeProdcuto(archivoProductos.readDouble());
                 productoInterno.setCantidad(archivoProductos.readInt());
-                String bodega=archivoProductos.readUTF();
+                String bodega = archivoProductos.readUTF();
                 productoInterno.setBodega(bodegaDao.read(bodega));
-                if(codigo==productoInterno.getCodigo()){
+                if (codigo == productoInterno.getCodigo()) {
                     productoInterno.setBodega(bodegaInterna);
                     return productoInterno;
                 }
-                salto+=tamañoDeArchivo;
+                salto += tamañoDeArchivo;
             }
-        } catch (IOException e){ 
+        } catch (IOException e) {
             System.out.println("Error escritura y lectura [read ProductoDAO]");
         }
         return null;
@@ -98,20 +98,20 @@ public class ProductoDAO implements  IProducto {
 
     @Override
     public void update(Producto producto) {
-        int salto=0;
+        int salto = 0;
         try {
-            while(salto<archivoProductos.length()){
+            while (salto < archivoProductos.length()) {
                 archivoProductos.seek(salto);
                 productoInterno.setCodigo(archivoProductos.readUTF());
-                if(producto.getCodigo().equals(productoInterno.getCodigo())){
-                    archivoProductos.seek(salto+12);
+                if (producto.getCodigo().equals(productoInterno.getCodigo())) {
+                    archivoProductos.seek(salto + 12);
                     archivoProductos.writeUTF(producto.getNombreDeProducto());
                     archivoProductos.writeDouble(producto.getPrecioDeProdcuto());
                     archivoProductos.writeInt(producto.getCantidad());
                     archivoProductos.writeUTF(producto.getBodega().getNombre());
                     break;
                 }
-                salto+=tamañoDeArchivo;
+                salto += tamañoDeArchivo;
             }
         } catch (IOException e) {
             System.out.println("Error escritura y lectura [update DAOTelefono]");
@@ -120,12 +120,12 @@ public class ProductoDAO implements  IProducto {
 
     @Override
     public void delete(String codigo) {
-        int salto=0;
+        int salto = 0;
         try {
-            while(salto<archivoProductos.length()){
+            while (salto < archivoProductos.length()) {
                 archivoProductos.seek(salto);
                 productoInterno.setCodigo(archivoProductos.readUTF());
-                if(codigo.equals(productoInterno.getCodigo())){
+                if (codigo.equals(productoInterno.getCodigo())) {
                     archivoProductos.seek(salto);
                     archivoProductos.writeUTF(eliminar10bytes);
                     archivoProductos.writeUTF(eliminar25bytes);
@@ -134,7 +134,7 @@ public class ProductoDAO implements  IProducto {
                     archivoProductos.writeUTF(eliminar25bytes);
                     break;
                 }
-                salto+=tamañoDeArchivo;
+                salto += tamañoDeArchivo;
             }
         } catch (IOException e) {
             System.out.println("Error escritura y lectura [delete ProductoDAO]");
@@ -143,22 +143,22 @@ public class ProductoDAO implements  IProducto {
 
     @Override
     public List<Producto> findAllProductos() {
-        List<Producto> todosLosProductos=new ArrayList<>();
-        int salto=0;
+        List<Producto> todosLosProductos = new ArrayList<>();
+        int salto = 0;
         try {
-            while(salto<archivoProductos.length()){
+            while (salto < archivoProductos.length()) {
                 archivoProductos.seek(salto);
-                productoInterno=new Producto();
+                productoInterno = new Producto();
                 productoInterno.setCodigo(archivoProductos.readUTF());
                 productoInterno.setNombreDeProducto(archivoProductos.readUTF());
                 productoInterno.setPrecioDeProdcuto(archivoProductos.readDouble());
                 productoInterno.setCantidad(archivoProductos.readInt());
-                String bodega=archivoProductos.readUTF();
-                if(!productoInterno.getCodigo().equals(eliminar10bytes)){
+                String bodega = archivoProductos.readUTF();
+                if (!productoInterno.getCodigo().equals(eliminar10bytes)) {
                     productoInterno.setBodega(bodegaDao.read(bodega));
                     todosLosProductos.add(productoInterno);
                 }
-                salto+=tamañoDeArchivo;
+                salto += tamañoDeArchivo;
             }
             return todosLosProductos;
         } catch (IOException e) {
@@ -166,5 +166,5 @@ public class ProductoDAO implements  IProducto {
         }
         return null;
     }
-    
+
 }

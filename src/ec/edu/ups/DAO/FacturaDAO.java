@@ -10,8 +10,10 @@ import ec.edu.ups.modelo.Factura;
 import java.util.List;
 
 /**
- *
- * @author JHON FAREZ
+ * @author Sebastian Uyaguri
+ * @author Denys Dutan
+ * @author John Fárez
+ * @Santiago Cabrera
  */
 public class FacturaDAO implements IFactura {
 
@@ -39,5 +41,5 @@ public class FacturaDAO implements IFactura {
     public int getCodigoActual() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
