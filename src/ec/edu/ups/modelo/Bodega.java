@@ -8,10 +8,10 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
- * @author Sebastian Uyagauri
+ * @author Sebastian Uyaguari
  * @author Denys Dutan
  * @author John Fárez
- * @Santiago Cabrera
+ * @author Santiago Cabrera
  */
 public class Bodega {
 

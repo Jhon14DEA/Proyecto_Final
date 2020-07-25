@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * @author Sebastian Uyaguri
+ * @author Sebastian Uyaguari
  * @author Denys Dutan
  * @author John Fárez
- * @Santiago Cabrera
+ * @author Santiago Cabrera
  *
  */
 public class UsuarioDAO implements IUsuario {

@@ -10,10 +10,10 @@ import ec.edu.ups.modelo.Factura;
 import java.util.List;
 
 /**
- * @author Sebastian Uyaguri
+ * @author Sebastian Uyaguari
  * @author Denys Dutan
  * @author John Fárez
- * @Santiago Cabrera
+ * @author Santiago Cabrera
  */
 public class FacturaDAO implements IFactura {
 

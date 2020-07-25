@@ -9,10 +9,10 @@ import ec.edu.ups.modelo.Usuario;
 import java.util.List;
 
 /**
- * @author Sebastian Uyaguri
+* @author Sebastian Uyaguari
  * @author Denys Dutan
  * @author John Fárez
- * @Santiago Cabrera
+ * @author Santiago Cabrera
  */
 public interface IUsuario {
 
