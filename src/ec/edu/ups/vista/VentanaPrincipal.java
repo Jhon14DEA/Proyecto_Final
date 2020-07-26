@@ -5,6 +5,10 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorUsuario;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+
 /**
  * @author Sebastian Uyaguari
  * @author Denys Dutan
@@ -18,15 +22,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     VentanaBodega ventanaBodega;
     VentanaProductos ventanaProductos;
     VentanaFactura ventanaFactura;
+    VentanaRegistrarseUsuario ventanaRegistrarUsuario;
+
+    ControladorUsuario controladorUsuario;
 
     public VentanaPrincipal() {
         initComponents();
 
-        ventanaIniciarSesion = new VentanaIniciarSesion();
+        controladorUsuario = new ControladorUsuario();
+
+        ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanCliente = new VentanaCliente();
         ventanaBodega = new VentanaBodega();
         ventanaProductos = new VentanaProductos();
         ventanaFactura = new VentanaFactura();
+        ventanaRegistrarUsuario = new VentanaRegistrarseUsuario(controladorUsuario);
 
     }
 
@@ -41,10 +51,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
+        menuInicio = new javax.swing.JMenu();
         menuItemIniciarSesion = new javax.swing.JMenuItem();
+        menuItemRegistrarUsuario = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        menuItemCerrarSesion = new javax.swing.JMenuItem();
         menuItemSalir = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
+        menuGestionClientes = new javax.swing.JMenu();
         menuItemClientes = new javax.swing.JMenuItem();
         menuItemProductos = new javax.swing.JMenuItem();
         menuItemFacturas = new javax.swing.JMenuItem();
@@ -55,8 +68,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("Inicio");
+        menuInicio.setMnemonic('f');
+        menuInicio.setText("Inicio");
 
         menuItemIniciarSesion.setMnemonic('o');
         menuItemIniciarSesion.setText("Iniciar Sesion ");
@@ -65,7 +78,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemIniciarSesionActionPerformed(evt);
             }
         });
-        fileMenu.add(menuItemIniciarSesion);
+        menuInicio.add(menuItemIniciarSesion);
+
+        menuItemRegistrarUsuario.setText("Registrar usuario");
+        menuItemRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemRegistrarUsuarioActionPerformed(evt);
+            }
+        });
+        menuInicio.add(menuItemRegistrarUsuario);
+
+        jMenuItem2.setText("Registrar cliente");
+        menuInicio.add(jMenuItem2);
+
+        menuItemCerrarSesion.setText("Cerrar Sesion");
+        menuInicio.add(menuItemCerrarSesion);
 
         menuItemSalir.setMnemonic('x');
         menuItemSalir.setText("Salir");
@@ -74,12 +101,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemSalirActionPerformed(evt);
             }
         });
-        fileMenu.add(menuItemSalir);
+        menuInicio.add(menuItemSalir);
 
-        menuBar.add(fileMenu);
+        menuBar.add(menuInicio);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText(" Gestion");
+        menuGestionClientes.setMnemonic('e');
+        menuGestionClientes.setText(" Gestion");
 
         menuItemClientes.setMnemonic('t');
         menuItemClientes.setText("Gestion Clientes");
@@ -88,7 +115,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemClientesActionPerformed(evt);
             }
         });
-        editMenu.add(menuItemClientes);
+        menuGestionClientes.add(menuItemClientes);
 
         menuItemProductos.setMnemonic('y');
         menuItemProductos.setText("Gesion Productos");
@@ -97,7 +124,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemProductosActionPerformed(evt);
             }
         });
-        editMenu.add(menuItemProductos);
+        menuGestionClientes.add(menuItemProductos);
 
         menuItemFacturas.setMnemonic('p');
         menuItemFacturas.setText(" Gestion Facturas");
@@ -106,7 +133,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemFacturasActionPerformed(evt);
             }
         });
-        editMenu.add(menuItemFacturas);
+        menuGestionClientes.add(menuItemFacturas);
 
         menuItemBodega.setMnemonic('d');
         menuItemBodega.setText("Gestion bodegas");
@@ -115,9 +142,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemBodegaActionPerformed(evt);
             }
         });
-        editMenu.add(menuItemBodega);
+        menuGestionClientes.add(menuItemBodega);
 
-        menuBar.add(editMenu);
+        menuBar.add(menuGestionClientes);
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Idioma");
@@ -190,6 +217,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menuItemFacturasActionPerformed
 
+    private void menuItemRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegistrarUsuarioActionPerformed
+
+        desktopPane.add(ventanaRegistrarUsuario);
+        ventanaRegistrarUsuario.setVisible(true);
+
+    }//GEN-LAST:event_menuItemRegistrarUsuarioActionPerformed
+
+    public JMenu getMenu() {
+
+        return menuInicio;
+
+    }
+
+    public JMenuItem getMenuIniciarSesion() {
+
+        return menuItemIniciarSesion;
+
+    }
+
+    public JMenuItem getMenuRegistrarse() {
+
+        return menuItemRegistrarUsuario;
+    }
+
+    public JMenuItem getMenuCerrarSesion() {
+
+        return menuItemCerrarSesion;
+
+    }
+
+    public JMenu getMenuGestionar() {
+
+        return menuGestionClientes;
+
+    }
+
+    public JMenuItem getMenuSalir() {
+
+        return menuItemSalir;
+
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -227,17 +296,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
-    private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenu menuGestionClientes;
+    private javax.swing.JMenu menuInicio;
     private javax.swing.JMenuItem menuItemBodega;
+    private javax.swing.JMenuItem menuItemCerrarSesion;
     private javax.swing.JMenuItem menuItemClientes;
     private javax.swing.JMenuItem menuItemEspaniol;
     private javax.swing.JMenuItem menuItemFacturas;
     private javax.swing.JMenuItem menuItemIngles;
     private javax.swing.JMenuItem menuItemIniciarSesion;
     private javax.swing.JMenuItem menuItemProductos;
+    private javax.swing.JMenuItem menuItemRegistrarUsuario;
     private javax.swing.JMenuItem menuItemSalir;
     // End of variables declaration//GEN-END:variables
 
