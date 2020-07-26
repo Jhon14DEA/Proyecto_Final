@@ -13,30 +13,68 @@ import java.util.Objects;
  * @author John Fárez
  * @author Santiago Cabrera
  */
+/**
+ * Clase Usuario.
+ *
+ * Esta clase es la que tiene la representacion de los datos que necesita el
+ * sistema para su funcionamiento.
+ *
+ */
 public class Usuario extends Persona {
 
+    //Atrivbutos
     private String correo;
     private String contraseña;
 
     public Usuario() {
     }
 
+    /**
+     * Metodo constructor.
+     *
+     * Inicializamos el objeto y contiene calores siempre validos.
+     *
+     * @param correo
+     * @param contraseña
+     */
     public Usuario(String correo, String contraseña) {
         this.correo = correo;
         this.contraseña = contraseña;
     }
 
+    /**
+     * Metodo Constructor.
+     *
+     * Inicializamos el objeto y contiene valores siempre validos.
+     *
+     * @param correo
+     * @param contraseña
+     * @param cedula
+     * @param nombre
+     * @param apellido
+     */
     public Usuario(String correo, String contraseña, String cedula, String nombre, String apellido) {
         super(cedula, nombre, apellido);
         this.correo = correo;
         this.contraseña = contraseña;
     }
 
+    /**
+     * Metodos getter y setter
+     *
+     * Su funcion es permitir el obtener el valor de una propiedad de la clase.
+     *
+     *
+     * @return
+     */
     public String getCorreo() {
         return correo;
     }
 
     public void setCorreo(String correo) {
+
+        this.correo = validarEspacios(correo, 50);
+
         this.correo = correo;
     }
 
@@ -45,9 +83,47 @@ public class Usuario extends Persona {
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+
+        this.contraseña = validarEspacios(contraseña, 8);
+
     }
 
+    /**
+     * metodo Validar Espacios.
+     * 
+     * Este metodo nos permite decirle cuantos espacios le dejamos usar y si este 
+     * le falta completar lo llenamos con espacios o si se ha pasado lo cortamos.
+     * 
+     * 
+     * @param cadena
+     * @param numero
+     * @return 
+     */
+    
+    public String validarEspacios(String cadena, int numero) {
+        if (cadena.length() == numero) {
+            return cadena;
+        } else {
+            if (cadena.length() > numero) {
+                cadena = cadena.substring(0, numero);
+                return cadena;
+            } else {
+                for (int i = cadena.length(); i < numero; i++) {
+                    cadena += " ";
+                }
+                return cadena;
+            }
+        }
+    }
+
+    /**
+     * Metodo HashCode y equals.
+     * 
+     * Si dos objetos son iguales deben tener el mismo valor hash.
+     * 
+     * 
+     * @return 
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -76,6 +152,9 @@ public class Usuario extends Persona {
         }
         return true;
     }
+    
+    
+    //metodo toString.
 
     @Override
     public String toString() {
