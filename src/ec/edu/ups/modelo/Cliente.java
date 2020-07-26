@@ -40,9 +40,9 @@ public class Cliente extends Persona {
      * Metodo constructor que recibe y guarda la informacion a los atributos propios
      * de esta clase.
      * 
-     * @param nombreDelLocal
-     * @param telefono
-     * @param direccion 
+     * @param nombreDelLocal String 
+     * @param telefono String
+     * @param direccion String
      */
     public Cliente(String nombreDelLocal, String telefono, String direccion) {
         this.setNombreDelLocal(nombreDelLocal);
@@ -56,12 +56,12 @@ public class Cliente extends Persona {
      * Metodo constructor que recibe y guarda la informacion a los atributos propios
      * y tambien a los atributos heredados de la clase Padre.
      * 
-     * @param nombreDelLocal
-     * @param telefono
-     * @param direccion
-     * @param cedula
-     * @param nombre
-     * @param apellido 
+     * @param nombreDelLocal String
+     * @param telefono String
+     * @param direccion String
+     * @param cedula String
+     * @param nombre String
+     * @param apellido String
      */
     public Cliente(String nombreDelLocal, String telefono, String direccion, String cedula, String nombre, String apellido) {
         super(cedula, nombre, apellido);
@@ -103,9 +103,9 @@ public class Cliente extends Persona {
      * ser guardados correctamente en el archivo binario y completar el numero de 
      * bytes asignados.
      * 
-     * @param cadena
-     * @param numero
-     * @return String:cadena 
+     * @param cadena String
+     * @param numero Integer
+     * @return cadena 
      */
     public String validarEspacios(String cadena, int numero) {
         if (cadena.length() == numero) {
