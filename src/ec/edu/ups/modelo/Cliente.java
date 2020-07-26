@@ -8,6 +8,12 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
+ * Clase Cliente.
+ * 
+ * Esta clase es la que contiene la representacion de los datos que necesita 
+ * el sistema para su funcionamiento, hereda los metodos y atributos de la
+ * clase perssona.
+ * 
  * @author Sebastian Uyaguari
  * @author Denys Dutan
  * @author John Fárez
@@ -15,19 +21,48 @@ import java.util.Objects;
  */
 public class Cliente extends Persona {
 
+    //Atributos de la clase
     private String nombreDelLocal;
     private String telefono;
     private String direccion;
 
+    /**
+     * Metodo Cliente.
+     * 
+     * Metodo constructor vacio.
+     */
     public Cliente() {
     }
 
+    /**
+     * Metodo Cliente.
+     * 
+     * Metodo constructor que recibe y guarda la informacion a los atributos propios
+     * de esta clase.
+     * 
+     * @param nombreDelLocal
+     * @param telefono
+     * @param direccion 
+     */
     public Cliente(String nombreDelLocal, String telefono, String direccion) {
         this.setNombreDelLocal(nombreDelLocal);
         this.setTelefono(telefono);
         this.setDireccion(direccion);
     }
 
+    /**
+     * Metodo Cliente.
+     * 
+     * Metodo constructor que recibe y guarda la informacion a los atributos propios
+     * y tambien a los atributos heredados de la clase Padre.
+     * 
+     * @param nombreDelLocal
+     * @param telefono
+     * @param direccion
+     * @param cedula
+     * @param nombre
+     * @param apellido 
+     */
     public Cliente(String nombreDelLocal, String telefono, String direccion, String cedula, String nombre, String apellido) {
         super(cedula, nombre, apellido);
         this.setNombreDelLocal(nombreDelLocal);
@@ -35,6 +70,7 @@ public class Cliente extends Persona {
         this.setDireccion(direccion);
     }
 
+    //Metodos Setter y Getter
     public String getNombreDelLocal() {
         return nombreDelLocal;
     }
@@ -59,6 +95,18 @@ public class Cliente extends Persona {
         this.direccion = validarEspacios(direccion, 50);
     }
 
+    /**
+     * Metodo ValidarEspacios.
+     * 
+     * Metodo en el cual se llena con espacios o  se recorta a una cierta cantidad
+     * de caracteres con el fin de guardar la informacion con el tamaño exacto para 
+     * ser guardados correctamente en el archivo binario y completar el numero de 
+     * bytes asignados.
+     * 
+     * @param cadena
+     * @param numero
+     * @return String:cadena 
+     */
     public String validarEspacios(String cadena, int numero) {
         if (cadena.length() == numero) {
             return cadena;
@@ -75,6 +123,7 @@ public class Cliente extends Persona {
         }
     }
 
+    //Metodos equals y hashCode
     @Override
     public int hashCode() {
         int hash = 7;
@@ -100,6 +149,7 @@ public class Cliente extends Persona {
         return true;
     }
 
+    //Metodo toString
     @Override
     public String toString() {
         return "Cliente{" + "nombreDelLocal=" + nombreDelLocal + ", telefono=" + telefono + ", direccion=" + direccion + '}';
