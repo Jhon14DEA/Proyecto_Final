@@ -10,8 +10,10 @@ import ec.edu.ups.modelo.*;
 import java.util.List;
 
 /**
- *
- * @author Dutan2000
+ * @author Sebastian Uyaguari
+ * @author Denys Dutan
+ * @author John Fárez
+ * @author Santiago Cabrera
  */
 public class ControladorProducto {
 

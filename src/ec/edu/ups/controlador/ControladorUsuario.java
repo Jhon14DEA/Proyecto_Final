@@ -6,8 +6,10 @@ import ec.edu.ups.modelo.Usuario;
 import java.util.List;
 
 /**
- *
- * @author santi
+ * @author Sebastian Uyaguari
+ * @author Denys Dutan
+ * @author John Fárez
+ * @author Santiago Cabrera
  */
 public class ControladorUsuario {
 
