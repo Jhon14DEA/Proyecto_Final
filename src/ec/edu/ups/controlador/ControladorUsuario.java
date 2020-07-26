@@ -18,9 +18,11 @@ public class ControladorUsuario {
     public ControladorUsuario() {
     }
 
-    public ControladorUsuario(UsuarioDAO usuarioDAO) {
+    public ControladorUsuario(Usuario usuario,UsuarioDAO usuarioDAO) {
 
         this.usuarioDAO = usuarioDAO;
+        this.usuario = usuario;
+        
     }
 
     public void registrarUsuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
