@@ -22,7 +22,7 @@ import java.util.Objects;
  */
 public class Usuario extends Persona {
 
-    //Atrivbutos
+    //Atributos
     private String correo;
     private String contraseña;
 
@@ -38,8 +38,8 @@ public class Usuario extends Persona {
      * @param contraseña
      */
     public Usuario(String correo, String contraseña) {
-        this.correo = correo;
-        this.contraseña = contraseña;
+        this.setCorreo(correo);
+        this.setContraseña(contraseña);
     }
 
     /**
@@ -55,8 +55,8 @@ public class Usuario extends Persona {
      */
     public Usuario(String correo, String contraseña, String cedula, String nombre, String apellido) {
         super(cedula, nombre, apellido);
-        this.correo = correo;
-        this.contraseña = contraseña;
+        this.setCorreo(correo);
+        this.setContraseña(contraseña);
     }
 
     /**
@@ -75,7 +75,6 @@ public class Usuario extends Persona {
 
         this.correo = validarEspacios(correo, 50);
 
-        this.correo = correo;
     }
 
     public String getContraseña() {
