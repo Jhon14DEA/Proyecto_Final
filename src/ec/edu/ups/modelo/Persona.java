@@ -8,6 +8,12 @@ package ec.edu.ups.modelo;
 import java.util.Objects;
 
 /**
+ * Clase Persona.
+ * 
+ * Esta clase es la que contiene la representacion de los datos que necesita 
+ * el sistema para su funcionamiento, es la clase padre de las clases: Cliente,
+ * Usuario.
+ * 
  * @author Sebastian Uyaguari
  * @author Denys Dutan
  * @author John Fárez
@@ -15,19 +21,37 @@ import java.util.Objects;
  */
 public class Persona {
 
+    //Atributos de la clase
     private String cedula;
     private String nombre;
     private String apellido;
 
+    /**
+     * Metod Persona.
+     * 
+     * Metodo constructor vacio.
+     * 
+     */
     public Persona() {
     }
 
+    /**
+     * Metodo Persona.
+     * 
+     * Metodo constructor que recibe y guarda la informacion a los atributos propios
+     * de esta clase.
+     * 
+     * @param cedula String
+     * @param nombre String
+     * @param apellido String
+     */
     public Persona(String cedula, String nombre, String apellido) {
         this.setCedula(cedula);
         this.setNombre(nombre);
         this.setApellido(apellido);
     }
 
+    //Metodos Getter y Setter
     public String getCedula() {
         return cedula;
     }
@@ -52,6 +76,18 @@ public class Persona {
         this.apellido = validarEspacios(apellido, 25);
     }
 
+    /**
+     * Metodo validarEspacios.
+     * 
+     * Metodo en el cual se llena con espacios o  se recorta a una cierta cantidad
+     * de caracteres con el fin de guardar la informacion con el tamaño exacto para 
+     * ser guardados correctamente en el archivo binario y completar el numero de 
+     * bytes asignados.
+     * 
+     * @param cadena String
+     * @param numero String
+     * @return String: cadena
+     */
     public String validarEspacios(String cadena, int numero) {
         if (cadena.length() == numero) {
             return cadena;
@@ -68,6 +104,7 @@ public class Persona {
         }
     }
 
+    //Metodos equals y hashCode
     @Override
     public int hashCode() {
         int hash = 7;
@@ -93,6 +130,7 @@ public class Persona {
         return true;
     }
 
+    //Metodo toString
     @Override
     public String toString() {
         return "Persona{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + '}';
