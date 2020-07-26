@@ -3,13 +3,12 @@ package ec.edu.ups.controlador;
 import ec.edu.ups.DAO.UsuarioDAO;
 import ec.edu.ups.IDAO.IUsuario;
 import ec.edu.ups.modelo.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Sebastian Uyaguari
- * @author Denys Dutan
- * @author John Fárez
- * @author Santiago Cabrera
+ *
+ * @author santi
  */
 public class ControladorUsuario {
 
@@ -19,12 +18,12 @@ public class ControladorUsuario {
     public ControladorUsuario() {
     }
 
-    public ControladorUsuario(Usuario usuario, UsuarioDAO usuarioDAO) {
-        this.usuario = usuario;
+    public ControladorUsuario(UsuarioDAO usuarioDAO) {
+
         this.usuarioDAO = usuarioDAO;
     }
 
-      public void registrarUsuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
+    public void registrarUsuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
 
         usuario = new Usuario(cedula, nombre, apellido, correo, contrasena);
         usuarioDAO.create(usuario);
@@ -33,13 +32,15 @@ public class ControladorUsuario {
 
     public Usuario buscarUsuario(String cedula) {
 
-         usuario = usuarioDAO.read(cedula);
-        
-        if(usuario != null){
-            return usuario;
-        }else{
-            return null;
-        }   
+        usuario = usuarioDAO.read(cedula);
+
+        return usuario;
+
+    }
+
+    public Usuario devolverUsuario() {
+
+        return usuario;
 
     }
 
@@ -58,13 +59,10 @@ public class ControladorUsuario {
 
     }
 
-    public void actualizarUsuario(String cedula) {
+    public boolean actualizarUsuario(Usuario usuario) {
+        boolean cent = usuarioDAO.update(usuario);
+        return cent;
 
-        usuario = usuarioDAO.read(cedula);
-
-        if (usuario != null) {
-            usuarioDAO.update(usuario);
-        }
     }
 
     public boolean eliminarUsuario(String cedula) {
@@ -85,8 +83,11 @@ public class ControladorUsuario {
 
     public List<Usuario> listarUsuario() {
 
-        List<Usuario> lista = usuarioDAO.findAll();
+        List<Usuario> lista = new ArrayList<Usuario>();
+        lista = usuarioDAO.findAll();
         return lista;
+        
+        
 
     }
 
