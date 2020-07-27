@@ -29,6 +29,25 @@ public class Usuario extends Persona {
     public Usuario() {
     }
 
+    
+    /**
+     * Metodo Constructor.
+     *
+     * Inicializamos el objeto y contiene valores siempre validos.
+     *
+     * @param correo
+     * @param contraseña
+     * @param cedula
+     * @param nombre
+     * @param apellido
+     */
+    public Usuario(String cedula, String nombre, String apellido,String correo, String contraseña) {
+        super(cedula, nombre, apellido);
+        this.setCorreo(correo);
+        this.setContraseña(contraseña);
+    }
+
+    
     /**
      * Metodo constructor.
      *
@@ -42,23 +61,7 @@ public class Usuario extends Persona {
         this.setContraseña(contraseña);
     }
 
-    /**
-     * Metodo Constructor.
-     *
-     * Inicializamos el objeto y contiene valores siempre validos.
-     *
-     * @param correo
-     * @param contraseña
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     */
-    public Usuario(String correo, String contraseña, String cedula, String nombre, String apellido) {
-        super(cedula, nombre, apellido);
-        this.setCorreo(correo);
-        this.setContraseña(contraseña);
-    }
-
+    
     /**
      * Metodos getter y setter
      *
