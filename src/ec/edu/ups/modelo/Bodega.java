@@ -16,7 +16,6 @@ import java.util.Objects;
 public class Bodega {
 
     private String nombre;
-    //private int cantidadDeProducto;
     private String direccion;
 
     public Bodega() {
@@ -36,13 +35,6 @@ public class Bodega {
         this.nombre = nombre;
     }
 
-    /*public int getCantidadDeProducto() {
-        return cantidadDeProducto;
-    }
-
-    public void setCantidadDeProducto(int cantidadDeProducto) {
-        this.cantidadDeProducto = cantidadDeProducto;
-    }*/
     public String getDireccion() {
         return direccion;
     }

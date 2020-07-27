@@ -25,13 +25,13 @@ public class BodegaDAO implements IBodega {
      *
      * String nombre -> 25 bytes String direccion -> 50 bytes
      *
-     * total registro = 90
+     * total registro = 79
      */
     private RandomAccessFile archivo;
     private int tamañoRegistro;
 
     public BodegaDAO() {
-        tamañoRegistro = 90;
+        tamañoRegistro = 79;
         try {
             archivo = new RandomAccessFile("datos/bodega.dat", "rw");
         } catch (IOException e) {
