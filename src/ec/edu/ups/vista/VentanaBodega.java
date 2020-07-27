@@ -5,6 +5,10 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorBodega;
+import ec.edu.ups.modelo.Bodega;
+import javax.swing.JOptionPane;
+
 /**
  * @author Sebastian Uyaguari
  * @author Denys Dutan
@@ -12,6 +16,8 @@ package ec.edu.ups.vista;
  * @author Santiago Cabrera
  */
 public class VentanaBodega extends javax.swing.JInternalFrame {
+
+    private ControladorBodega controladorBodega;
 
     /**
      * Creates new form VentanaBodega
@@ -55,11 +61,21 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/toolbar_find (1).png"))); // NOI18N
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         lblInformacion.setText("Informacion de la bodega");
 
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         lblCodigo.setText("Codigo");
 
@@ -68,11 +84,11 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -83,6 +99,11 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
         btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/list.png"))); // NOI18N
         btnListar.setText("Listar todo");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         txtCodigo.setEditable(false);
         txtCodigo.setText(" ");
@@ -96,6 +117,11 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
         btnActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agt_update_misc.png"))); // NOI18N
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         lblCiudad.setText("Ciudad");
 
@@ -197,7 +223,72 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        // TODO add your handling code here:
 
+        String nombre = txtNombre.getText();
+        String direccion = txtDireccion.getText();
+
+        if (nombre.isEmpty() || direccion.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Llene tods los campos");
+        } else {
+            int respuesta = JOptionPane.showConfirmDialog(this, "Guardar cambios");
+            if (respuesta == JOptionPane.YES_OPTION) {
+                controladorBodega.actualizarBodega(direccion, nombre);
+                JOptionPane.showMessageDialog(this, "Actualizacion realizada");
+                cargarDatos();
+            }
+
+        }
+
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handlifng code here
+        String nombre = txtNombre.getText();
+
+        if (nombre == null) {
+            JOptionPane.showMessageDialog(this, "Llene todos el campo requerido");
+        } else {
+            Bodega b = controladorBodega.buscarBodega(nombre);
+            if (b != null) {
+                txtNombre.setText(b.getNombre());
+                txtDireccion.setText(b.getDireccion());
+                JOptionPane.showMessageDialog(this, "Busqueda exitosa");
+            }else{
+            JOptionPane.showMessageDialog(this, "Bodega no encontrada");
+            }
+        }
+
+
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        int eliminar = JOptionPane.showConfirmDialog(this, "Seguro desea elimnar");
+        if(eliminar == JOptionPane.YES_OPTION){
+         String nombre = txtNombre.getText();                    
+         controladorBodega.eliminarBodega(nombre);
+         JOptionPane.showMessageDialog(this, "Bodega eliminada con exito");
+        }
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+        
+    }//GEN-LAST:event_btnListarActionPerformed
+    public void cargarDatos() {
+        Bodega b = controladorBodega.devolverBodega();
+        txtNombre.setText(b.getNombre());
+        txtDireccion.setText(b.getDireccion());
+    }
+
+    public void limpiar(){
+    txtNombre.setText("");
+    txtDireccion.setText("");
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TblDatos;
     private javax.swing.JButton btnActualizar;

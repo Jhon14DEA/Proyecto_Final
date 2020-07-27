@@ -43,6 +43,10 @@ public class ControladorBodega {
             return null;
         }
     }
+    
+    public Bodega devolverBodega(){
+    return bodega;
+    }
 
     public void actualizarBodega(String direccion, String nombre) {
 
