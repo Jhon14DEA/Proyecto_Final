@@ -5,6 +5,7 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.DAO.UsuarioDAO;
 import ec.edu.ups.controlador.ControladorUsuario;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -23,13 +24,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     VentanaProductos ventanaProductos;
     VentanaFactura ventanaFactura;
     VentanaRegistrarseUsuario ventanaRegistrarUsuario;
+    VentanaUsuario ventanaUsuario;
+    
+    UsuarioDAO usuarioDao;
+    
 
     ControladorUsuario controladorUsuario;
 
     public VentanaPrincipal() {
         initComponents();
 
-        controladorUsuario = new ControladorUsuario();
+        usuarioDao = new UsuarioDAO();
+        
+        controladorUsuario = new ControladorUsuario(usuarioDao);
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanCliente = new VentanaCliente();
@@ -37,6 +44,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaProductos = new VentanaProductos();
         ventanaFactura = new VentanaFactura();
         ventanaRegistrarUsuario = new VentanaRegistrarseUsuario(controladorUsuario);
+        ventanaUsuario = new VentanaUsuario(controladorUsuario);
 
     }
 
@@ -59,6 +67,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemSalir = new javax.swing.JMenuItem();
         menuGestionClientes = new javax.swing.JMenu();
         menuItemClientes = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuItemProductos = new javax.swing.JMenuItem();
         menuItemFacturas = new javax.swing.JMenuItem();
         menuItemBodega = new javax.swing.JMenuItem();
@@ -92,6 +101,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuInicio.add(jMenuItem2);
 
         menuItemCerrarSesion.setText("Cerrar Sesion");
+        menuItemCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCerrarSesionActionPerformed(evt);
+            }
+        });
         menuInicio.add(menuItemCerrarSesion);
 
         menuItemSalir.setMnemonic('x');
@@ -117,6 +131,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menuGestionClientes.add(menuItemClientes);
 
+        jMenuItem1.setText("Gestion Usuarios");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        menuGestionClientes.add(jMenuItem1);
+
         menuItemProductos.setMnemonic('y');
         menuItemProductos.setText("Gesion Productos");
         menuItemProductos.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +149,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuGestionClientes.add(menuItemProductos);
 
         menuItemFacturas.setMnemonic('p');
-        menuItemFacturas.setText(" Gestion Facturas");
+        menuItemFacturas.setText("Gestion Facturas");
         menuItemFacturas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemFacturasActionPerformed(evt);
@@ -224,6 +246,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menuItemRegistrarUsuarioActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+        desktopPane.add(ventanaUsuario);
+        ventanaUsuario.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCerrarSesionActionPerformed
+        
+        menuGestionClientes.setVisible(false);
+        menuItemCerrarSesion.setVisible(false);
+        menuItemIniciarSesion.setVisible(true);
+        menuItemRegistrarUsuario.setVisible(true);
+        
+        
+        
+        
+    }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
+
     public JMenu getMenu() {
 
         return menuInicio;
@@ -297,6 +338,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuGestionClientes;
