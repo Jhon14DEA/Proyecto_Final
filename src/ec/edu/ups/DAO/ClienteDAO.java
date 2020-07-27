@@ -72,12 +72,12 @@ public class ClienteDAO implements ICliente {
     public void create(Cliente cliente) {
         try {
             archivo.seek(archivo.length());
-            archivo.writeUTF(cliente.getNombreDelLocal());
-            archivo.writeUTF(cliente.getTelefono());
-            archivo.writeUTF(cliente.getDireccion());
             archivo.writeUTF(cliente.getCedula());
             archivo.writeUTF(cliente.getNombre());
             archivo.writeUTF(cliente.getApellido());
+            archivo.writeUTF(cliente.getNombreDelLocal());
+            archivo.writeUTF(cliente.getTelefono());
+            archivo.writeUTF(cliente.getDireccion());
 
         } catch (IOException ex) {
 
@@ -135,15 +135,15 @@ public class ClienteDAO implements ICliente {
 
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                String nombreDelLocalArchivo = archivo.readUTF();
-                if (nombreDelLocalArchivo.equals(cliente.getNombreDelLocal())) {
+                String cedulaArchivo = archivo.readUTF();
+                if (cedulaArchivo.equals(cliente.getCedula())) {
                     archivo.seek(salto);
-                    archivo.writeUTF(cliente.getNombreDelLocal());
-                    archivo.writeUTF(cliente.getTelefono());
-                    archivo.writeUTF(cliente.getDireccion());
                     archivo.writeUTF(cliente.getCedula());
                     archivo.writeUTF(cliente.getNombre());
                     archivo.writeUTF(cliente.getApellido());
+                    archivo.writeUTF(cliente.getNombreDelLocal());
+                    archivo.writeUTF(cliente.getTelefono());
+                    archivo.writeUTF(cliente.getDireccion());
                 }
                 salto += tamañoRegistro;
             }
