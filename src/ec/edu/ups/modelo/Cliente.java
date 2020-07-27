@@ -63,7 +63,7 @@ public class Cliente extends Persona {
      * @param nombre String
      * @param apellido String
      */
-    public Cliente(String nombreDelLocal, String telefono, String direccion, String cedula, String nombre, String apellido) {
+    public Cliente(String cedula, String nombre, String apellido, String nombreDelLocal, String telefono, String direccion) {
         super(cedula, nombre, apellido);
         this.setNombreDelLocal(nombreDelLocal);
         this.setTelefono(telefono);
