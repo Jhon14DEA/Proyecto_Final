@@ -32,11 +32,9 @@ public class UsuarioDAO implements IUsuario {
     private RandomAccessFile archivo;
 
     /**
-     * String cedula = 10 caracteres 
-     * String nombre = 25 caracteres 
-     * String apellido = 25  caracteres  
-     * String Correo = 50 caracteres 
-     * String contrasena= 8 caracteres
+     * String cedula = 10 caracteres String nombre = 25 caracteres String
+     * apellido = 25 caracteres String Correo = 50 caracteres String contrasena=
+     * 8 caracteres
      *
      * int registro = 128 bytes
      *
@@ -175,19 +173,19 @@ public class UsuarioDAO implements IUsuario {
         return false;
     }
 
-    
     /**
      * metodo delete.
-     * 
-     * Encargado de eliminar un usuario, en este caso como estamos haciendo con archivos binarios
-     * no le podemos eliminar lo que hariamos es sobreescribirle  de espacios. 
-     * 
-     * @param usuario 
+     *
+     * Encargado de eliminar un usuario, en este caso como estamos haciendo con
+     * archivos binarios no le podemos eliminar lo que hariamos es
+     * sobreescribirle de espacios.
+     *
+     * @param usuario
      */
-    
     @Override
     public void delete(Usuario usuario) {
 
+        String cadena = "";
         int salto = 0;
         int registro = 128;
 
@@ -200,11 +198,11 @@ public class UsuarioDAO implements IUsuario {
 
                     archivo.seek(salto);
 
-                    archivo.writeUTF(String.format("%-" + 10 + "s"));
-                    archivo.writeUTF(String.format("%-" + 25 + "s"));
-                    archivo.writeUTF(String.format("%-" + 25 + "s"));
-                    archivo.writeUTF(String.format("%-" + 50 + "s"));
-                    archivo.writeUTF(String.format("%-" + 8 + "s"));
+                    archivo.writeUTF(String.format("%-" + 10 + "s", cadena));
+                    archivo.writeUTF(String.format("%-" + 25 + "s", cadena));
+                    archivo.writeUTF(String.format("%-" + 25 + "s", cadena));
+                    archivo.writeUTF(String.format("%-" + 50 + "s", cadena));
+                    archivo.writeUTF(String.format("%-" + 8 + "s", cadena));
                 }
 
                 salto += registro;
@@ -219,15 +217,13 @@ public class UsuarioDAO implements IUsuario {
     }
 
     /**
-     *Metodo listar Usuario.
-     * 
-     * Con este metodo Listamos todos los usuarios que se hayan registrado y le 
-     * hacemos con el metodo readUTF leemos los bytes. 
-     * 
-     * @return 
+     * Metodo listar Usuario.
+     *
+     * Con este metodo Listamos todos los usuarios que se hayan registrado y le
+     * hacemos con el metodo readUTF leemos los bytes.
+     *
+     * @return
      */
-    
-    
     public List<Usuario> findAll() {
 
         List<Usuario> lista = new ArrayList<Usuario>();
@@ -254,18 +250,16 @@ public class UsuarioDAO implements IUsuario {
 
     }
 
-    
     /**
      * Metodo login.
-     * 
+     *
      * Este metodo es el encargado del inicio de sesion del usuario.
-     * 
-     * 
+     *
+     *
      * @param correo
      * @param contraseña
-     * @return 
+     * @return
      */
-    
     @Override
     public Usuario login(String correo, String contraseña) {
 
