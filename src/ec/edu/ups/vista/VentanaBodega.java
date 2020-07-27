@@ -19,8 +19,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Santiago Cabrera
  */
 public class VentanaBodega extends javax.swing.JInternalFrame {
-
+    
     private ControladorBodega controladorBodega;
+    private List<Bodega> bodegas;
 
     /**
      * Creates new form VentanaBodega
@@ -231,7 +232,7 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
         String nombre = txtNombre.getText();
         String direccion = txtDireccion.getText();
-
+        
         if (nombre.isEmpty() || direccion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Llene tods los campos");
         } else {
@@ -241,7 +242,7 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "Actualizacion realizada");
                 cargarDatos();
             }
-
+            
         }
 
     }//GEN-LAST:event_btnActualizarActionPerformed
@@ -249,7 +250,7 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handlifng code here
         String nombre = txtNombre.getText();
-
+        
         if (nombre == null) {
             JOptionPane.showMessageDialog(this, "Llene todos el campo requerido");
         } else {
@@ -258,21 +259,22 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
                 txtNombre.setText(b.getNombre());
                 txtDireccion.setText(b.getDireccion());
                 JOptionPane.showMessageDialog(this, "Busqueda exitosa");
-            }else{
-            JOptionPane.showMessageDialog(this, "Bodega no encontrada");
+                
+            } else {
+                JOptionPane.showMessageDialog(this, "Bodega no encontrada");
             }
         }
-
+        
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
         int eliminar = JOptionPane.showConfirmDialog(this, "Seguro desea elimnar");
-        if(eliminar == JOptionPane.YES_OPTION){
-         String nombre = txtNombre.getText();                    
-         controladorBodega.eliminarBodega(nombre);
-         JOptionPane.showMessageDialog(this, "Bodega eliminada con exito");
+        if (eliminar == JOptionPane.YES_OPTION) {
+            String nombre = txtNombre.getText();            
+            controladorBodega.eliminarBodega(nombre);
+            JOptionPane.showMessageDialog(this, "Bodega eliminada con exito");
         }
         
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -280,27 +282,39 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
         limpiar();
-        List<Bodega>  listarBodega = controladorBodega.listarBodegas();
+        List<Bodega> listarBodega = controladorBodega.listarBodegas();
         
         DefaultTableModel modelo = (DefaultTableModel) TblDatos.getModel();
         modelo.setRowCount(0);
         for (Bodega bodega : listarBodega) {
             
-            Object [] bo = {bodega.getNombre(), bodega.getDireccion()};
+            Bodega b = bodega;
+            Object[] bo = {bodega.getNombre(), bodega.getDireccion()};
             modelo.addRow(bo);
         }
+        TblDatos.setModel(modelo);
         
-        
+
     }//GEN-LAST:event_btnListarActionPerformed
+    public void llenarTablasBodega(List<Bodega> bodegas) {
+        DefaultTableModel modelo = (DefaultTableModel) TblDatos.getModel();
+        modelo.setRowCount(0);
+        for (Bodega bodega : bodegas) {
+            Object[] bod = {bodega.getNombre(), bodega.getDireccion()};
+            modelo.addRow(bod);
+        }
+        TblDatos.setModel(modelo);
+    }
+
     public void cargarDatos() {
         Bodega b = controladorBodega.devolverBodega();
         txtNombre.setText(b.getNombre());
         txtDireccion.setText(b.getDireccion());
     }
-
-    public void limpiar(){
-    txtNombre.setText("");
-    txtDireccion.setText("");
+    
+    public void limpiar() {
+        txtNombre.setText("");
+        txtDireccion.setText("");
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TblDatos;
