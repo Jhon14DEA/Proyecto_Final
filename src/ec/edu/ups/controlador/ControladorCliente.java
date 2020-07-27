@@ -70,7 +70,9 @@ public class ControladorCliente {
     /**
      * Metodo buscarCliente.
      * 
-     * Recibe un atributo tipo string para enviar al 
+     * Recibe un atributo tipo string para enviar al cliienteDao y luego compara
+     * la informacion retornada desde el dao, si es diferente de null, retorna al
+     * cliente y si es igual a null, retorna null.
      * @param nombreLocal String
      * @return Cliente:cliente
      */
@@ -85,6 +87,15 @@ public class ControladorCliente {
         }
     }
     
+    /**
+     * Metodo actualizarCliente.
+     * 
+     * Este metodo realiza como inetermediario entre la vista y dao, tecibe como
+     * paametro un cliente y este el envia al Dao para que sea modificado en el 
+     * archivo.
+     * @param cliente
+     * @return Boolean:cent
+     */
     public boolean actualizarCliente(Cliente cliente){
         
         boolean cent = clienteDao.update(cliente);
@@ -92,13 +103,33 @@ public class ControladorCliente {
         
     }
     
-    public boolean eliminarCliente(String nombreLocal){
+    /**
+     * Metodo eliminarCliente.
+     * 
+     * Recibe como parametro un String y le envi al dao para buscar el cliente y
+     * el cliente retornado se vuelve a enviar al dao para que se elimine del 
+     * archivo.
+     * @param cedula
+     * @return tipo de dato boolean
+     */
+    public boolean eliminarCliente(String cedula){
         
-        boolean cent = clienteDao.delete(nombreLocal);
-        return cent;
-        
+        cliente = clienteDao.read(cedula);
+        if(cliente!=null){
+            clienteDao.delete(cliente);
+            return true;
+        }else{
+            return false;
+        }
     }
     
+    /**
+     * Metodo listarClientes.
+     * 
+     * Recibe desde el dao informacion que es guardada en una variable tipo
+     * Lista y esta misma es retornada a la vista para ser listada.
+     * @return List:lista
+     */
     public List<Cliente> listarClientes(){
         
         List<Cliente> lista = clienteDao.findAllClientes();
