@@ -203,6 +203,7 @@ public class UsuarioDAO implements IUsuario {
                     archivo.writeUTF(String.format("%-" + 25 + "s", cadena));
                     archivo.writeUTF(String.format("%-" + 50 + "s", cadena));
                     archivo.writeUTF(String.format("%-" + 8 + "s", cadena));
+
                 }
 
                 salto += registro;
@@ -237,11 +238,19 @@ public class UsuarioDAO implements IUsuario {
                 String apellido = archivo.readUTF().trim();
                 String correo = archivo.readUTF().trim();
                 String contraseña = archivo.readUTF().trim();
+                
+                cedula = archivo.readUTF().trim();
+                
                 Usuario usuario = new Usuario(cedula, nombre, apellido, correo, contraseña);
                 lista.add(usuario);
+            
+                
+                
+            }    
 
                 salto += registro;
-            }
+
+            
         } catch (IOException ex) {
             System.out.println("Error lectrura escritura (UsuarioDao:Update)");
             ex.printStackTrace();
