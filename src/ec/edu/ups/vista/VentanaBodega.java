@@ -5,9 +5,12 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.DAO.BodegaDAO;
 import ec.edu.ups.controlador.ControladorBodega;
 import ec.edu.ups.modelo.Bodega;
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Sebastian Uyaguari
@@ -277,6 +280,16 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
         // TODO add your handling code here:
         limpiar();
+        List<Bodega>  listarBodega = controladorBodega.listarBodegas();
+        
+        DefaultTableModel modelo = (DefaultTableModel) TblDatos.getModel();
+        modelo.setRowCount(0);
+        for (Bodega bodega : listarBodega) {
+            
+            Object [] bo = {bodega.getNombre(), bodega.getDireccion()};
+            modelo.addRow(bo);
+        }
+        
         
     }//GEN-LAST:event_btnListarActionPerformed
     public void cargarDatos() {
