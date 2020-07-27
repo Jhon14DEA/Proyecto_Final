@@ -13,13 +13,13 @@ import javax.swing.JOptionPane;
  * @author santi
  */
 public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
-    
+
     ControladorUsuario controladorUsuario;
     VentanaPrincipal ventanaPrincipal;
-    
+
     public VentanaIniciarSesion(ControladorUsuario controladorUsuario, VentanaPrincipal ventanaPrincipal) {
         initComponents();
-        
+
         this.controladorUsuario = controladorUsuario;
         this.ventanaPrincipal = ventanaPrincipal;
     }
@@ -63,7 +63,6 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/kim_yongii.png"))); // NOI18N
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit_clear (1).png"))); // NOI18N
-        jButton1.setText("Limpiar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -77,13 +76,19 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(162, 162, 162)
+                        .addContainerGap()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
@@ -91,24 +96,22 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
                                 .addGap(35, 35, 35)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                            .addComponent(txtCorreo))))
-                .addContainerGap(55, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtContrasena)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jButton1)))
-                .addGap(145, 145, 145))
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1)
+                        .addGap(61, 61, 61)))
+                .addGap(41, 41, 41))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addGap(7, 7, 7)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -118,57 +121,55 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(39, 39, 39)
                 .addComponent(btnIniciarSesion)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        
-        if (controladorUsuario.validarUsuario(txtCorreo.getText(), txtContrasena.getText())) {
-            
+
+        if (txtCorreo.getText().isEmpty() || txtContrasena.getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Por favor, Llene todos los campos");
+
+        } else if (controladorUsuario.validarUsuario(txtCorreo.getText(), txtContrasena.getText())) {
+
             ventanaPrincipal.getMenu().setVisible(true);
             ventanaPrincipal.getMenuCerrarSesion().setVisible(true);
             ventanaPrincipal.getMenuSalir().setVisible(true);
-            
+
             ventanaPrincipal.getMenuIniciarSesion().setVisible(false);
             ventanaPrincipal.getMenuRegistrarse().setVisible(false);
             ventanaPrincipal.getMenuGestionar().setVisible(true);
-            
-            JOptionPane.showMessageDialog(this, "Sesion iniciada");
-            
+
             this.limpiar();
             this.dispose();
-            
-        } else if (txtCorreo.getText().isEmpty() || txtContrasena.getText().isEmpty()) {
-            
-            JOptionPane.showMessageDialog(this, "Por favor, Llene todos los campos");
-            
+
+            JOptionPane.showMessageDialog(this, "Sesion iniciada");
+
         } else {
-            
+
             JOptionPane.showMessageDialog(this, "Datos incorrectos");
-            
+
         }
-        
+
 
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         limpiar();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     public void limpiar() {
-        
+
         txtCorreo.setText("");
         txtContrasena.setText("");
-        
+
     }
 
 
