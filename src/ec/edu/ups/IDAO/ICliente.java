@@ -22,7 +22,7 @@ public interface ICliente {
 
     public boolean update(Cliente cliente);
 
-    public boolean delete(String codigo);
+    public void delete(Cliente cliente);
 
     public List<Cliente> findAllClientes();
 }
