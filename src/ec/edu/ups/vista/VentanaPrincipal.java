@@ -5,7 +5,9 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.DAO.ClienteDAO;
 import ec.edu.ups.DAO.UsuarioDAO;
+import ec.edu.ups.controlador.ControladorCliente;
 import ec.edu.ups.controlador.ControladorUsuario;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -25,26 +27,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     VentanaFactura ventanaFactura;
     VentanaRegistrarseUsuario ventanaRegistrarUsuario;
     VentanaUsuario ventanaUsuario;
+    VentanaRegistrarCliente ventanaRegistrarCliente;
     
     UsuarioDAO usuarioDao;
+    ClienteDAO clienteDao;
     
 
     ControladorUsuario controladorUsuario;
+    ControladorCliente controladorCliente;
 
     public VentanaPrincipal() {
         initComponents();
 
         usuarioDao = new UsuarioDAO();
+        clienteDao = new ClienteDAO();
         
         controladorUsuario = new ControladorUsuario(usuarioDao);
+        controladorCliente = new ControladorCliente(clienteDao);
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
-        ventanCliente = new VentanaCliente();
+        ventanCliente = new VentanaCliente(controladorCliente);
         ventanaBodega = new VentanaBodega();
         ventanaProductos = new VentanaProductos();
         ventanaFactura = new VentanaFactura();
         ventanaRegistrarUsuario = new VentanaRegistrarseUsuario(controladorUsuario);
         ventanaUsuario = new VentanaUsuario(controladorUsuario);
+        ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
 
     }
 
@@ -98,6 +106,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuInicio.add(menuItemRegistrarUsuario);
 
         jMenuItem2.setText("Registrar cliente");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         menuInicio.add(jMenuItem2);
 
         menuItemCerrarSesion.setText("Cerrar Sesion");
@@ -261,6 +274,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemRegistrarUsuario.setVisible(true);
         
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        desktopPane.add(ventanaRegistrarCliente);
+        ventanaRegistrarCliente.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     public JMenu getMenu() {
 
