@@ -180,7 +180,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         if(cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || nombreLocal.isEmpty() || telefono.isEmpty() || direccion.isEmpty()){
             JOptionPane.showMessageDialog(this, "Complete todos los campos");
         }else{
-            controladorCliente.crearCliente(nombreLocal, telefono, direccion, cedula, nombre, apellido);
+            controladorCliente.crearCliente(cedula, nombre, apellido, nombreLocal, telefono, direccion);
             JOptionPane.showMessageDialog(this, "Cliente registrado con exito");
             limpiar();
         }
