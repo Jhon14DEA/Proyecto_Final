@@ -260,9 +260,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemIniciarSesion.setVisible(true);
         menuItemRegistrarUsuario.setVisible(true);
         
-        
-        
-        
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
     public JMenu getMenu() {
