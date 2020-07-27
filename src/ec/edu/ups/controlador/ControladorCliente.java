@@ -59,9 +59,9 @@ public class ControladorCliente {
      * @param nombre String
      * @param apellido String
      */
-    public void crearCliente(String nombreLocal, String telefono, String direccion, String cedula, String nombre, String apellido){
+    public void crearCliente(String cedula, String nombre, String apellido, String nombreLocal, String telefono, String direccion){
         
-        cliente = new Cliente(nombreLocal, telefono, direccion, cedula, nombre, apellido);
+        cliente = new Cliente(cedula, nombre, apellido, nombreLocal, telefono, direccion);
         
         clienteDao.create(cliente);
         
@@ -74,9 +74,9 @@ public class ControladorCliente {
      * @param nombreLocal String
      * @return Cliente:cliente
      */
-    public Cliente buscarCliente(String nombreLocal){
+    public Cliente buscarCliente(String cedula){
         
-        cliente = clienteDao.read(nombreLocal);
+        cliente = clienteDao.read(cedula);
         
         if(cliente != null){
             return cliente;
@@ -85,18 +85,17 @@ public class ControladorCliente {
         }
     }
     
-    public void actualizarCliente(String nombreLocal){
+    public boolean actualizarCliente(Cliente cliente){
         
-        cliente = clienteDao.read(nombreLocal);
+        boolean cent = clienteDao.update(cliente);
+        return cent;
         
-        if(cliente!=null){
-            clienteDao.update(cliente);
-        }
     }
     
-    public void eliminarCliente(String nombreLocal){
+    public boolean eliminarCliente(String nombreLocal){
         
-        clienteDao.delete(nombreLocal);
+        boolean cent = clienteDao.delete(nombreLocal);
+        return cent;
         
     }
     
