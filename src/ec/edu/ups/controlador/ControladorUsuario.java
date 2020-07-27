@@ -18,10 +18,9 @@ public class ControladorUsuario {
     public ControladorUsuario() {
     }
 
-    public ControladorUsuario(Usuario usuario,UsuarioDAO usuarioDAO) {
+    public ControladorUsuario(UsuarioDAO usuarioDAO) {
 
         this.usuarioDAO = usuarioDAO;
-        this.usuario = usuario;
         
     }
 
