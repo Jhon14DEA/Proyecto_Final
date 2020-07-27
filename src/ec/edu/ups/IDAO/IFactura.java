@@ -15,14 +15,11 @@ import java.util.List;
  * @author Santiago Cabrera
  */
 public interface IFactura {
-
-    public void create(Factura factura);
-
-    public Factura read(int numeroDeFactura);
-
-    public List<Factura> findAllFacturas();
-
+    public void create(List<Factura> factura);
+    public List<Factura> readDetalleFactura(int numeroDeFactura);
+    public Factura readFactura(int numeroDeFactura);
+    public void anularFactura(int numeroDeFactura);
+    public List<Factura> findAllFacturasDisponibles();
     public List<Factura> findAllFacturasAnuladas();
-
     public int getCodigoActual();
 }

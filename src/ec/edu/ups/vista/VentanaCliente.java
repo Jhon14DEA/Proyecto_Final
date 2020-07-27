@@ -5,6 +5,8 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.ControladorCliente;
+
 /**
  * @author Sebastian Uyaguari
  * @author Denys Dutan
@@ -16,7 +18,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form VentanaCliente
      */
-    public VentanaCliente() {
+    public VentanaCliente(ControladorCliente controladorC) {
         initComponents();
     }
 

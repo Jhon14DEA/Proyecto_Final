@@ -12,17 +12,50 @@ package ec.edu.ups.modelo;
  * @author Santiago Cabrera
  */
 public class Factura {
-
+    
+    /**
+     * private int numeroDeFactura; | 4 bytes 
+     * private int cantidadVendida; | 4
+     * bytes private boolean estado; | 1 byte 
+     * private double subtotal; | 8 bytes
+     * private double iva; | 8 bytes 
+     * private double total; | 8 bytes 
+     * private Cliente cliente (cedula)| 10 bytes + 2 bytes 
+     * private Producto producto (codigo) | 10 bytes + 2 bytes
+     *
+     * total= 57 bytes
+     * 
+     * total detalleOrden = 4+4+10+2 =20 bytes
+     * total factura = 4+1+8+8+8+10+2=41 bytes
+     */
+    
     private int numeroDeFactura;
     private int cantidadVendida;
+    private boolean estado;
+    private double subtotal;
+    private double iva;
+    private double total;
     private Cliente cliente;
     private Producto producto;
-    private Bodega bodega;
+    
+    //utilizamos solamente la cedula del cliente
+    //utilizamos solo el codigo del producto y la bodega
 
-    public Factura(int numeroDeFactura, int cantidadVendida) {
+    public Factura() {
+    }
+
+    public Factura(int numeroDeFactura, int cantidadVendida, boolean estado, double subtotal, double iva, double total, String cedula, String codigoProducto) {
         this.numeroDeFactura = numeroDeFactura;
         this.cantidadVendida = cantidadVendida;
+        this.estado = estado;
+        this.subtotal = subtotal;
+        this.iva = iva;
+        this.total = total;
+        this.cliente.setCedula(cedula);
+        this.producto.setCodigo(codigoProducto);
     }
+    
+    
 
     public int getNumeroDeFactura() {
         return numeroDeFactura;
@@ -56,14 +89,38 @@ public class Factura {
         this.producto = producto;
     }
 
-    public Bodega getBodega() {
-        return bodega;
+    public boolean isEstado() {
+        return estado;
     }
 
-    public void setBodega(Bodega bodega) {
-        this.bodega = bodega;
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public double getIva() {
+        return iva;
+    }
+
+    public void setIva(double iva) {
+        this.iva = iva;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -91,7 +148,7 @@ public class Factura {
 
     @Override
     public String toString() {
-        return "Factura{" + "numeroDeFactura=" + numeroDeFactura + ", cantidadVendida=" + cantidadVendida + ", cliente=" + cliente + ", producto=" + producto + ", bodega=" + bodega + '}';
+        return "Factura{" + "numeroDeFactura=" + numeroDeFactura + ", cantidadVendida=" + cantidadVendida + ", estado=" + estado + ", subtotal=" + subtotal + ", iva=" + iva + ", total=" + total + ", cliente=" + cliente + ", producto=" + producto + '}';
     }
 
 }

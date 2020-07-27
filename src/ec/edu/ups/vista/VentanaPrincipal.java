@@ -5,10 +5,8 @@
  */
 package ec.edu.ups.vista;
 
-import ec.edu.ups.DAO.ClienteDAO;
-import ec.edu.ups.DAO.UsuarioDAO;
-import ec.edu.ups.controlador.ControladorCliente;
-import ec.edu.ups.controlador.ControladorUsuario;
+import ec.edu.ups.DAO.*;
+import ec.edu.ups.controlador.*;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
@@ -34,6 +32,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
 
     ControladorUsuario controladorUsuario;
+    ControladorProducto controladorProducto;
+    ControladorBodega controladorBodega;
+    ControladorFactura controladorFactura;
     ControladorCliente controladorCliente;
 
     public VentanaPrincipal() {
@@ -44,12 +45,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         
         controladorUsuario = new ControladorUsuario(usuarioDao);
         controladorCliente = new ControladorCliente(clienteDao);
+        controladorProducto=new ControladorProducto();
+        controladorBodega=new ControladorBodega();
+        controladorFactura=new ControladorFactura();
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanCliente = new VentanaCliente(controladorCliente);
         ventanaBodega = new VentanaBodega();
-        ventanaProductos = new VentanaProductos();
-        ventanaFactura = new VentanaFactura();
+        ventanaProductos = new VentanaProductos(controladorProducto, controladorBodega);
+        ventanaFactura = new VentanaFactura(controladorBodega,controladorCliente, controladorFactura,
+            controladorProducto);
         ventanaRegistrarUsuario = new VentanaRegistrarseUsuario(controladorUsuario);
         ventanaUsuario = new VentanaUsuario(controladorUsuario);
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);

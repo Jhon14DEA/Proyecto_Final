@@ -31,16 +31,18 @@ public class ControladorProducto {
         this.productoDAO = productoDAO;
     }
 
-    public void crearNuevoProducto(String codigo, String nombreDeProducto, double precioDeProdcuto, int cantidad) {
+    public void crearNuevoProducto(String codigo, String nombreDeProducto, double precioDeProdcuto, int cantidad, String bodega) {
         for (int i = codigo.length(); i < 10; i++) {
             codigo += " ";
         }
         for (int i = nombreDeProducto.length(); i < 25; i++) {
             nombreDeProducto += " ";
         }
+        this.bodega=bodegaDAO.read(bodega);
         producto = new Producto(codigo, nombreDeProducto, precioDeProdcuto, cantidad);
-        producto.setBodega(bodega);
+        producto.setBodega(this.bodega);
         productoDAO.create(producto);
+        
     }
 
     public Producto verProducto(String codigo) {
@@ -48,15 +50,16 @@ public class ControladorProducto {
         return producto;
     }
 
-    public void actualizarProducto(String codigo, String nombreDeProducto, double precioDeProdcuto, int cantidad) {
+    public void actualizarProducto(String codigo, String nombreDeProducto, double precioDeProdcuto, int cantidad, String bodega) {
         for (int i = codigo.length(); i < 10; i++) {
             codigo += " ";
         }
         for (int i = nombreDeProducto.length(); i < 25; i++) {
             nombreDeProducto += " ";
         }
+        this.bodega=bodegaDAO.read(bodega);
         producto = new Producto(codigo, nombreDeProducto, precioDeProdcuto, cantidad);
-        producto.setBodega(bodega);
+        producto.setBodega(this.bodega);
         productoDAO.update(producto);
     }
 
