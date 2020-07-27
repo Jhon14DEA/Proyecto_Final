@@ -9,6 +9,9 @@ import ec.edu.ups.controlador.ControladorCliente;
 import javax.swing.JOptionPane;
 
 /**
+ * Clase VentanaRegistrarCliente.
+ * 
+ * esta clase permite el ingreso de datos para el registro de clientes.
  * 
  * @author santi
  */
@@ -159,6 +162,13 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Metodo btnRegistrarClienteActionPerformed.
+     * 
+     * Este metodo recupera los datos ingresados en los JtextField al presionar el
+     * botón y envia al controlador.
+     * @param evt Evento
+     */
     private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
         String cedula = txtCedulaCliente.getText();
         String nombre = txtNombreCliente.getText();
@@ -177,12 +187,23 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnRegistrarClienteActionPerformed
 
+    /**
+     * Metodo btnRegresarClienteActionPerformed.
+     * 
+     * Cierra la pantalla que esta visible al hacer click en el boton.
+     * 
+     * @param evt 
+     */
     private void btnRegresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarClienteActionPerformed
         limpiar();
         this.hide();
     }//GEN-LAST:event_btnRegresarClienteActionPerformed
 
-    
+    /**
+     * Metodo limpiar.
+     * 
+     * Este metodo borra el texto que esta ingresado en los jTextField.
+     */
     public void limpiar(){
             txtCedulaCliente.setText("");
             txtNombreCliente.setText("");
