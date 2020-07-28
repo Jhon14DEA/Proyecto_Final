@@ -27,6 +27,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     VentanaRegistrarseUsuario ventanaRegistrarUsuario;
     VentanaUsuario ventanaUsuario;
     VentanaRegistrarCliente ventanaRegistrarCliente;
+    VentanaListarFacturas ventanaListarFacturas;
     
     UsuarioDAO usuarioDao;
     ClienteDAO clienteDao;
@@ -44,22 +45,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public VentanaPrincipal() {
         initComponents();
-
+        
+        bodegaDAO=new BodegaDAO();
+        productoDAO= new ProductoDAO(bodegaDAO);
+        facturaDAO=new FacturaDAO();
         usuarioDao = new UsuarioDAO();
         clienteDao = new ClienteDAO();
         
         controladorUsuario = new ControladorUsuario(usuarioDao);
         controladorCliente = new ControladorCliente(clienteDao);
         controladorProducto=new ControladorProducto(bodega, bodegaDAO, productoDAO);
-        controladorBodega=new ControladorBodega();
+        controladorBodega=new ControladorBodega(bodega, bodegaDAO);
         controladorFactura=new ControladorFactura();
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanCliente = new VentanaCliente(controladorCliente);
-        ventanaBodega = new VentanaBodega();
+        ventanaBodega = new VentanaBodega(controladorBodega);
         ventanaProductos = new VentanaProductos(controladorProducto, controladorBodega);
         ventanaFactura = new VentanaFactura(controladorBodega,controladorCliente, controladorFactura,
             controladorProducto);
+        ventanaListarFacturas= new VentanaListarFacturas(controladorBodega, controladorCliente, controladorFactura, controladorProducto);
         ventanaRegistrarUsuario = new VentanaRegistrarseUsuario(controladorUsuario);
         ventanaUsuario = new VentanaUsuario(controladorUsuario);
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);

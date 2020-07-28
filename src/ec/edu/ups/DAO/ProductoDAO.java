@@ -167,4 +167,31 @@ public class ProductoDAO implements IProducto {
         return null;
     }
 
+    @Override
+    public List<Producto> ListarProductosPorBodega(String bodega) {
+       List<Producto> todosLosProductos = new ArrayList<>();
+        int salto = 0;
+        try {
+            while (salto < archivoProductos.length()) {
+                archivoProductos.seek(salto);
+                productoInterno = new Producto();
+                productoInterno.setCodigo(archivoProductos.readUTF());
+                productoInterno.setNombreDeProducto(archivoProductos.readUTF());
+                productoInterno.setPrecioDeProdcuto(archivoProductos.readDouble());
+                productoInterno.setCantidad(archivoProductos.readInt());
+                String bodega1 = archivoProductos.readUTF();
+                productoInterno.setBodega(bodegaDao.read(bodega1));
+                if (productoInterno.getBodega().getNombre().equals(bodega)) {
+                    todosLosProductos.add(productoInterno);
+                }
+                salto += tamañoDeArchivo;
+            }
+            return todosLosProductos;
+        } catch (IOException e) {
+            System.out.println("Error escritura y lectura [findAllProductos ProdcutoDAO]");
+        }
+        return null; 
+
+    }
+
 }

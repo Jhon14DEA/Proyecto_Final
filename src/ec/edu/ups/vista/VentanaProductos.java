@@ -400,7 +400,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         boolean encontrado=true;
         
             for (int i = 0; i < filas; i++) {
-            int codigo= Integer.parseInt(tablaDatos.getValueAt(i,0).toString());
+            String codigo= tablaDatos.getValueAt(i,0).toString();
             if(buscar.equals(codigo)){
                 encontrado=false;
                 tablaDatos.setRowSelectionInterval(i, i);
@@ -409,7 +409,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             
         }
         if(encontrado) {
-                JOptionPane.showMessageDialog(null, "No se ha encontrado el telefono","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "No se ha encontrado el producto","Error",JOptionPane.ERROR_MESSAGE);
                 
             }
         txtBuscar.setText("");

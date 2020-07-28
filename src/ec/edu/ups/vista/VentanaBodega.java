@@ -19,15 +19,56 @@ import javax.swing.table.DefaultTableModel;
  * @author Santiago Cabrera
  */
 public class VentanaBodega extends javax.swing.JInternalFrame {
-    
+
     private ControladorBodega controladorBodega;
     private List<Bodega> bodegas;
 
     /**
      * Creates new form VentanaBodega
      */
-    public VentanaBodega() {
+    public VentanaBodega(ControladorBodega controladorB) {
         initComponents();
+        controladorBodega=controladorB;
+        desactivarBotones();
+        actualizarVista();
+    }
+
+    public void actualizarVista() {
+        List<Bodega> listaDeBodegas = controladorBodega.listarBodegas();
+
+        DefaultTableModel modelo = (DefaultTableModel) TblDatos.getModel();
+        modelo.setRowCount(0);
+        TblDatos.setModel(modelo);
+        Object[] fila = new Object[3];
+        for (Bodega bodega : listaDeBodegas) {
+            fila[0] = bodega.getNombre();
+            fila[1] = bodega.getDireccion();
+            fila[2] = bodega.getCuidad();
+            modelo.addRow(fila);
+        }
+        TblDatos.setModel(modelo);
+    }
+
+    public void limpiar() {
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtCiudad.setText("");
+    }
+
+    public void ActivarBotones() {
+        btnActualizar.setEnabled(true);
+        btnBuscar.setEnabled(true);
+        botonCancelar.setEnabled(true);
+        botonEliminar.setEnabled(true);
+        txtBodega.setEditable(true);
+    }
+
+    public void desactivarBotones() {
+        btnActualizar.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        botonCancelar.setEnabled(false);
+        botonEliminar.setEnabled(false);
+        txtBodega.setEditable(false);
     }
 
     /**
@@ -42,13 +83,10 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         txtCiudad = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
         lblInformacion = new javax.swing.JLabel();
-        btnEliminar = new javax.swing.JButton();
-        lblCodigo = new javax.swing.JLabel();
+        botonEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TblDatos = new javax.swing.JTable();
         txtDireccion = new javax.swing.JTextField();
-        btnListar = new javax.swing.JButton();
-        txtCodigo = new javax.swing.JTextField();
         btnNuevo = new javax.swing.JButton();
         lblNombre = new javax.swing.JLabel();
         lblBodega = new javax.swing.JLabel();
@@ -58,6 +96,7 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         txtBodega = new javax.swing.JTextField();
         lblDireccion = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        botonCancelar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -73,47 +112,51 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
         lblInformacion.setText("Informacion de la bodega");
 
-        btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
-        btnEliminar.setText("Eliminar");
-        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+        botonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
+        botonEliminar.setText("Eliminar");
+        botonEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarActionPerformed(evt);
+                botonEliminarActionPerformed(evt);
             }
         });
-
-        lblCodigo.setText("Codigo");
 
         TblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Direccion", "Cuidad"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(TblDatos);
-
-        btnListar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/list.png"))); // NOI18N
-        btnListar.setText("Listar todo");
-        btnListar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnListarActionPerformed(evt);
+        TblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TblDatosMouseClicked(evt);
             }
         });
-
-        txtCodigo.setEditable(false);
-        txtCodigo.setText(" ");
+        jScrollPane1.setViewportView(TblDatos);
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/window_new.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         lblNombre.setText("Nombre");
 
@@ -129,11 +172,20 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
         lblCiudad.setText("Ciudad");
 
+        txtBodega.setEditable(false);
+
         lblDireccion.setText("Direccion");
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 0, 51));
         jLabel1.setText("Gestion de Bodega");
+
+        botonCancelar.setText("Cancelar");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -142,43 +194,38 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(lblInformacion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(lblBodega)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addComponent(btnNuevo)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnActualizar)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonEliminar)
+                        .addGap(31, 31, 31)
+                        .addComponent(botonCancelar))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addComponent(lblInformacion))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(lblBodega)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnBuscar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNombre)
-                                    .addComponent(lblCodigo)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(lblCiudad)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnNuevo)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnActualizar)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnListar)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnEliminar))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(txtNombre)
-                                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addComponent(lblNombre)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblCiudad)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNombre)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(297, 297, 297)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -198,11 +245,8 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
                 .addComponent(lblInformacion)
                 .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCodigo))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblNombre))
@@ -213,14 +257,13 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCiudad)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblCiudad))))
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnListar, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar))
+                    .addComponent(botonEliminar)
+                    .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
 
@@ -228,112 +271,118 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        // TODO add your handling code here:
-
-        String nombre = txtNombre.getText();
-        String direccion = txtDireccion.getText();
-        
-        if (nombre.isEmpty() || direccion.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Llene tods los campos");
+        if (!txtNombre.getText().equals("") && !txtDireccion.getText().equals("") && !txtCiudad.getText().equals("")) {
+            String nombre = txtNombre.getText();
+            String direccion = txtDireccion.getText();
+            String cuidad = txtCiudad.getText();
+            controladorBodega.actualizarBodega(nombre, direccion, cuidad);
+            actualizarVista();
+            desactivarBotones();
+            btnNuevo.setEnabled(true);
+            limpiar();
         } else {
-            int respuesta = JOptionPane.showConfirmDialog(this, "Guardar cambios");
-            if (respuesta == JOptionPane.YES_OPTION) {
-                controladorBodega.actualizarBodega(direccion, nombre);
-                JOptionPane.showMessageDialog(this, "Actualizacion realizada");
-                cargarDatos();
-            }
-            
+            JOptionPane.showMessageDialog(null, "Llene todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handlifng code here
-        String nombre = txtNombre.getText();
-        
-        if (nombre == null) {
-            JOptionPane.showMessageDialog(this, "Llene todos el campo requerido");
-        } else {
-            Bodega b = controladorBodega.buscarBodega(nombre);
-            if (b != null) {
-                txtNombre.setText(b.getNombre());
-                txtDireccion.setText(b.getDireccion());
-                JOptionPane.showMessageDialog(this, "Busqueda exitosa");
-                
-            } else {
-                JOptionPane.showMessageDialog(this, "Bodega no encontrada");
-            }
-        }
-        
+        if (!txtBodega.getText().equals("")) {
+            String nombre = txtBodega.getText();
+            int filas = TblDatos.getRowCount();
+            boolean encontrado = true;
 
+            for (int i = 0; i < filas; i++) {
+                String datoABuscar = TblDatos.getValueAt(i, 0).toString().trim();
+                if (nombre.equals(datoABuscar)) {
+                    encontrado = false;
+                    TblDatos.setRowSelectionInterval(i, i);
+                    break;
+                }  
+            }
+            if (encontrado) {
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado la bodega", "Error", JOptionPane.ERROR_MESSAGE);
+
+                }
+                txtBodega.setText("");
+
+        }else{
+            JOptionPane.showMessageDialog(null, "se encuentra vacio el campo", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+    private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
+
         int eliminar = JOptionPane.showConfirmDialog(this, "Seguro desea elimnar");
         if (eliminar == JOptionPane.YES_OPTION) {
-            String nombre = txtNombre.getText();            
+            String nombre = txtNombre.getText();
             controladorBodega.eliminarBodega(nombre);
+            actualizarVista();
+            desactivarBotones();
+            btnNuevo.setEnabled(true);
+            limpiar();
             JOptionPane.showMessageDialog(this, "Bodega eliminada con exito");
         }
-        
-    }//GEN-LAST:event_btnEliminarActionPerformed
 
-    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        // TODO add your handling code here:
+    }//GEN-LAST:event_botonEliminarActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+        if (!txtNombre.getText().equals("") && !txtDireccion.getText().equals("") && !txtCiudad.getText().equals("")) {
+            String nombre = txtNombre.getText();
+            String direccion = txtDireccion.getText();
+            String cuidad = txtCiudad.getText();
+            controladorBodega.crearBodega(nombre, direccion, cuidad);
+            actualizarVista();
+            limpiar();
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
+
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void TblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDatosMouseClicked
+        ActivarBotones();
+        btnNuevo.setEnabled(false);
+        int filaSelecionada = TblDatos.getSelectedRow();
+
+        if (filaSelecionada >= 0) {
+            String nombre = TblDatos.getValueAt(filaSelecionada, 0).toString();
+            String direccion = TblDatos.getValueAt(filaSelecionada, 1).toString();
+            String cuidad = TblDatos.getValueAt(filaSelecionada, 2).toString();
+
+            txtNombre.setText(nombre);
+            txtDireccion.setText(direccion);
+            txtCiudad.setText(cuidad);
+        }
+
+    }//GEN-LAST:event_TblDatosMouseClicked
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         limpiar();
-        List<Bodega> listarBodega = controladorBodega.listarBodegas();
-        
-        DefaultTableModel modelo = (DefaultTableModel) TblDatos.getModel();
-        modelo.setRowCount(0);
-        for (Bodega bodega : listarBodega) {
-            
-            Bodega b = bodega;
-            Object[] bo = {bodega.getNombre(), bodega.getDireccion()};
-            modelo.addRow(bo);
-        }
-        TblDatos.setModel(modelo);
-        
+        desactivarBotones();
+        btnNuevo.setEnabled(true);
 
-    }//GEN-LAST:event_btnListarActionPerformed
-    public void llenarTablasBodega(List<Bodega> bodegas) {
-        DefaultTableModel modelo = (DefaultTableModel) TblDatos.getModel();
-        modelo.setRowCount(0);
-        for (Bodega bodega : bodegas) {
-            Object[] bod = {bodega.getNombre(), bodega.getDireccion()};
-            modelo.addRow(bod);
-        }
-        TblDatos.setModel(modelo);
-    }
 
-    public void cargarDatos() {
-        Bodega b = controladorBodega.devolverBodega();
-        txtNombre.setText(b.getNombre());
-        txtDireccion.setText(b.getDireccion());
-    }
-    
-    public void limpiar() {
-        txtNombre.setText("");
-        txtDireccion.setText("");
-    }
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TblDatos;
+    private javax.swing.JButton botonCancelar;
+    private javax.swing.JButton botonEliminar;
     private javax.swing.JButton btnActualizar;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnEliminar;
-    private javax.swing.JButton btnListar;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBodega;
     private javax.swing.JLabel lblCiudad;
-    private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblDireccion;
     private javax.swing.JLabel lblInformacion;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JTextField txtBodega;
     private javax.swing.JTextField txtCiudad;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables

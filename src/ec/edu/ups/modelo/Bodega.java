@@ -21,7 +21,7 @@ public class Bodega {
      */
     private String nombre;
     private String direccion;
-    //atrbbutos de  bodegas
+    private String cuidad;
      
 /**
  * Codificacion del constructor vacio
@@ -37,11 +37,12 @@ public class Bodega {
  * @param nombre
  * @param direccion 
  */
-    public Bodega(String nombre, String direccion) {
+    public Bodega(String nombre, String direccion, String cuidad) {
         this.nombre = nombre;
-        //this.cantidadDeProducto = cantidadDeProducto;
         this.direccion = direccion;
+        this.cuidad = cuidad;
     }
+    
     /**
      *  A continuacion se crearan  los metodos get y set de la clase bodega 
      * Los métodos getter y setter se utilizan para definir una propiedad, 
@@ -80,11 +81,20 @@ public class Bodega {
         this.direccion = direccion;
     }
 
+    public String getCuidad() {
+        return cuidad;
+    }
+
+    public void setCuidad(String cuidad) {
+        this.cuidad = cuidad;
+    }
+
     /**
      * Este metodo sobreescrito dentro de la clase telefonos se encarga de de  crear
      * un codigo unico de una bodega
      * @return 
      */
+    
     @Override
     public int hashCode() {
         int hash = 7;

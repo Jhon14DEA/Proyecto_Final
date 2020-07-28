@@ -25,5 +25,7 @@ public interface IProducto {
     public void delete(String codigo);
 
     public List<Producto> findAllProductos();
+    
+    public List<Producto> ListarProductosPorBodega(String bodega);
 
 }

@@ -6,7 +6,12 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.*;
+import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Factura;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @author Sebastian Uyaguari
@@ -21,6 +26,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
     private ControladorBodega controladorBodega;
     private ControladorCliente controladorCliente;
     private ControladorProducto controladorProducto;
+    Calendar c = Calendar.getInstance();
     /**
      * Creates new form VentanaFactura
      */
@@ -31,10 +37,43 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         controladorCliente=controladorC;
         controladorProducto=controladorP;
         controladorfactura=controladorF;
-         txtFacturaNumero.setText(controladorfactura.codigo()+"");
+        txtFacturaNumero.setText(controladorfactura.codigo()+"");
+        txtFechaDeEmision.setText(fechaActual(c.getTime()));
         
     }
 
+    public void limpiar(){
+        txtCedula.setText("");
+        txtLocal.setText("");
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+        cmbxBodega.setSelectedIndex(0);
+        cmbxProducto.setSelectedIndex(0);
+    }
+    private String fechaActual(Date fecha) {
+        
+        String strDateFormat = "dd-MM-yyyy";
+        SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat);
+        return objSDF.format(fecha);
+    }
+        public void actualizarCmbxBodega(){
+        cmbxBodega.removeAllItems();
+        
+            cmbxBodega.addItem("--SELECCIONE UNA BODEGA--");
+        if(controladorBodega.listarBodegas()== null){
+        } else {
+            List <Bodega> bodegas=controladorBodega.listarBodegas();
+            
+            for (Bodega bodega1 : bodegas) {
+                cmbxBodega.addItem(bodega1.getNombre());
+            }
+        }
+        
+            cmbxBodega.setSelectedIndex(0);
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -95,23 +134,18 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
 
         lblDireccion.setText("Direccion:");
 
-        txtApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoActionPerformed(evt);
+        lblCedula.setText("Cedula:");
+
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCedulaKeyPressed(evt);
             }
         });
-
-        lblCedula.setText("Cedula:");
 
         lblFacturaNumero.setText("Factura Nro:");
 
         txtFacturaNumero.setEditable(false);
         txtFacturaNumero.setBackground(new java.awt.Color(204, 204, 204));
-        txtFacturaNumero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFacturaNumeroActionPerformed(evt);
-            }
-        });
 
         lblTelefono.setText("Telefono:");
 
@@ -190,12 +224,6 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
 
         lblApellido.setText("Apellido:");
 
-        txtNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreActionPerformed(evt);
-            }
-        });
-
         lblSeleccionarB.setText("Seleccionar Bodega:");
 
         cmbxBodega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE UNA BODEGA--" }));
@@ -205,12 +233,6 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         cmbxProducto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE UN PRODUCTO--" }));
 
         lblLocal.setText("Local:");
-
-        txtLocal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtLocalActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -384,25 +406,15 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoActionPerformed
-
-    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreActionPerformed
-
-    private void txtFacturaNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFacturaNumeroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFacturaNumeroActionPerformed
-
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         txtFacturaNumero.setText(controladorfactura.codigo()+"");
+        actualizarCmbxBodega();
+        txtFechaDeEmision.setText(fechaActual(c.getTime()));
     }//GEN-LAST:event_formFocusGained
 
-    private void txtLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLocalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLocalActionPerformed
+    private void txtCedulaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyPressed
+        
+    }//GEN-LAST:event_txtCedulaKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

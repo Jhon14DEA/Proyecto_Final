@@ -5,19 +5,91 @@
  */
 package ec.edu.ups.vista;
 
+import ec.edu.ups.controlador.*;
+import ec.edu.ups.modelo.*;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Dutan2000
  */
 public class VentanaListarFacturas extends javax.swing.JInternalFrame {
-
+    private Factura factura;
+    private Bodega bodega;
+    private Producto producto;
+    private Cliente cliente;
+    
+    private ControladorFactura controladorfactura;
+    private ControladorBodega controladorBodega;
+    private ControladorCliente controladorCliente;
+    private ControladorProducto controladorProducto;
+    
     /**
      * Creates new form VentanaListarFacturas
      */
-    public VentanaListarFacturas() {
+    public VentanaListarFacturas(ControladorBodega controladorB,ControladorCliente controladorC, ControladorFactura controladorF,
+            ControladorProducto controladorP) {
         initComponents();
+        controladorBodega=controladorB;
+        controladorCliente=controladorC;
+        controladorProducto=controladorP;
+        controladorfactura=controladorF;
     }
+        public void VistaDatosFacturaValida() {
+        List<Factura> listaDefacturas = controladorfactura.listarFacturasActivas();
 
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosFactura.getModel();
+        modelo.setRowCount(0);
+        tablaDatosFactura.setModel(modelo);
+        Object[] fila = new Object[6];
+            for (Factura factura : listaDefacturas) {
+            fila[0]=factura.getNumeroDeFactura();
+            fila[1]=factura.getCliente().getCedula();
+            fila[2]=factura.getSubtotal();
+            fila[3]=factura.getIva();
+            fila[4]=factura.getTotal();
+            fila[5]=factura.isEstado();
+            modelo.addRow(fila);
+        }
+        tablaDatosFactura.setModel(modelo);
+    }
+    public void VistaDatosFacturaAnuladas() {
+        List<Factura> listaDefacturas = controladorfactura.listarFacturasAnuladas();
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosFactura.getModel();
+        modelo.setRowCount(0);
+        tablaDatosFactura.setModel(modelo);
+        Object[] fila = new Object[6];
+            for (Factura factura : listaDefacturas) {
+            fila[0]=factura.getNumeroDeFactura();
+            fila[1]=factura.getCliente().getCedula();
+            fila[2]=factura.getSubtotal();
+            fila[3]=factura.getIva();
+            fila[4]=factura.getTotal();
+            fila[5]=factura.isEstado();
+            modelo.addRow(fila);
+        }
+        tablaDatosFactura.setModel(modelo);
+    }
+    public void cargarDetalleFactura(int factura){
+        List<Factura> facturas=controladorfactura.buscarDetalleFactura(factura);
+        
+        DefaultTableModel modelo = (DefaultTableModel) tablaDetalleFactura.getModel();
+        modelo.setRowCount(0);
+        tablaDetalleFactura.setModel(modelo);
+        Object[] fila = new Object[4];
+            for (Factura factura1 : facturas) {
+            fila[0]=factura1.getNumeroDeFactura();
+            fila[1]=factura1.getCantidadVendida();
+            fila[2]=factura1.getProducto().getNombreDeProducto();
+            fila[3]=factura1.getProducto().getBodega().getNombre();
+            modelo.addRow(fila);
+        }
+        tablaDatosFactura.setModel(modelo);
+    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,32 +100,130 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaDatosFactura = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tablaDetalleFactura = new javax.swing.JTable();
+        lblCedula = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblApellido = new javax.swing.JLabel();
+        lblLocal = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
+        lblTelefono = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jTextField6 = new javax.swing.JTextField();
+        botonListarAnuladas = new javax.swing.JButton();
+        botonListarValidas = new javax.swing.JButton();
+        botonClear = new javax.swing.JButton();
+        botonAnular = new javax.swing.JButton();
+        botonVerDetalles = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDatosFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Factura #", "Cedula", "Sub-Total", "IVA", "Total", "Estado"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tablaDatosFactura);
+
+        tablaDetalleFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Factura #", "Cantidad ", "Producto", "Bodega"
             }
-        ));
-        jScrollPane2.setViewportView(jTable2);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaDetalleFactura);
+
+        lblCedula.setText("Cedula:");
+
+        lblNombre.setText("Nombre:");
+
+        lblApellido.setText("Apellido:");
+
+        lblLocal.setText("Local:");
+
+        lblDireccion.setText("Direccion:");
+
+        lblTelefono.setText("Telefono:");
+
+        jTextField1.setEditable(false);
+
+        jTextField2.setEditable(false);
+
+        jTextField3.setEditable(false);
+
+        jTextField4.setEditable(false);
+
+        jTextField5.setEditable(false);
+
+        jTextField6.setEditable(false);
+
+        botonListarAnuladas.setText("Listar Anuladas");
+        botonListarAnuladas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListarAnuladasActionPerformed(evt);
+            }
+        });
+
+        botonListarValidas.setText("Listar Validas");
+        botonListarValidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonListarValidasActionPerformed(evt);
+            }
+        });
+
+        botonClear.setText("Clear");
+
+        botonAnular.setText("Anular");
+        botonAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAnularActionPerformed(evt);
+            }
+        });
+
+        botonVerDetalles.setText("Ver");
+        botonVerDetalles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonVerDetallesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,28 +231,148 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblApellido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(botonListarAnuladas)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblCedula)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblDireccion)
+                                    .addComponent(lblTelefono))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblLocal)
+                                .addGap(39, 39, 39)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botonListarValidas)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonClear)
+                            .addComponent(botonAnular)
+                            .addComponent(botonVerDetalles))))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(botonAnular)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonVerDetalles)
+                        .addGap(16, 16, 16)
+                        .addComponent(botonClear))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonListarAnuladas)
+                    .addComponent(botonListarValidas))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCedula)
+                    .addComponent(lblLocal)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblNombre)
+                        .addComponent(lblDireccion)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblApellido)
+                        .addComponent(lblTelefono)
+                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonListarAnuladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarAnuladasActionPerformed
+      VistaDatosFacturaAnuladas();
+
+    }//GEN-LAST:event_botonListarAnuladasActionPerformed
+
+    private void botonListarValidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarValidasActionPerformed
+        VistaDatosFacturaValida();
+
+    }//GEN-LAST:event_botonListarValidasActionPerformed
+
+    private void botonAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnularActionPerformed
+        int respuesta= JOptionPane.showConfirmDialog(this, "Desea Anular esta Factura?");
+        
+        if(respuesta==JOptionPane.YES_OPTION){
+        int filaSelecionada=tablaDatosFactura.getSelectedRow();
+        int numeroDeFactura=Integer.parseInt(tablaDatosFactura.getValueAt(filaSelecionada, 0).toString());
+        controladorfactura.AnularFacturas(numeroDeFactura);
+        VistaDatosFacturaValida();
+        }
+    }//GEN-LAST:event_botonAnularActionPerformed
+
+    private void botonVerDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerDetallesActionPerformed
+        int filaSelecionada=tablaDatosFactura.getSelectedRow();
+        int numeroDeFactura=Integer.parseInt(tablaDatosFactura.getValueAt(filaSelecionada, 0).toString());
+        String cedula=tablaDatosFactura.getValueAt(filaSelecionada,1).toString();
+        //este buscar cliente busca por medio del nombre del local.....cliente=controladorCliente.buscarCliente(cedula);
+        cargarDetalleFactura(numeroDeFactura);
+        
+    }//GEN-LAST:event_botonVerDetallesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonAnular;
+    private javax.swing.JButton botonClear;
+    private javax.swing.JButton botonListarAnuladas;
+    private javax.swing.JButton botonListarValidas;
+    private javax.swing.JButton botonVerDetalles;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JLabel lblApellido;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblLocal;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JTable tablaDatosFactura;
+    private javax.swing.JTable tablaDetalleFactura;
     // End of variables declaration//GEN-END:variables
 }

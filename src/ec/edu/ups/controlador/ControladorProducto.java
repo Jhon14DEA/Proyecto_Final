@@ -70,4 +70,8 @@ public class ControladorProducto {
     public List<Producto> verProductosGeneral(){
         return productoDAO.findAllProductos();
     }
+    
+    public List<Producto> verProductosPorBodega(String bodega){
+        return productoDAO.ListarProductosPorBodega(bodega);
+    }
 }
