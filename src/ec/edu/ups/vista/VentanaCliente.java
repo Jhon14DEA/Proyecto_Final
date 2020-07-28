@@ -6,6 +6,10 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
+import ec.edu.ups.modelo.Cliente;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Sebastian Uyaguari
@@ -15,11 +19,16 @@ import ec.edu.ups.controlador.ControladorCliente;
  */
 public class VentanaCliente extends javax.swing.JInternalFrame {
 
+    ControladorCliente controladorCliente;
     /**
      * Creates new form VentanaCliente
      */
-    public VentanaCliente(ControladorCliente controladorC) {
+    public VentanaCliente(ControladorCliente controladorCliente) {
         initComponents();
+        
+        this.controladorCliente = controladorCliente;        
+        botones();
+        editables();
     }
 
     /**
@@ -33,37 +42,57 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtBuscarCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtCedulaCliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtNombreCliente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtApellidoCliente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtDireccionCliente = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        txtTelefonoFormateado = new javax.swing.JFormattedTextField();
+        tblCliente = new javax.swing.JTable();
+        btnCancelarCliente = new javax.swing.JButton();
+        btnActualizarCliente = new javax.swing.JButton();
+        btnBuscarCliente = new javax.swing.JButton();
+        btnListarClientes = new javax.swing.JButton();
+        btnEliminarCliente = new javax.swing.JButton();
+        txtTelefonoCliente = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txtNombreLocalCliente = new javax.swing.JTextField();
+        btnLimpiar = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Gestion de clientes");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameActivated(evt);
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
-        jLabel1.setText("Clientes");
+        jLabel1.setText("Cedula:");
 
         jLabel2.setText("Informacion del cliente");
 
         jLabel3.setText("Cedula");
 
-        jTextField2.setText(" ");
+        txtCedulaCliente.setText(" ");
 
         jLabel4.setText("Nombre");
 
@@ -73,41 +102,81 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Telefono");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Cedula", "Nombre", "Apellido", "Nombre Local", "Telefono", "Direccion"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tblCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblClienteMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblCliente);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/window_new.png"))); // NOI18N
-        jButton1.setText("Nuevo");
+        btnCancelarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/no_entry cancel.png"))); // NOI18N
+        btnCancelarCliente.setText("Cancelar");
+        btnCancelarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarClienteActionPerformed(evt);
+            }
+        });
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agt_update_misc.png"))); // NOI18N
-        jButton2.setText("Actualizar");
+        btnActualizarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agt_update_misc.png"))); // NOI18N
+        btnActualizarCliente.setText("Actualizar");
+        btnActualizarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarClienteActionPerformed(evt);
+            }
+        });
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/toolbar_find (1).png"))); // NOI18N
-        jButton3.setText("Buscar");
+        btnBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/toolbar_find (1).png"))); // NOI18N
+        btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/list.png"))); // NOI18N
-        jButton4.setText("Listar todo");
+        btnListarClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/list.png"))); // NOI18N
+        btnListarClientes.setText("Listar todo");
+        btnListarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarClientesActionPerformed(evt);
+            }
+        });
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
-        jButton5.setText("Eliminar");
+        btnEliminarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/delete.png"))); // NOI18N
+        btnEliminarCliente.setText("Eliminar");
+        btnEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarClienteActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
         jLabel8.setText("Gestion de Clientes");
+
+        jLabel9.setText("Nombre Local");
+
+        btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit_clear (1).png"))); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,101 +185,106 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(294, 294, 294)
-                        .addComponent(jLabel8)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(btnActualizarCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnCancelarCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnEliminarCliente)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnListarClientes)))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jButton3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jLabel2))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpiar))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(31, 31, 31)
+                                .addComponent(btnBuscarCliente))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
-                                    .addComponent(jLabel3))
-                                .addGap(33, 33, 33)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 11, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTelefonoFormateado, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(11, 11, 11)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtTelefonoCliente)
+                                        .addComponent(txtApellidoCliente)
+                                        .addComponent(txtNombreCliente)
+                                        .addComponent(txtCedulaCliente)
+                                        .addComponent(txtNombreLocalCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(32, 32, 32)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2)
+                    .addComponent(txtBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarCliente))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(btnLimpiar))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(txtApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(txtNombreLocalCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(txtTelefonoFormateado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(69, 69, 69))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67))
+                    .addComponent(btnCancelarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnActualizarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnListarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,9 +292,9 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(23, 23, 23))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,13 +307,272 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
+        
+    }//GEN-LAST:event_formInternalFrameActivated
 
+    /**
+     * Metodo tblClienteMouseClicked.
+     * 
+     * Al hacer click sobre alguna fila de la tabla, esta recupera los datos guardados
+     * en esa fila y le asigna a los JTextField correspondientes habilitando los botones
+     * de eliminar, actualizar, cancelar.
+     * @param evt Evento
+     */
+    private void tblClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClienteMouseClicked
+        int fila = tblCliente.getSelectedRow();
+        
+        String cedula = (String) tblCliente.getValueAt(fila,0);
+        String nombre = (String) tblCliente.getValueAt(fila,1);
+        String apellido = (String) tblCliente.getValueAt(fila,2);
+        String nombreLocal = (String) tblCliente.getValueAt(fila,3);
+        String teledono = (String) tblCliente.getValueAt(fila,4);
+        String direccion = (String) tblCliente.getValueAt(fila,5);
+        
+        txtCedulaCliente.setText(cedula);
+        txtNombreCliente.setText(nombre);
+        txtApellidoCliente.setText(apellido);
+        txtNombreLocalCliente.setText(nombreLocal);
+        txtTelefonoCliente.setText(teledono);
+        txtDireccionCliente.setText(direccion);
+        
+        txtNombreCliente.setEditable(true);
+        txtApellidoCliente.setEditable(true);
+        txtNombreLocalCliente.setEditable(true);
+        txtTelefonoCliente.setEditable(true);
+        txtDireccionCliente.setEditable(true);
+        
+        btnActualizarCliente.setEnabled(true);
+        btnCancelarCliente.setEnabled(true);
+        btnEliminarCliente.setEnabled(true);
+    }//GEN-LAST:event_tblClienteMouseClicked
+
+    /**
+     * Metodo btnListarClientesActionPerformed.
+     * 
+     * Lista todos los clientes registrados llamando al metodo LlenarDatosTabla
+     * @param evt Evento
+     */
+    private void btnListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarClientesActionPerformed
+        llenarDatosTabla();
+    }//GEN-LAST:event_btnListarClientesActionPerformed
+
+    /**
+     * Metodo btnBuscarClienteActionPerformed.
+     * 
+     * Al presionar el boton de buscar, recupra la informacion del JTextField 
+     * buscarCliente donde le envia al controlador y luego retornar el cliente 
+     * y mostrar en el clliente encontrado en la tabla.
+     * @param evt 
+     */
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        
+        String cedula = txtBuscarCliente.getText();
+        
+        if(cedula.isEmpty()){
+            JOptionPane.showMessageDialog(this, "LLene el campo de busqueda");
+            limpiarTabla();
+        }else{
+            Cliente cliente = controladorCliente.buscarCliente(cedula);
+            if(cliente!=null){
+                listarCliente(cliente);
+            }else{
+                JOptionPane.showMessageDialog(this, "Cliente no registrado");
+                limpiarTabla();
+            }
+        }
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
+
+    /**
+     * Metodo btnActualizarClienteActionPerformed.
+     * 
+     * Al presionar el boton este reupera la informacion de los JTextField y actualiza
+     * el cliente enviando al controldor.
+     * @param evt Evento
+     */
+    private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
+        String cedula = txtCedulaCliente.getText();
+        String nombre = txtNombreCliente.getText();
+        String apellido = txtApellidoCliente.getText();
+        String nombreLocal = txtNombreLocalCliente.getText();
+        String telefono = txtTelefonoCliente.getText();
+        String direccion = txtDireccionCliente.getText();
+        
+        if(cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || nombreLocal.isEmpty() || telefono.isEmpty() || direccion.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Llene todos los campos");
+        }else{
+            Cliente cliente = new Cliente(cedula, nombre, apellido, nombreLocal, telefono, direccion);
+            boolean cent = controladorCliente.actualizarCliente(cliente);
+            if(cent==true){
+                JOptionPane.showMessageDialog(this, "Se a actualizado con exito");
+                listarCliente(cliente);
+                limpiar();
+                botones();
+                editables();
+            }else{
+                JOptionPane.showMessageDialog(this, "No se a actualizado con exito");
+            }
+        }
+    }//GEN-LAST:event_btnActualizarClienteActionPerformed
+
+    /**
+     * Metodo btnLimpiarActionPerformed.
+     * 
+     * Al presionar el boton este borra toda la informacion de la interfaz, con 
+     * ayuda de los metodos limpiar, botones, editables y limpiezaTabla.
+     * @param evt Evento
+     */
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        limpiar();
+        botones();
+        editables();
+        limpiarTabla();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    /**
+     * Metodo btnCancelarClienteActionPerformed.
+     * 
+     * El metodo realiza la accion de quitar la seleccion del jTable y borrar la
+     * informacion de todos los JTextField ademas vuelve a desabilitar los botones.
+     * @param evt Evento
+     */
+    private void btnCancelarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClienteActionPerformed
+        botones();
+        editables();
+        limpiar();
+        tblCliente.clearSelection();
+    }//GEN-LAST:event_btnCancelarClienteActionPerformed
+
+    /**
+     * Metodo btnEliminarClienteActionPerformed.
+     * 
+     * Este metodo al hacer click el boton de eliminar, recupera el dato del 
+     * JTextField cedulaCliente y le envia al controlador para eliminar la informacion
+     * ligada a la cedula.
+     * @param evt Evento
+     */
+    private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
+        String cedula = txtCedulaCliente.getText();
+        
+        if(cedula.isEmpty()){
+            JOptionPane.showMessageDialog(this, "ingrese la cedula");
+        }else{
+            boolean cent = controladorCliente.eliminarCliente(cedula);
+            if(cent==true){
+                JOptionPane.showMessageDialog(this, "Se a eliminado con exito");
+                llenarDatosTabla();
+                limpiar();
+                botones();
+                editables();
+            }else{
+                JOptionPane.showMessageDialog(this, "No se a eliminado");
+            }
+        }
+    }//GEN-LAST:event_btnEliminarClienteActionPerformed
+
+    /**
+     * Metodo botones.
+     * 
+     * Este metodo desactiva los botones actualizar, cancelar, eliminar cuando 
+     * no esta seleccionado ningun elemento de la tabla.
+     */
+    public void botones(){
+        btnActualizarCliente.setEnabled(false);
+        btnCancelarCliente.setEnabled(false);
+        btnEliminarCliente.setEnabled(false);
+    }
+    
+    /**
+     * Metodo editables.
+     * 
+     * Este metodo desabilita la opcion de editar los jtext para no realizar ningun
+     * cambio si no se desea.
+     */
+    public void editables(){
+        txtCedulaCliente.setEditable(false);
+        txtNombreCliente.setEditable(false);
+        txtApellidoCliente.setEditable(false);
+        txtNombreLocalCliente.setEditable(false);
+        txtTelefonoCliente.setEditable(false);
+        txtDireccionCliente.setEditable(false);
+    }
+    
+    /**
+     * Metodo limpiar.
+     * 
+     * Borra todo el texto que este ingresado en los campos de texto o JTextField
+     */
+    public void limpiar(){
+       txtBuscarCliente.setText("");
+       txtCedulaCliente.setText(""); 
+       txtNombreCliente.setText("");
+       txtApellidoCliente.setText("");
+       txtNombreLocalCliente.setText("");
+       txtTelefonoCliente.setText("");
+       txtDireccionCliente.setText("");
+    }
+    
+    /**
+     * Metodo llenarDatosTabla.
+     * 
+     * Este metodo lista todo los cllientes que se hayan registrado, guardando en una 
+     * variable tipo lista lo que retorna el controlador para ser agregado a la tabla.
+     */
+    public void llenarDatosTabla(){
+        DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+        modelo.setRowCount(0);
+        
+        List<Cliente> lista = controladorCliente.listarClientes();
+        
+        if(lista.isEmpty()){
+            JOptionPane.showMessageDialog(this, "No se registraron datos");
+        }
+        
+        for (Cliente cliente : lista) {
+            Object[] objeto = {cliente.getCedula().trim(), cliente.getNombre().trim(), cliente.getApellido().trim(), cliente.getNombreDelLocal().trim(), cliente.getTelefono().trim(), cliente.getDireccion().trim()};
+            modelo.addRow(objeto);
+        }
+        
+        tblCliente.setModel(modelo);
+    }
+    
+    /**
+     * Metodo listarCliente.
+     * 
+     * Este metodo lista al cliente que se encuentra al presionar el boton buscar,
+     * recibe como parametro el cliente y el metodo le agrega a la tabla.
+     * @param cliente Cliente
+     */
+    public void listarCliente(Cliente cliente){
+        DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+        modelo.setRowCount(0);
+        
+        Object[] objeto = {cliente.getCedula().trim(), cliente.getNombre().trim(), cliente.getApellido().trim(), cliente.getNombreDelLocal().trim(), cliente.getTelefono().trim(), cliente.getDireccion().trim()};
+        modelo.addRow(objeto);
+        
+        tblCliente.setModel(modelo);
+    }
+
+    /**
+     * Metodo limpiarTabla.
+     * 
+     * Borra todos los datos de la Jtable
+     */
+    public void limpiarTabla(){
+        DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();
+        for (int i = 0; i < tblCliente.getRowCount(); i++) {
+            modelo.removeRow(i);
+        }            
+        tblCliente.setModel(modelo);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnActualizarCliente;
+    private javax.swing.JButton btnBuscarCliente;
+    private javax.swing.JButton btnCancelarCliente;
+    private javax.swing.JButton btnEliminarCliente;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnListarClientes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -248,14 +581,16 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JFormattedTextField txtTelefonoFormateado;
+    private javax.swing.JTable tblCliente;
+    private javax.swing.JTextField txtApellidoCliente;
+    private javax.swing.JTextField txtBuscarCliente;
+    private javax.swing.JTextField txtCedulaCliente;
+    private javax.swing.JTextField txtDireccionCliente;
+    private javax.swing.JTextField txtNombreCliente;
+    private javax.swing.JTextField txtNombreLocalCliente;
+    private javax.swing.JFormattedTextField txtTelefonoCliente;
     // End of variables declaration//GEN-END:variables
 }

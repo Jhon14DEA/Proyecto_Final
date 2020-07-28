@@ -29,6 +29,12 @@ public class BodegaDAO implements IBodega {
      *
      * total registro = 106
      */
+    
+    /**
+     * Atributos para la clase BodegaDAO que nos permitira hacer casi todo de 
+     * forma sesilla con un fichero es unas de las facilidades que nos da la clase
+     * RandomAccessFile
+     */
     private RandomAccessFile archivo;
     private int tamañoRegistro;
     private Bodega bodegaInterna;

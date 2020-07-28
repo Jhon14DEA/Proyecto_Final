@@ -99,6 +99,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemIngles = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
 
         menuInicio.setMnemonic('f');
         menuInicio.setText("Inicio");

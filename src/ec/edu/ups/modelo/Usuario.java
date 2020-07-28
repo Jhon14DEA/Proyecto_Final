@@ -51,7 +51,7 @@ public class Usuario extends Persona {
     /**
      * Metodo constructor.
      *
-     * Inicializamos el objeto y contiene calores siempre validos.
+     * Inicializamos el objeto y contiene valores siempre validos.
      *
      * @param correo
      * @param contraseña
@@ -126,6 +126,7 @@ public class Usuario extends Persona {
      * 
      * @return 
      */
+    
     @Override
     public int hashCode() {
         int hash = 7;

@@ -59,9 +59,9 @@ public class ControladorCliente {
      * @param nombre String
      * @param apellido String
      */
-    public void crearCliente(String nombreLocal, String telefono, String direccion, String cedula, String nombre, String apellido){
+    public void crearCliente(String cedula, String nombre, String apellido, String nombreLocal, String telefono, String direccion){
         
-        cliente = new Cliente(nombreLocal, telefono, direccion, cedula, nombre, apellido);
+        cliente = new Cliente(cedula, nombre, apellido, nombreLocal, telefono, direccion);
         
         clienteDao.create(cliente);
         
@@ -70,13 +70,15 @@ public class ControladorCliente {
     /**
      * Metodo buscarCliente.
      * 
-     * Recibe un atributo tipo string para enviar al 
+     * Recibe un atributo tipo string para enviar al cliienteDao y luego compara
+     * la informacion retornada desde el dao, si es diferente de null, retorna al
+     * cliente y si es igual a null, retorna null.
      * @param nombreLocal String
      * @return Cliente:cliente
      */
-    public Cliente buscarCliente(String nombreLocal){
+    public Cliente buscarCliente(String cedula){
         
-        cliente = clienteDao.read(nombreLocal);
+        cliente = clienteDao.read(cedula);
         
         if(cliente != null){
             return cliente;
@@ -85,21 +87,49 @@ public class ControladorCliente {
         }
     }
     
-    public void actualizarCliente(String nombreLocal){
+    /**
+     * Metodo actualizarCliente.
+     * 
+     * Este metodo realiza como inetermediario entre la vista y dao, tecibe como
+     * paametro un cliente y este el envia al Dao para que sea modificado en el 
+     * archivo.
+     * @param cliente
+     * @return Boolean:cent
+     */
+    public boolean actualizarCliente(Cliente cliente){
         
-        cliente = clienteDao.read(nombreLocal);
+        boolean cent = clienteDao.update(cliente);
+        return cent;
         
+    }
+    
+    /**
+     * Metodo eliminarCliente.
+     * 
+     * Recibe como parametro un String y le envi al dao para buscar el cliente y
+     * el cliente retornado se vuelve a enviar al dao para que se elimine del 
+     * archivo.
+     * @param cedula
+     * @return tipo de dato boolean
+     */
+    public boolean eliminarCliente(String cedula){
+        
+        cliente = clienteDao.read(cedula);
         if(cliente!=null){
-            clienteDao.update(cliente);
+            clienteDao.delete(cliente);
+            return true;
+        }else{
+            return false;
         }
     }
     
-    public void eliminarCliente(String nombreLocal){
-        
-        clienteDao.delete(nombreLocal);
-        
-    }
-    
+    /**
+     * Metodo listarClientes.
+     * 
+     * Recibe desde el dao informacion que es guardada en una variable tipo
+     * Lista y esta misma es retornada a la vista para ser listada.
+     * @return List:lista
+     */
     public List<Cliente> listarClientes(){
         
         List<Cliente> lista = clienteDao.findAllClientes();

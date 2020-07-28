@@ -20,9 +20,9 @@ public interface ICliente {
 
     public Cliente read(String codigo);
 
-    public void update(Cliente cliente);
+    public boolean update(Cliente cliente);
 
-    public void delete(String codigo);
+    public void delete(Cliente cliente);
 
     public List<Cliente> findAllClientes();
 }

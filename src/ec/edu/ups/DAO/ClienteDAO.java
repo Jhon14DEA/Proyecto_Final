@@ -72,12 +72,12 @@ public class ClienteDAO implements ICliente {
     public void create(Cliente cliente) {
         try {
             archivo.seek(archivo.length());
-            archivo.writeUTF(cliente.getNombreDelLocal());
-            archivo.writeUTF(cliente.getTelefono());
-            archivo.writeUTF(cliente.getDireccion());
             archivo.writeUTF(cliente.getCedula());
             archivo.writeUTF(cliente.getNombre());
             archivo.writeUTF(cliente.getApellido());
+            archivo.writeUTF(cliente.getNombreDelLocal());
+            archivo.writeUTF(cliente.getTelefono());
+            archivo.writeUTF(cliente.getDireccion());
 
         } catch (IOException ex) {
 
@@ -98,14 +98,14 @@ public class ClienteDAO implements ICliente {
      * @return Cliente:cliente
      */
     @Override
-    public Cliente read(String nombreDelLocal) {
+    public Cliente read(String cedula) {
         try {
             int salto = 0;
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                String nombreDelLocalArchivo = archivo.readUTF();
-                if (nombreDelLocal.equals(nombreDelLocalArchivo)) {
-                    Cliente cliente = new Cliente(nombreDelLocal, archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
+                String cedulaArchivo = archivo.readUTF().trim();
+                if (cedula.equals(cedulaArchivo)) {
+                    Cliente cliente = new Cliente(cedulaArchivo, archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
                     return cliente;
                 }
                 salto += tamañoRegistro;
@@ -127,23 +127,25 @@ public class ClienteDAO implements ICliente {
      * del cliente.
      * 
      * @param cliente Cliente
+     * @return retorna verdadero o falso
      */
     @Override
-    public void update(Cliente cliente) {
+    public boolean update(Cliente cliente) {
         int salto = 0;
         try {
 
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                String nombreDelLocalArchivo = archivo.readUTF();
-                if (nombreDelLocalArchivo.equals(cliente.getNombreDelLocal())) {
+                String cedulaArchivo = archivo.readUTF().trim();
+                if (cedulaArchivo.equals(cliente.getCedula().trim())) {
                     archivo.seek(salto);
-                    archivo.writeUTF(cliente.getNombreDelLocal());
-                    archivo.writeUTF(cliente.getTelefono());
-                    archivo.writeUTF(cliente.getDireccion());
                     archivo.writeUTF(cliente.getCedula());
                     archivo.writeUTF(cliente.getNombre());
                     archivo.writeUTF(cliente.getApellido());
+                    archivo.writeUTF(cliente.getNombreDelLocal());
+                    archivo.writeUTF(cliente.getTelefono());
+                    archivo.writeUTF(cliente.getDireccion());
+                    return true;
                 }
                 salto += tamañoRegistro;
             }
@@ -151,6 +153,7 @@ public class ClienteDAO implements ICliente {
             System.out.println("Error lectrura escritura (ClienteDao:Update)");
             ex.printStackTrace();
         }
+        return false;
     }
     
     /**
@@ -161,16 +164,17 @@ public class ClienteDAO implements ICliente {
      * eliminacion logica.
      * 
      * @param codigo String
+     * @return retorna verdadero o falso
      */
     @Override
-    public void delete(String codigo) {
+    public void delete(Cliente cliente) {
         String cadena = "";
         int salto = 0;
         try {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
-                String nombreDelLocalArchivo = archivo.readUTF();
-                if (nombreDelLocalArchivo.equals(codigo)) {
+                String cedulaArchivo = archivo.readUTF().trim();
+                if (cedulaArchivo.equals(cliente.getCedula().trim())) {
                     archivo.seek(salto);
                     archivo.writeUTF(String.format("%-" + 10 + "s", cadena));
                     archivo.writeUTF(String.format("%-" + 25 + "s", cadena));
@@ -199,16 +203,17 @@ public class ClienteDAO implements ICliente {
     public List<Cliente> findAllClientes() {
         List<Cliente> clienteLista = new ArrayList<>();
         int salto = 0;
-        int registro = 128;
         try {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
 
-                Cliente cliente = new Cliente(archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
+                String cedula = archivo.readUTF().trim();
+                if(!cedula.equals("")){
+                    Cliente cliente = new Cliente(cedula, archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim(), archivo.readUTF().trim());
+                    clienteLista.add(cliente);
+                }
 
-                clienteLista.add(cliente);
-
-                salto += registro;
+                salto += tamañoRegistro;
             }
         } catch (IOException ex) {
             System.out.println("Error lectrura escritura (ClienteDao:FindAll)");
