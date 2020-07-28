@@ -23,8 +23,22 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
     private ControladorBodega controladorBodega;
     private List<Bodega> bodegas;
 
+   
     /**
-     * Creates new form VentanaBodega
+     * Crear nueva ventana bodega
+     *
+     * Para este metodo estamos controlando la visibilidad de siertos
+     * componentes como la actualizacion de vista y la desactivacion de los
+     * botones que interactuaran con la interfaz grafica de usuario, El
+     * initComponents() no lo puedes modificar asi no mas, en el metodo donde el
+     * ide lleva el control de lo que hace, si lo alteras posiblemente ya no pueda
+     * cargarse la interfaz. Lo que puedes hacer es usar el editor del ide hasta
+     * donde ya creas que no puedes mas, luego lo que haces es un copy-paste del
+     * initComponents(), si lo haces tendrias dos metodos con el mismo nombre,
+     * aca solo debes de documetar el metodo del ide y listo, ya puedes
+     * modificar el initComponents() que haz copiado
+     *
+     * @param controladorB
      */
     public VentanaBodega(ControladorBodega controladorB) {
         initComponents();
@@ -33,6 +47,16 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         actualizarVista();
     }
 
+    /**
+     * Metodo Actualizar Vista
+     * 
+     * Este metodo se encarga directamente con la GUI ya que si llamamos este metodo
+     * tendremos como resultados los datos cargados dentro de la tabla Datos
+     * haciendo que el usuario pueda ver los datos de la bodega que en este caso serian solo 
+     * tres datos que serian el nombre la direccion y a ciudad donde estara
+     * ubicado la bodega a gestionar
+     * 
+     */
     public void actualizarVista() {
         List<Bodega> listaDeBodegas = controladorBodega.listarBodegas();
 
@@ -49,12 +73,31 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         TblDatos.setModel(modelo);
     }
 
+    /**
+     * Metodo Limpiar
+     * 
+     * El metodo clean o limpiar es muy usable para la GUI porque ara que la experiencia
+     * con el usuario sea satisfactorio ya que  cada ves que el metodo sea llamado 
+     * este podra limpiar los espacios designados para el nomnre ladireccion y la ciudad 
+     * aunque ya esten caargados los datos ese metodo podra limpiar en caso de que sea llamado
+     * 
+     */
     public void limpiar() {
         txtNombre.setText("");
         txtDireccion.setText("");
         txtCiudad.setText("");
     }
-
+/**
+ * Metodo activar botones
+ * 
+ * El metodo activar botones nos da la factibilidad en los comandos como 
+ * de botones como actualizar, buscar, cancelar, eliminar, para que estos botones
+ * sean acivados  de la manera true, dependera mucho de el tipo de gestion que este 
+ * haciendo el usuario en la ventana bodega para que el pueda tener accesibilidad a 
+ * estos botones seria como una restriccion para ellos ya que no podran estar activando
+ * y desactivando sino reguirse ala funcionalidad del programa
+ * 
+ */
     public void ActivarBotones() {
         btnActualizar.setEnabled(true);
         btnBuscar.setEnabled(true);
@@ -62,7 +105,14 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         botonEliminar.setEnabled(true);
         txtBodega.setEditable(true);
     }
-
+/**
+ * Metodo desactivar botones
+ * 
+ * El siguiente metodo nos descativara los botoes para que el usuario no pueda manipular
+ * dependiendo el tio de gestion este haciendo ellos tendran la accesibilidad 
+ * y en caso de que este metodo sea invocado en cualquier otro el metodo nos ara que 
+ * se desactiven a diferencia el metodo anteriormente tratado
+ */
     public void desactivarBotones() {
         btnActualizar.setEnabled(false);
         btnBuscar.setEnabled(false);
@@ -269,7 +319,17 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Metodo btnActualizarActionPerformed 
+ * 
+ * Este metodo fue generado automaticamente por java y correcponde 
+ * al boton actualizar que esta en la interfaz grafica de usuario y este metodo ara que
+ * establesca los nombre direciones y la ciudad de donde estara situado la bodega a gestionar
+ * ya que estara avtivado solo este boton y el nuevo en caso de que el usuario quiera
+ * agregar otra bodega ala lista de bodegas
+ * 
+ * @param evt 
+ */
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         if (!txtNombre.getText().equals("") && !txtDireccion.getText().equals("") && !txtCiudad.getText().equals("")) {
             String nombre = txtNombre.getText();
@@ -285,7 +345,18 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btnActualizarActionPerformed
-
+/**
+ * Metodo btnBuscarActionPerformed
+ * 
+ * Este metodo es la encargada de buscar dentro de la tabla creada donde estaran 
+ * todos los datos almacenados con  las caracteristicas de bodega, y esto controlara 
+ * que el usuario en el momento de buscar una bodega la coficacion permita buscar dentro
+ * con un for ya que debera recorrer todas las columnas con el dato que el  usuario
+ * le dara para su busqueda y en caso de no encontrarle nos dara un mensaje de error
+ * y en caso de que  si solo nos dara  los valores encontrados dentro del dato especificado
+ * 
+ * @param evt
+ */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handlifng code here
         if (!txtBodega.getText().equals("")) {
@@ -311,7 +382,16 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "se encuentra vacio el campo", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
-
+/**
+ * Metodo botonEliminarActionPerformed
+ * 
+ * El metodo eliminar nos ayudara a eliminar  las bodegas que esten alamecenados dentro del fichero
+ * automanticamente pero por supuesto si el dato a eliminar es correcto se procedera con la ejecucion del codigo elimninar 
+ * en caso de que se logre desarrollar con exito tendremos como resultado un 
+ * Bodega eliminado con exito
+ * 
+ * @param evt 
+ */
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
 
         int eliminar = JOptionPane.showConfirmDialog(this, "Seguro desea elimnar");
@@ -326,7 +406,15 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_botonEliminarActionPerformed
-
+/**
+ * Metodo btnNuevoActionPerformed
+ * 
+ * El metodo nuevo nos ayudara a crear una bodega nuevo con los nombre. direciones
+ * y ciudad establecida por el usuario estos datos inmetiatamente pasaran alos ficheros
+ * para ser almacenados  de una manera automatica ya que si se procede a ejecutar 
+ * este metodo  es lo que ara.
+ * 
+ */
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         if (!txtNombre.getText().equals("") && !txtDireccion.getText().equals("") && !txtCiudad.getText().equals("")) {
             String nombre = txtNombre.getText();
@@ -341,7 +429,15 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
 
 
     }//GEN-LAST:event_btnNuevoActionPerformed
-
+/**
+ * Metodo TblDatosMouseClicked
+ * 
+ * El metodo daos es la que nos muestra los atributos de bodega de una manera inmediata solo 
+ * cuando se selecione ndicha columna se procedera a ejecutarse este codigo 
+ *  devolviendonos de una manera rapida el estatus de la bodega selecionada y maracandola
+ * de una manera particular que sea diferenciada de las demas columnas
+ * 
+ */
     private void TblDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TblDatosMouseClicked
         ActivarBotones();
         btnNuevo.setEnabled(false);
@@ -358,7 +454,14 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_TblDatosMouseClicked
-
+/**
+ * Metodo botonCancelarActionPerformed
+ * 
+ * El metodo cancelar nos ayudara simplemente a detener un proceso que el ussuario este haciendo 
+ * en la interfaz limpiando todo lo que este echo ya permitiendole que pueda el volver hacer todo ese 
+ * proceso o hacer otro distinto.
+ * 
+ */
     private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
         limpiar();
         desactivarBotones();
