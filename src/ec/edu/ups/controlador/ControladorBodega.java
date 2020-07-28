@@ -81,6 +81,7 @@ public class ControladorBodega {
         cuidad=cuidad.substring(0, 25);
         
         bodega = new Bodega(nombre, direccion, cuidad);
+        bodegaDAO.create(bodega);
     }
 
     /**

@@ -8,6 +8,7 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.*;
 import ec.edu.ups.modelo.Bodega;
 import ec.edu.ups.modelo.Factura;
+import ec.edu.ups.modelo.Producto;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -129,6 +130,11 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                 formFocusGained(evt);
             }
         });
+        addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                formPropertyChange(evt);
+            }
+        });
 
         lblCliente.setText("Cliente:");
 
@@ -227,6 +233,11 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         lblSeleccionarB.setText("Seleccionar Bodega:");
 
         cmbxBodega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE UNA BODEGA--" }));
+        cmbxBodega.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cmbxBodegaFocusLost(evt);
+            }
+        });
 
         lblSeleccionarP.setText("Seleccionar Producto:");
 
@@ -416,6 +427,41 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_txtCedulaKeyPressed
 
+    private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
+    actualizarCmbx();
+    }//GEN-LAST:event_formPropertyChange
+
+    private void cmbxBodegaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbxBodegaFocusLost
+        String bodega=cmbxBodega.getSelectedItem().toString();
+        cmbxProducto.removeAllItems();
+        
+            cmbxProducto.addItem("--SELECCIONE UN PRODUCTO--");
+        if(controladorBodega.listarBodegas()== null){
+        } else {
+            List <Producto> bodegas=controladorProducto.verProductosPorBodega(bodega);
+            for (Producto producto : bodegas) {
+                cmbxProducto.addItem(producto.getNombreDeProducto());
+            }
+        }
+        
+            cmbxProducto.setSelectedIndex(0);
+        
+    }//GEN-LAST:event_cmbxBodegaFocusLost
+    public void actualizarCmbx(){
+        cmbxBodega.removeAllItems();
+        
+            cmbxBodega.addItem("--SELECCIONE UNA BODEGA--");
+        if(controladorBodega.listarBodegas()== null){
+        } else {
+            List <Bodega> bodegas=controladorBodega.listarBodegas();   
+            for (Bodega bodega1 : bodegas) {
+                cmbxBodega.addItem(bodega1.getNombre());
+            }
+        }
+        
+            cmbxBodega.setSelectedIndex(0);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCrearFactura;

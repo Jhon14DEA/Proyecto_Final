@@ -159,6 +159,7 @@ public class BodegaDAO implements IBodega {
                 
                 salto += tamañoRegistro;
             }
+            
             return bodegaLista;
         } catch (IOException ex) {
             System.out.println("Error lectrura escritura (List : BodegaDAO)");

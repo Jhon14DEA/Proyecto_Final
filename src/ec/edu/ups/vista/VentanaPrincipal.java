@@ -34,6 +34,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     ProductoDAO productoDAO;
     BodegaDAO bodegaDAO;
     FacturaDAO facturaDAO;
+    
     private Bodega bodega;
     
 
@@ -51,6 +52,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         facturaDAO=new FacturaDAO();
         usuarioDao = new UsuarioDAO();
         clienteDao = new ClienteDAO();
+        
+        bodega=new Bodega();
+        
         
         controladorUsuario = new ControladorUsuario(usuarioDao);
         controladorCliente = new ControladorCliente(clienteDao);
