@@ -41,6 +41,17 @@ public class BodegaDAO implements IBodega {
     String eliminar50bytes;
     String eliminar25bytes;
     
+    /**
+     * Bodega MetodoDAO
+     * 
+     * Este método de accesibilidad publica esta intanciados el arhico que es de tipo 
+     * RandomAccesFile que nos sirve para un archivo en este caso para la lectura 
+     * y escritura dentro del arhivo datos esta creado un objeto de tipo dat donde 
+     * se ejecutan varios comandos para el desarrollo del proyecto, comandos que
+     * se llevaran a cabo desde el GUI
+     */
+  
+    
     public BodegaDAO() {
         
         try {
@@ -54,7 +65,20 @@ public class BodegaDAO implements IBodega {
             e.printStackTrace();
         }
     }
-    
+    /**
+     * Metodo Crear Bodega
+     *  
+     * El metodo crea traducido seria crea, que vamos a crear?
+     * en este caso creariamos bodejgas q ya que esta ricibiendo como parámetros
+     * bodega. entonces a propósito de esto en la codificación es decir que este método
+     * nos va a crear o registrar los datos de la bodega y usar el método buscar nos ubicariamos
+     * con el puntero en l posición del archivo y ese empezara a leer o escribir en esa posición
+     * ademas de esto estamos haciendo uso de writeUTF donde le decimos que nos escriba un texto 
+     * en un formato de tipo aString o utf -8 pero claro esto de debe hacer con sus respectivas 
+     * limitaciones lanzando y atrpaango las pérdidas
+     * 
+     * @param bodega 
+     */
     @Override
     public void create(Bodega bodega) {
         try {
@@ -70,6 +94,19 @@ public class BodegaDAO implements IBodega {
         }
     }
     
+    /**
+     * Metodo lee Bodega
+     * 
+     * El metodo leer bodega se encarga de leer todo dentro del archivo especificado 
+     * con el RandomAccesFile, ya que podras leer el nombre lo estamos pasando como 
+     * parametros un dato de tipo String nombre y nos estamos ayudando con 
+     * los saltos para poder controlar donde se crea ya que el buscar también puede ubicarse 
+     * en el final del archivo para poder hacer las transacciones específicas especificadas.
+     * 
+     * 
+     * @param nombre
+     * @return 
+     */
     @Override
     public Bodega read(String nombre) {
         try {
@@ -91,6 +128,19 @@ public class BodegaDAO implements IBodega {
         }
         return null;
     }
+    
+    /**
+     *  Actualización de Metodo Bodega
+     * 
+     * El memetodo actualizar bodega esta reicibiendo como parametr bodega
+     * donde nos ubicamos en el unicio con ell buscar y esto hara que el usuario
+     * despuesde que pase por eso la cofificación el usuario ingrese los nuevos datos que se le daran 
+     * al ala clase bodega con todos sus atributos es decir 
+     * la infomacion antigua sera suplantada por una nueva que sera ingresada por el usuario
+     * 
+     * 
+     * @param bodega 
+     */
     
     @Override
     public void update(Bodega bodega) {
@@ -117,6 +167,18 @@ public class BodegaDAO implements IBodega {
         }
     }
     
+    /**
+     * 
+     * Eliminar Metodo
+ * 
+ * El metodo eliminar esta resibiendo coomo parametro un nombre de tipo string ya que 
+ * para eliminar primero tenemos que buscarle ala bodega y despues de eso estamos
+ * indica que bodega sera eliminadaa para que el metodo le elimine desde esa psosicion en a
+ * adelante con todos sus atributos incluidos
+     * 
+     * 
+     * @param  nombre
+     */
     @Override
     public void delete(String nombre) {
         String cadena = "";
@@ -141,6 +203,19 @@ public class BodegaDAO implements IBodega {
         }
         
     }
+    
+    /**
+     * El metodos listar Bodegas
+     * 
+     * Este método nos dara a conocer una lista de bodegas gracias ala lista de clases 
+     * podremos hacer que este método se ejecute de una manera correcta para ellos debemo
+     * controlar los saltos que demos dentro del archivo para poder recoorer todo 
+     * y encontrar todas las bodegas disponibles para poder despues agregar los datos e
+     * datos encontrados para posteriomente ser listads y que el GUI puede observar 
+     * todo lo que esta dentro de los términos y pueda hacer consutltas posteriormente en 
+     * otras interfaces
+     * 
+     */
     
     @Override
     public List<Bodega> findAllBodegas() {
