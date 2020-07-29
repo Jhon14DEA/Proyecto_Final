@@ -13,21 +13,6 @@ package ec.edu.ups.modelo;
  */
 public class Factura {
     
-    /**
-     * private int numeroDeFactura; | 4 bytes 
-     * private int cantidadVendida; | 4
-     * bytes private boolean estado; | 1 byte 
-     * private double subtotal; | 8 bytes
-     * private double iva; | 8 bytes 
-     * private double total; | 8 bytes 
-     * private Cliente cliente (cedula)| 10 bytes + 2 bytes 
-     * private Producto producto (codigo) | 10 bytes + 2 bytes
-     *
-     * total= 57 bytes
-     * 
-     * total detalleOrden = 4+4+10+2 =20 bytes
-     * total factura = 4+1+8+8+8+10+2=41 bytes
-     */
     
     private int numeroDeFactura;
     private int cantidadVendida;
@@ -38,12 +23,26 @@ public class Factura {
     private Cliente cliente;
     private Producto producto;
     
-    //utilizamos solamente la cedula del cliente
-    //utilizamos solo el codigo del producto y la bodega
-
+    /**
+     * Constructor.
+     * 
+     * se instancion un constructor vacio.
+     */
     public Factura() {
     }
-
+    /**
+     * En este constructor se instanció todos los atributos de la clase Factura
+     * a excepción de los dos objetos: cliente y producto. 
+     * 
+     * @param numeroDeFactura
+     * @param cantidadVendida
+     * @param estado
+     * @param subtotal
+     * @param iva
+     * @param total
+     * @param cedula
+     * @param codigoProducto 
+     */
     public Factura(int numeroDeFactura, int cantidadVendida, boolean estado, double subtotal, double iva, double total, String cedula, String codigoProducto) {
         this.numeroDeFactura = numeroDeFactura;
         this.cantidadVendida = cantidadVendida;
@@ -54,7 +53,19 @@ public class Factura {
         this.cliente.setCedula(cedula);
         this.producto.setCodigo(codigoProducto);
     }
-
+    /**
+     * En este constructor se instanció todos los atributos de la clase Factura 
+     * incluiendo los objetos Producto y Cliente.
+     * 
+     * @param numeroDeFactura
+     * @param cantidadVendida
+     * @param estado
+     * @param subtotal
+     * @param iva
+     * @param total
+     * @param cliente
+     * @param producto 
+     */
     public Factura(int numeroDeFactura, int cantidadVendida, boolean estado, double subtotal, double iva, double total, Cliente cliente, Producto producto) {
         this.numeroDeFactura = numeroDeFactura;
         this.cantidadVendida = cantidadVendida;
@@ -68,7 +79,13 @@ public class Factura {
     
     
     
-
+    /**
+     * Getters y setters.
+     * 
+     * se instanciaron todos los getters y setters para los atributos de la clase 
+     * factura.
+     * 
+     */
     public int getNumeroDeFactura() {
         return numeroDeFactura;
     }
@@ -133,6 +150,14 @@ public class Factura {
         this.total = total;
     }
     
+    /**
+     * HashCode y equals.
+     * 
+     * Se instanció el metodo hashcode y equals para darle un valor unico 
+     * al numero de la factura. 
+     * 
+     * 
+     */
     @Override
     public int hashCode() {
         int hash = 7;

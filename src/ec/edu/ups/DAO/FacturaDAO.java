@@ -75,7 +75,21 @@ public class FacturaDAO implements IFactura {
         }
 
     }
-
+    
+    /**
+     * Create.
+     * 
+     * Este método recibe una lista de tipo Factura en la cual con esa lista
+     * extraemos los datos y los vamos agregando a los dos archivos individuales
+     * que se tiene para la factura. En un archivo se recorre un for Each en la 
+     * cual solamente se carga el numero de la factura, la cantidad vendida, 
+     * y el código del producto. En el otro archivo se guardan los datos 
+     * importantes de la factura la cual es el numero de la factura, 
+     * la cedula del cliente, el subtotal, el IVA, el total y el estado 
+     * de la factura. 
+     * 
+     * @param facturas 
+     */
     @Override
     public void create(List<Factura> facturas) {
         try {
@@ -105,6 +119,21 @@ public class FacturaDAO implements IFactura {
         }
     }
 
+    /**
+     * readDetalleFactura.
+     * 
+     * Este método recibe en sus parámetros un objeto de tipo entero. 
+     * Este método primero inicializa una lista, después con un while(), 
+     * se recorre todo el archivo del detalle de la factura. Después se hace 
+     * una condición en la cual se compara si es que el numero de la factura
+     * es igual el entero que se encuentra en el parámetro, se agrega ese 
+     * objeto de tipo factura a la lista, sino cumple no lo agrega a la lista.
+     * Al final retorna la lista de tipo factura o sino retorna un null si es 
+     * que nunca lo encontró. 
+     * 
+     * @param numeroDeFactura
+     * @return listadoDetalle o null.
+     */
     @Override
     public List<Factura> readDetalleFactura(int numeroDeFactura) {
         long inicio = 0;
@@ -129,7 +158,20 @@ public class FacturaDAO implements IFactura {
         }
         return null;
     }
-
+    
+    /**
+     * 
+     * readFactura.
+     * 
+     * Este método recibe en sus parámetros un objeto de tipo entero. 
+     * Este método va consultando en el archivo factura si es que el entero que
+     * esta en su parámetro existe en el archivo factura, y va saltando de dato 
+     * en dato. Si es que lo encuentra retorna ese objeto de tipo factura sino 
+     * retorna un null. 
+     * 
+     * @param numeroDeFactura
+     * @return factura o null.
+     */
     @Override
     public Factura readFactura(int numeroDeFactura) {
         long inicio = 0;
@@ -157,6 +199,16 @@ public class FacturaDAO implements IFactura {
         return null;
     }
 
+    /**
+     * findAllFacturasDisponibles.
+     * 
+     * Este método lee todas las facturas dentro del archivo Facturas y lee el 
+     * estado de la factura. Si es que el estado de la factura es verdadero lo
+     * agrega a una lista de tipo factura. Al final retorna esta lista o sino 
+     * retorna un null.
+     * 
+     * @return facturasA o null.
+     */
     @Override
     public List<Factura> findAllFacturasDisponibles() {
         List <Factura> facturasA=new ArrayList<>();
@@ -184,6 +236,16 @@ public class FacturaDAO implements IFactura {
         return null;
     }
 
+    /**
+     * findAllFacturasAnuladas.
+     * 
+     * Este método lee todas las facturas dentro del archivo Facturas y lee el 
+     * estado de la factura. Si es que el estado de la factura es falso lo 
+     * agrega a una lista de tipo factura. Al final retorna esta lista o sino 
+     * retorna un null.
+     * 
+     * @return facturasanuladas o null.
+     */
     @Override
     public List<Factura> findAllFacturasAnuladas() {
         List<Factura> facturasanuladas=new ArrayList<>();
@@ -211,6 +273,16 @@ public class FacturaDAO implements IFactura {
         return null;
     }
 
+    /**
+     * getCodigoActual.
+     * 
+     * Este método los que hace es leer el ultimo numero que existe en el
+     * archivo factura una vez que encuentra el ultimo numero de la factura 
+     * lo retorna y le suma un valor mas para que al facturar se produzca un 
+     * nuevo numero y no un repetido. 
+     * 
+     * @return codigo.
+     */
     @Override
     public int getCodigoActual() {
         try {
@@ -228,6 +300,18 @@ public class FacturaDAO implements IFactura {
         return codigo+1;
     }
 
+    /**
+     * anularFactura.
+     * 
+     * Este método recibe en sus parámetros un objeto de tipo entero. A este 
+     * método se le pase el numero de la factura que quieren anular. Después 
+     * busca ese numero de la factura dentro del archivo Factura, cuando lo 
+     * encuentra cambia el estado de la factura de verdadero a falso. 
+     * Por ultimo se retorna todos los objetos dentro de esa factura a 
+     * sus bodegas. 
+     * 
+     * @param numeroDeFactura 
+     */
     @Override
     public void anularFactura(int numeroDeFactura) {
         long inicio = 0;
@@ -252,6 +336,16 @@ public class FacturaDAO implements IFactura {
         }
     }
     
+    /**
+     * regresarProductos.
+     * 
+     * Este método recibe en sus parámetros un objeto de tipo entero.  Este 
+     * método lo que hace es buscar todas la facturas que tengan el mismo numero
+     * que esta en sus parámetros y después llama al productoDAO para que 
+     * actualice ese producto con los datos que se le están agregando. 
+     * 
+     * @param numeroFactura 
+     */
     public void regresarProductos(int numeroFactura){
         long inicio = 0;
         try{
