@@ -91,7 +91,8 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
             fila[3] = factura1.getProducto().getBodega().getNombre();
             modelo.addRow(fila);
         }
-        tablaDatosFactura.setModel(modelo);
+        tablaDetalleFactura.setModel(modelo);
+        
     }
 
     public void limpiar() {
@@ -144,6 +145,9 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
         botonClear = new javax.swing.JButton();
         botonAnular = new javax.swing.JButton();
         botonVerDetalles = new javax.swing.JButton();
+
+        setClosable(true);
+        setIconifiable(true);
 
         tablaDatosFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

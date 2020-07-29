@@ -65,6 +65,9 @@ public class FacturaDAO implements IFactura {
             archivoFactura = new RandomAccessFile("datos/Factura.dat", "rw");
             tamañoArchivoDetalleFactura = 20;
             tamañoArchivoFactura=41;
+            bodegaDAO = new BodegaDAO();
+            productoDAO = new ProductoDAO(bodegaDAO);
+            clienteDAO = new ClienteDAO();
             codigo=0;
         } catch (FileNotFoundException e) {
             System.out.println("Error escritura y lectura [ProductoDAO]");
@@ -76,14 +79,15 @@ public class FacturaDAO implements IFactura {
     @Override
     public void create(List<Factura> facturas) {
         try {
-            for (Factura factura : facturas) {
+            for (Factura facturaLista : facturas) {
+                producto = new Producto();
                 archivoDetalleFactura.seek(archivoDetalleFactura.length());
-                archivoDetalleFactura.writeInt(factura.getNumeroDeFactura()); //Repetitivo
-                archivoDetalleFactura.writeInt(factura.getCantidadVendida());                
-                archivoDetalleFactura.writeUTF(factura.getProducto().getCodigo());
+                archivoDetalleFactura.writeInt(facturaLista.getNumeroDeFactura()); //Repetitivo
+                archivoDetalleFactura.writeInt(facturaLista.getCantidadVendida());                
+                archivoDetalleFactura.writeUTF(facturaLista.getProducto().getCodigo());
                 //estes metodo resta la cantidad de los prodcutos
-                producto=productoDAO.read(factura.getProducto().getCodigo());
-                int cantidad = producto.getCantidad() - factura.getCantidadVendida();
+                producto=productoDAO.read(facturaLista.getProducto().getNombreDeProducto());
+                int cantidad = producto.getCantidad() - facturaLista.getCantidadVendida();
                 producto.setCantidad(cantidad);                
                 productoDAO.update(producto);
             }
@@ -114,7 +118,7 @@ public class FacturaDAO implements IFactura {
                 if (factura.getNumeroDeFactura() == numeroDeFactura) {
                     factura.setCantidadVendida(archivoDetalleFactura.readInt());
                     String codigo =archivoDetalleFactura.readUTF();
-                    factura.setProducto(productoDAO.read(codigo));                 
+                    factura.setProducto(productoDAO.readCodigo(codigo));                 
                     listadoDetalle.add(factura);
                 }
                 inicio+=tamañoArchivoDetalleFactura;
@@ -257,9 +261,10 @@ public class FacturaDAO implements IFactura {
                     archivoDetalleFactura.seek(inicio);
                     int num = archivoDetalleFactura.readInt(); //Repetitivo
                     if(num==numeroFactura){
+                        producto=new Producto();
                         int cantidad =archivoDetalleFactura.readInt();
                         String codigo =archivoDetalleFactura.readUTF();
-                        producto=productoDAO.read(codigo); 
+                        producto=productoDAO.readCodigo(codigo); 
 
                         cantidad = producto.getCantidad() + cantidad;
                         producto.setCantidad(cantidad);                

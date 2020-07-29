@@ -54,6 +54,18 @@ public class Factura {
         this.cliente.setCedula(cedula);
         this.producto.setCodigo(codigoProducto);
     }
+
+    public Factura(int numeroDeFactura, int cantidadVendida, boolean estado, double subtotal, double iva, double total, Cliente cliente, Producto producto) {
+        this.numeroDeFactura = numeroDeFactura;
+        this.cantidadVendida = cantidadVendida;
+        this.estado = estado;
+        this.subtotal = subtotal;
+        this.iva = iva;
+        this.total = total;
+        this.cliente = cliente;
+        this.producto = producto;
+    }
+    
     
     
 

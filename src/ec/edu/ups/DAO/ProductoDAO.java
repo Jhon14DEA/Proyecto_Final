@@ -87,7 +87,6 @@ public class ProductoDAO implements IProducto {
                 String bodega = archivoProductos.readUTF();
                 productoInterno.setBodega(bodegaDao.read(bodega));
                 if (nombre.equals(productoInterno.getNombreDeProducto())) {
-                    productoInterno.setBodega(bodegaInterna);
                     return productoInterno;
                 }
                 salto += tamañoDeArchivo;
@@ -98,6 +97,29 @@ public class ProductoDAO implements IProducto {
         return null;
     }
 
+        @Override
+    public Producto readCodigo(String codigo) {
+        int salto = 0;
+        try {
+            while (salto < archivoProductos.length()) {
+                archivoProductos.seek(salto);
+                productoInterno=new Producto();
+                productoInterno.setCodigo(archivoProductos.readUTF());
+                productoInterno.setNombreDeProducto(archivoProductos.readUTF());
+                productoInterno.setPrecioDeProdcuto(archivoProductos.readDouble());
+                productoInterno.setCantidad(archivoProductos.readInt());
+                String bodega = archivoProductos.readUTF();
+                productoInterno.setBodega(bodegaDao.read(bodega));
+                if (codigo.equals(productoInterno.getCodigo())) {
+                    return productoInterno;
+                }
+                salto += tamañoDeArchivo;
+            }
+        } catch (IOException e) {
+            System.out.println("Error escritura y lectura [read ProductoDAO]");
+        }
+        return null;
+    }
     @Override
     public void update(Producto producto) {
         int salto = 0;

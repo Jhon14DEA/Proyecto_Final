@@ -108,12 +108,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuItemProductos = new javax.swing.JMenuItem();
         menuItemFacturas = new javax.swing.JMenuItem();
         menuItemBodega = new javax.swing.JMenuItem();
+        menuItemListaF = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         menuItemEspaniol = new javax.swing.JMenuItem();
         menuItemIngles = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+
+        desktopPane.setLayout(null);
 
         menuInicio.setMnemonic('f');
         menuInicio.setText("Inicio");
@@ -208,6 +211,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
         menuGestionClientes.add(menuItemBodega);
+
+        menuItemListaF.setMnemonic('d');
+        menuItemListaF.setText("Listar Facturas");
+        menuItemListaF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemListaFActionPerformed(evt);
+            }
+        });
+        menuGestionClientes.add(menuItemListaF);
 
         menuBar.add(menuGestionClientes);
 
@@ -310,6 +322,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaRegistrarCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void menuItemListaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListaFActionPerformed
+        desktopPane.add(ventanaListarFacturas);
+        ventanaListarFacturas.setVisible(true);
+
+    }//GEN-LAST:event_menuItemListaFActionPerformed
+
     public JMenu getMenu() {
 
         return menuInicio;
@@ -396,6 +414,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemFacturas;
     private javax.swing.JMenuItem menuItemIngles;
     private javax.swing.JMenuItem menuItemIniciarSesion;
+    private javax.swing.JMenuItem menuItemListaF;
     private javax.swing.JMenuItem menuItemProductos;
     private javax.swing.JMenuItem menuItemRegistrarUsuario;
     private javax.swing.JMenuItem menuItemSalir;

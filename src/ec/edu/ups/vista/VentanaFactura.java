@@ -156,10 +156,6 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         txtFechaDeEmision = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaDatos = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
         lblSubTotal = new javax.swing.JLabel();
         txtSubtotal = new javax.swing.JTextField();
         lblIVA = new javax.swing.JLabel();
@@ -248,17 +244,6 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(tablaDatos);
-
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel8.setText("Pago inicial");
-
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField7.setText("0.00");
-
-        jLabel9.setText("Saldo:");
-
-        jTextField8.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField8.setText("0.00");
 
         lblSubTotal.setText("sub Total");
 
@@ -364,9 +349,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(1, 1, 1)
                                                 .addComponent(lblFacturaNumero))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblCedula)
-                                                .addGap(31, 31, 31)))
+                                            .addComponent(lblCedula))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(layout.createSequentialGroup()
@@ -402,21 +385,13 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cmbxBodega, 0, 1, Short.MAX_VALUE)
                                     .addComponent(cmbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 43, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(botonCrearFactura)
                 .addGap(18, 18, 18)
                 .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSubTotal)
                     .addComponent(lblIVA)
@@ -492,14 +467,9 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                             .addComponent(txtIVA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel8)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(lblSubTotal)
                                 .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel9)))
+                            .addGap(32, 32, 32))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(botonCrearFactura)
                             .addGap(10, 10, 10)))
@@ -611,14 +581,18 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
          List<Factura> facturas=new ArrayList<>();
          
          for (int i = 0; i < tablaDatos.getRowCount(); i++) {
-            int numeroF=Integer.parseInt(txtFacturaNumero.getText().toString());
+            int numeroF=Integer.parseInt(txtFacturaNumero.getText());
             String cedula = txtCedula.getText();
             double subtotal=Double.parseDouble(txtSubtotal.getText());
             int cantidad =Integer.parseInt(tablaDatos.getValueAt(i, 0).toString());
             double iva =Double.parseDouble(txtIVA.getText());
             double total=Double.parseDouble(txtTotal.getText());
-            String codigo=tablaDatos.getValueAt(i, 1).toString();
-            factura=new Factura(numeroF, cantidad, true, subtotal, iva, total, cedula, codigo); 
+            String nombre=tablaDatos.getValueAt(i, 2).toString();
+            cliente=new Cliente();
+            producto=new Producto();
+            cliente=controladorCliente.buscarCliente(cedula);
+            producto=controladorProducto.verProducto(nombre);
+            factura=new Factura(numeroF, cantidad, true, subtotal, iva, total, cliente, producto); 
            facturas.add(factura);
         }
         controladorfactura.crearFactura(facturas);
@@ -670,11 +644,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> cmbxBodega;
     private javax.swing.JComboBox<String> cmbxProducto;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblCliente;

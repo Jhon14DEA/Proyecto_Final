@@ -19,7 +19,9 @@ public interface IProducto {
     public void create(Producto producto);
 
     public Producto read(String codigo);
-
+    
+    public Producto readCodigo(String codigo);
+    
     public void update(Producto producto);
 
     public void delete(String codigo);
