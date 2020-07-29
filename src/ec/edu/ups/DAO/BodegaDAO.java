@@ -76,14 +76,14 @@ public class BodegaDAO implements IBodega {
             int salto = 0;
             while (salto < archivo.length()) {
                 archivo.seek(salto);
+                bodegaInterna=new Bodega();
                 bodegaInterna.setNombre(archivo.readUTF());
                 bodegaInterna.setDireccion(archivo.readUTF());
                 bodegaInterna.setCuidad(archivo.readUTF());
                 if (bodegaInterna.getNombre().equals(nombre)) {
-                    return bodegaInterna;
+                    return bodegaInterna;  
                 }
                 salto += tamañoRegistro;
-                
             }
         } catch (IOException e) {
             System.out.println("Error de lectura (read: BodegaDAO)");

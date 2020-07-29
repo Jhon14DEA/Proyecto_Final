@@ -35,6 +35,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         
         controladorProducto = controladorP;
         controladorBodega = controladorB;
+        desActivarBotones();
     }
 
     public void limpiar() {
@@ -55,8 +56,8 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         for (Producto listaDeProducto : listaDeProductos) {
             fila[0]=listaDeProducto.getCodigo();
             fila[1]=listaDeProducto.getNombreDeProducto();
-            fila[2]=listaDeProducto.getCantidad();
-            fila[3]=listaDeProducto.getPrecioDeProdcuto();
+            fila[2]=listaDeProducto.getPrecioDeProdcuto();
+            fila[3]=listaDeProducto.getCantidad();
             fila[4]=listaDeProducto.getBodega().getNombre();
             modelo.addRow(fila);
         }
@@ -68,14 +69,14 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         btnEliminarP.setEnabled(true);
         btnCancelar.setEnabled(true);
         btnBuscar.setEnabled(true);
-        txtBuscar.setEnabled(true);
+        txtBuscar.setEditable(true);
     }
     public void desActivarBotones(){
         btnActualizarP.setEnabled(false);
         btnEliminarP.setEnabled(false);
         btnCancelar.setEnabled(false);
         btnBuscar.setEnabled(false);
-        txtBuscar.setEnabled(false);
+        txtBuscar.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -126,10 +127,6 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
         lblBodega.setText("Bodega:");
 
-        txtCodigo.setText(" ");
-
-        txtNombreP.setText(" ");
-
         txtPrecio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtPrecio.setText("0.00");
         txtPrecio.setToolTipText("");
@@ -139,11 +136,11 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Stock", "P.V.P", "Bodega"
+                "Codigo", "Nombre", "P.V.P", "Stock", "Bodega"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Double.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
@@ -208,11 +205,6 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         cmbxBodega.setMaximumSize(new java.awt.Dimension(221, 221));
         cmbxBodega.setMinimumSize(new java.awt.Dimension(221, 27));
         cmbxBodega.setPreferredSize(new java.awt.Dimension(221, 27));
-        cmbxBodega.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbxBodegaActionPerformed(evt);
-            }
-        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -342,7 +334,12 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             String nombreP = txtNombreP.getText();
             double precio = Double.parseDouble(txtPrecio.getText());
             int cantidad = Integer.parseInt(txtCantidad.getText());
-            String bodega = cmbxBodega.getSelectedItem() + "";
+            String bodega = cmbxBodega.getSelectedItem().toString();
+            /*System.out.println(codigo);
+            System.out.println(nombreP);
+            System.out.println(precio);
+            System.out.println(cantidad);
+            System.out.println(bodega);*/
             controladorProducto.actualizarProducto(codigo, nombreP, precio, cantidad,bodega);
             actualizarVista();
             desActivarBotones();
@@ -363,8 +360,8 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         if(filaSelecionada>=0){
             String codigo=tablaDatos.getValueAt(filaSelecionada, 0).toString();
             String nombre=tablaDatos.getValueAt(filaSelecionada, 1).toString();
-            String cantidad =tablaDatos.getValueAt(filaSelecionada, 2).toString();
-            String precio=tablaDatos.getValueAt(filaSelecionada, 3).toString();
+            String precio =tablaDatos.getValueAt(filaSelecionada, 2).toString();
+            String cantidad=tablaDatos.getValueAt(filaSelecionada, 3).toString();
             String bodega=tablaDatos.getValueAt(filaSelecionada, 4).toString();
             
             txtCodigo.setText(codigo);
@@ -398,12 +395,13 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarPActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if(!txtBuscar.getText().equals("")){
         String buscar=txtBuscar.getText();
         int filas=tablaDatos.getRowCount();
         boolean encontrado=true;
         
             for (int i = 0; i < filas; i++) {
-            String codigo= tablaDatos.getValueAt(i,0).toString();
+            String codigo= tablaDatos.getValueAt(i,0).toString().trim();
             if(buscar.equals(codigo)){
                 encontrado=false;
                 tablaDatos.setRowSelectionInterval(i, i);
@@ -416,6 +414,10 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
                 
             }
         txtBuscar.setText("");
+    }else{
+           JOptionPane.showMessageDialog(null, "se encuentra vacio el campo", "Error", JOptionPane.ERROR_MESSAGE); 
+        }
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -424,16 +426,16 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         limpiar();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void cmbxBodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxBodegaActionPerformed
-
-    }//GEN-LAST:event_cmbxBodegaActionPerformed
-
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        actualizarCmbx();
+        //actualizarCmbx();
     }//GEN-LAST:event_formFocusGained
 
     private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
         actualizarCmbx();
+        actualizarVista();
+        desActivarBotones();
+        limpiar();
+
     }//GEN-LAST:event_formPropertyChange
     public void actualizarCmbx(){
         cmbxBodega.removeAllItems();

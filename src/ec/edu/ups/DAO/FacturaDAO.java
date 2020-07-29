@@ -100,15 +100,6 @@ public class FacturaDAO implements IFactura {
             System.out.println(e);
         }
     }
-    /*
-        controlador metodo readFacturaseleccionadoDetalle(int numeroFactura){
-        List<Factura> factura = Facturadao.readDetallefactura
-        }
-    
-        controlador metodo readFacturaseleccionado(int numeroFactura){
-        Factura factura = Facturadao.readFactura;
-        }
-    */
 
     @Override
     public List<Factura> readDetalleFactura(int numeroDeFactura) {

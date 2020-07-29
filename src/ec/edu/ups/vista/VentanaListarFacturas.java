@@ -16,45 +16,48 @@ import javax.swing.table.DefaultTableModel;
  * @author Dutan2000
  */
 public class VentanaListarFacturas extends javax.swing.JInternalFrame {
+
     private Factura factura;
     private Bodega bodega;
     private Producto producto;
     private Cliente cliente;
-    
+
     private ControladorFactura controladorfactura;
     private ControladorBodega controladorBodega;
     private ControladorCliente controladorCliente;
     private ControladorProducto controladorProducto;
-    
+
     /**
      * Creates new form VentanaListarFacturas
      */
-    public VentanaListarFacturas(ControladorBodega controladorB,ControladorCliente controladorC, ControladorFactura controladorF,
-            ControladorProducto controladorP) {
+    public VentanaListarFacturas(ControladorBodega controladorB, Bodega bodegaV, ControladorCliente controladorC, Cliente clienteV, ControladorFactura controladorF,
+            Factura factura, ControladorProducto controladorP, Producto productoV) {
         initComponents();
-        controladorBodega=controladorB;
-        controladorCliente=controladorC;
-        controladorProducto=controladorP;
-        controladorfactura=controladorF;
+        controladorBodega = controladorB;
+        controladorCliente = controladorC;
+        controladorProducto = controladorP;
+        controladorfactura = controladorF;
     }
-        public void VistaDatosFacturaValida() {
+
+    public void VistaDatosFacturaValida() {
         List<Factura> listaDefacturas = controladorfactura.listarFacturasActivas();
 
         DefaultTableModel modelo = (DefaultTableModel) tablaDatosFactura.getModel();
         modelo.setRowCount(0);
         tablaDatosFactura.setModel(modelo);
         Object[] fila = new Object[6];
-            for (Factura factura : listaDefacturas) {
-            fila[0]=factura.getNumeroDeFactura();
-            fila[1]=factura.getCliente().getCedula();
-            fila[2]=factura.getSubtotal();
-            fila[3]=factura.getIva();
-            fila[4]=factura.getTotal();
-            fila[5]=factura.isEstado();
+        for (Factura factura : listaDefacturas) {
+            fila[0] = factura.getNumeroDeFactura();
+            fila[1] = factura.getCliente().getCedula();
+            fila[2] = factura.getSubtotal();
+            fila[3] = factura.getIva();
+            fila[4] = factura.getTotal();
+            fila[5] = factura.isEstado();
             modelo.addRow(fila);
         }
         tablaDatosFactura.setModel(modelo);
     }
+
     public void VistaDatosFacturaAnuladas() {
         List<Factura> listaDefacturas = controladorfactura.listarFacturasAnuladas();
 
@@ -62,34 +65,55 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
         tablaDatosFactura.setModel(modelo);
         Object[] fila = new Object[6];
-            for (Factura factura : listaDefacturas) {
-            fila[0]=factura.getNumeroDeFactura();
-            fila[1]=factura.getCliente().getCedula();
-            fila[2]=factura.getSubtotal();
-            fila[3]=factura.getIva();
-            fila[4]=factura.getTotal();
-            fila[5]=factura.isEstado();
+        for (Factura factura : listaDefacturas) {
+            fila[0] = factura.getNumeroDeFactura();
+            fila[1] = factura.getCliente().getCedula();
+            fila[2] = factura.getSubtotal();
+            fila[3] = factura.getIva();
+            fila[4] = factura.getTotal();
+            fila[5] = factura.isEstado();
             modelo.addRow(fila);
         }
         tablaDatosFactura.setModel(modelo);
     }
-    public void cargarDetalleFactura(int factura){
-        List<Factura> facturas=controladorfactura.buscarDetalleFactura(factura);
-        
+
+    public void cargarDetalleFactura(int factura) {
+        List<Factura> facturas = controladorfactura.buscarDetalleFactura(factura);
+
         DefaultTableModel modelo = (DefaultTableModel) tablaDetalleFactura.getModel();
         modelo.setRowCount(0);
         tablaDetalleFactura.setModel(modelo);
         Object[] fila = new Object[4];
-            for (Factura factura1 : facturas) {
-            fila[0]=factura1.getNumeroDeFactura();
-            fila[1]=factura1.getCantidadVendida();
-            fila[2]=factura1.getProducto().getNombreDeProducto();
-            fila[3]=factura1.getProducto().getBodega().getNombre();
+        for (Factura factura1 : facturas) {
+            fila[0] = factura1.getNumeroDeFactura();
+            fila[1] = factura1.getCantidadVendida();
+            fila[2] = factura1.getProducto().getNombreDeProducto();
+            fila[3] = factura1.getProducto().getBodega().getNombre();
             modelo.addRow(fila);
         }
         tablaDatosFactura.setModel(modelo);
     }
-        
+
+    public void limpiar() {
+        txtCedula.setText("");
+        txtnNombre.setText("");
+        txtApellido.setText("");
+        txtLocal.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaDetalleFactura.getModel();
+        modelo.setRowCount(0);
+        tablaDetalleFactura.setModel(modelo);
+        Object[] fila = new Object[4];
+            fila[0] = "";
+            fila[1] = "";
+            fila[2] = "";
+            fila[3] = "";
+            modelo.addRow(fila);
+        tablaDatosFactura.setModel(modelo);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,12 +133,12 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
         lblLocal = new javax.swing.JLabel();
         lblDireccion = new javax.swing.JLabel();
         lblTelefono = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtnNombre = new javax.swing.JTextField();
+        txtApellido = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
+        txtLocal = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         botonListarAnuladas = new javax.swing.JButton();
         botonListarValidas = new javax.swing.JButton();
         botonClear = new javax.swing.JButton();
@@ -183,17 +207,17 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
 
         lblTelefono.setText("Telefono:");
 
-        jTextField1.setEditable(false);
+        txtnNombre.setEditable(false);
 
-        jTextField2.setEditable(false);
+        txtApellido.setEditable(false);
 
-        jTextField3.setEditable(false);
+        txtCedula.setEditable(false);
 
-        jTextField4.setEditable(false);
+        txtLocal.setEditable(false);
 
-        jTextField5.setEditable(false);
+        txtDireccion.setEditable(false);
 
-        jTextField6.setEditable(false);
+        txtTelefono.setEditable(false);
 
         botonListarAnuladas.setText("Listar Anuladas");
         botonListarAnuladas.addActionListener(new java.awt.event.ActionListener() {
@@ -210,6 +234,11 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
         });
 
         botonClear.setText("Clear");
+        botonClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonClearActionPerformed(evt);
+            }
+        });
 
         botonAnular.setText("Anular");
         botonAnular.addActionListener(new java.awt.event.ActionListener() {
@@ -237,17 +266,17 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblApellido)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblNombre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtnNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(botonListarAnuladas)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblCedula)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -256,14 +285,14 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
                                     .addComponent(lblTelefono))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblLocal)
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(botonListarValidas)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
@@ -297,22 +326,22 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCedula)
                     .addComponent(lblLocal)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblNombre)
                         .addComponent(lblDireccion)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtnNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblApellido)
                         .addComponent(lblTelefono)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -322,7 +351,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonListarAnuladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarAnuladasActionPerformed
-      VistaDatosFacturaAnuladas();
+        VistaDatosFacturaAnuladas();
 
     }//GEN-LAST:event_botonListarAnuladasActionPerformed
 
@@ -332,24 +361,35 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botonListarValidasActionPerformed
 
     private void botonAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnularActionPerformed
-        int respuesta= JOptionPane.showConfirmDialog(this, "Desea Anular esta Factura?");
-        
-        if(respuesta==JOptionPane.YES_OPTION){
-        int filaSelecionada=tablaDatosFactura.getSelectedRow();
-        int numeroDeFactura=Integer.parseInt(tablaDatosFactura.getValueAt(filaSelecionada, 0).toString());
-        controladorfactura.AnularFacturas(numeroDeFactura);
-        VistaDatosFacturaValida();
+        int respuesta = JOptionPane.showConfirmDialog(this, "Desea Anular esta Factura?");
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            int filaSelecionada = tablaDatosFactura.getSelectedRow();
+            int numeroDeFactura = Integer.parseInt(tablaDatosFactura.getValueAt(filaSelecionada, 0).toString());
+            controladorfactura.AnularFacturas(numeroDeFactura);
+            VistaDatosFacturaValida();
         }
     }//GEN-LAST:event_botonAnularActionPerformed
 
     private void botonVerDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerDetallesActionPerformed
-        int filaSelecionada=tablaDatosFactura.getSelectedRow();
-        int numeroDeFactura=Integer.parseInt(tablaDatosFactura.getValueAt(filaSelecionada, 0).toString());
-        String cedula=tablaDatosFactura.getValueAt(filaSelecionada,1).toString();
-        //este buscar cliente busca por medio del nombre del local.....cliente=controladorCliente.buscarCliente(cedula);
+        int filaSelecionada = tablaDatosFactura.getSelectedRow();
+        int numeroDeFactura = Integer.parseInt(tablaDatosFactura.getValueAt(filaSelecionada, 0).toString());
+        String cedula = tablaDatosFactura.getValueAt(filaSelecionada, 1).toString();
+        cliente = controladorCliente.buscarCliente(cedula);
+        txtCedula.setText(cliente.getCedula());
+        txtnNombre.setText(cliente.getNombre());
+        txtApellido.setText(cliente.getApellido());
+        txtLocal.setText(cliente.getNombreDelLocal());
+        txtDireccion.setText(cliente.getDireccion());
+        txtTelefono.setText(cliente.getTelefono());
+
         cargarDetalleFactura(numeroDeFactura);
-        
+
     }//GEN-LAST:event_botonVerDetallesActionPerformed
+
+    private void botonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClearActionPerformed
+        limpiar();
+    }//GEN-LAST:event_botonClearActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -360,12 +400,6 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
     private javax.swing.JButton botonVerDetalles;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCedula;
     private javax.swing.JLabel lblDireccion;
@@ -374,5 +408,11 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblTelefono;
     private javax.swing.JTable tablaDatosFactura;
     private javax.swing.JTable tablaDetalleFactura;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtLocal;
+    private javax.swing.JTextField txtTelefono;
+    private javax.swing.JTextField txtnNombre;
     // End of variables declaration//GEN-END:variables
 }

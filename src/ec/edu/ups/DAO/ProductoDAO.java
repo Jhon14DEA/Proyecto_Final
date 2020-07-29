@@ -25,8 +25,9 @@ public class ProductoDAO implements IProducto {
     /**
      *
      * private String codigo | 10 caracteres + 2 bytes private String
-     * nombreDeProducto | 25 caracteres + 2 bytes private double
-     * precioDeProdcuto | 8 bytes private int cantidad | 4 bytes private Bodega
+     * nombreDeProducto | 25 caracteres + 2 bytes 
+     * private double precioDeProdcuto | 8 bytes 
+     * private int cantidad | 4 bytes private Bodega
      * bodega (nombre de Bodega) | 25 caracteres + 2 bytes
      *
      * total= 78 bytes
@@ -73,18 +74,19 @@ public class ProductoDAO implements IProducto {
     }
 
     @Override
-    public Producto read(String codigo) {
+    public Producto read(String nombre) {
         int salto = 0;
         try {
             while (salto < archivoProductos.length()) {
                 archivoProductos.seek(salto);
+                productoInterno=new Producto();
                 productoInterno.setCodigo(archivoProductos.readUTF());
                 productoInterno.setNombreDeProducto(archivoProductos.readUTF());
                 productoInterno.setPrecioDeProdcuto(archivoProductos.readDouble());
                 productoInterno.setCantidad(archivoProductos.readInt());
                 String bodega = archivoProductos.readUTF();
                 productoInterno.setBodega(bodegaDao.read(bodega));
-                if (codigo == productoInterno.getCodigo()) {
+                if (nombre.equals(productoInterno.getNombreDeProducto())) {
                     productoInterno.setBodega(bodegaInterna);
                     return productoInterno;
                 }
@@ -124,13 +126,13 @@ public class ProductoDAO implements IProducto {
         try {
             while (salto < archivoProductos.length()) {
                 archivoProductos.seek(salto);
-                productoInterno.setCodigo(archivoProductos.readUTF());
-                if (codigo.equals(productoInterno.getCodigo())) {
+                String codigoAEliminar=archivoProductos.readUTF();
+                if (codigo.equals(codigoAEliminar)) {
                     archivoProductos.seek(salto);
                     archivoProductos.writeUTF(eliminar10bytes);
                     archivoProductos.writeUTF(eliminar25bytes);
-                    archivoProductos.writeDouble(0.00);
-                    archivoProductos.write(0);
+                    archivoProductos.writeDouble(0);
+                    archivoProductos.writeInt(0);
                     archivoProductos.writeUTF(eliminar25bytes);
                     break;
                 }
@@ -147,24 +149,24 @@ public class ProductoDAO implements IProducto {
         int salto = 0;
         try {
             while (salto < archivoProductos.length()) {
+                productoInterno=new Producto();
                 archivoProductos.seek(salto);
-                productoInterno = new Producto();
                 productoInterno.setCodigo(archivoProductos.readUTF());
                 productoInterno.setNombreDeProducto(archivoProductos.readUTF());
                 productoInterno.setPrecioDeProdcuto(archivoProductos.readDouble());
                 productoInterno.setCantidad(archivoProductos.readInt());
                 String bodega = archivoProductos.readUTF();
+                productoInterno.setBodega(bodegaDao.read(bodega));
                 if (!productoInterno.getCodigo().equals(eliminar10bytes)) {
-                    productoInterno.setBodega(bodegaDao.read(bodega));
                     todosLosProductos.add(productoInterno);
                 }
                 salto += tamañoDeArchivo;
             }
-            return todosLosProductos;
+            
         } catch (IOException e) {
             System.out.println("Error escritura y lectura [findAllProductos ProdcutoDAO]");
         }
-        return null;
+        return todosLosProductos;
     }
 
     @Override
@@ -180,8 +182,8 @@ public class ProductoDAO implements IProducto {
                 productoInterno.setPrecioDeProdcuto(archivoProductos.readDouble());
                 productoInterno.setCantidad(archivoProductos.readInt());
                 String bodega1 = archivoProductos.readUTF();
-                productoInterno.setBodega(bodegaDao.read(bodega1));
-                if (productoInterno.getBodega().getNombre().equals(bodega)) {
+                if (bodega1.equals(bodega)) {
+                  productoInterno.setBodega(bodegaDao.read(bodega1));  
                     todosLosProductos.add(productoInterno);
                 }
                 salto += tamañoDeArchivo;

@@ -36,6 +36,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     FacturaDAO facturaDAO;
     
     private Bodega bodega;
+    private Producto producto;
+    private Cliente cliente;
+    private Usuario usuario;
+    private Factura factura;
     
 
     ControladorUsuario controladorUsuario;
@@ -54,11 +58,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         clienteDao = new ClienteDAO();
         
         bodega=new Bodega();
+        producto=new Producto();
+        factura=new Factura();
+        cliente=new Cliente();
+        usuario=new Usuario();
         
         
         controladorUsuario = new ControladorUsuario(usuarioDao);
         controladorCliente = new ControladorCliente(clienteDao);
-        controladorProducto=new ControladorProducto(bodega, bodegaDAO, productoDAO);
+        controladorProducto=new ControladorProducto(bodega, bodegaDAO, productoDAO,producto);
         controladorBodega=new ControladorBodega(bodega, bodegaDAO);
         controladorFactura=new ControladorFactura();
 
@@ -66,12 +74,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanCliente = new VentanaCliente(controladorCliente);
         ventanaBodega = new VentanaBodega(controladorBodega);
         ventanaProductos = new VentanaProductos(controladorProducto, controladorBodega);
-        ventanaFactura = new VentanaFactura(controladorBodega,controladorCliente, controladorFactura,
-            controladorProducto);
-        ventanaListarFacturas= new VentanaListarFacturas(controladorBodega, controladorCliente, controladorFactura, controladorProducto);
+        ventanaFactura = new VentanaFactura(controladorBodega, bodega, controladorCliente, cliente, controladorFactura, factura, controladorProducto, producto);
+        ventanaListarFacturas= new VentanaListarFacturas(controladorBodega,bodega, controladorCliente,cliente, controladorFactura,factura,
+                controladorProducto, producto);
         ventanaRegistrarUsuario = new VentanaRegistrarseUsuario(controladorUsuario);
         ventanaUsuario = new VentanaUsuario(controladorUsuario);
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
+        
+        
 
     }
 

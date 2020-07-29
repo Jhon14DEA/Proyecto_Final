@@ -28,209 +28,221 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="864" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="txtDireccion" min="-2" pref="295" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                                          <Component id="txtTelefono" min="-2" pref="295" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="txtApellido" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
+                                      <Component id="txtNombre" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
+                                      <Component id="txtLocal" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
+                                      <Component id="botonRegistrarCliente" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                              <Component id="lblSeleccionarP" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                                              <Component id="lblFacturaNumero" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Component id="txtCedula" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="438" max="-2" attributes="0"/>
-                                              <Component id="jButton3" min="-2" pref="183" max="-2" attributes="0"/>
+                                          <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="txtCedula" min="-2" pref="133" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="txtFacturaNumero" min="-2" pref="76" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="lblFechaDeEmision" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="txtFechaDeEmision" min="-2" pref="122" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="lblSeleccionarB" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="lblApellido" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblDireccion" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblNombre" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblLocal" alignment="1" min="-2" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                              <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="376" pref="376" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                              <Component id="botonProductos" min="-2" pref="183" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="lblSeleccionarP" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSeleccionarB" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="cmbxBodega" pref="195" max="32767" attributes="0"/>
-                                  <Component id="cmbxProducto" pref="0" max="32767" attributes="0"/>
+                                  <Component id="cmbxBodega" pref="0" max="32767" attributes="0"/>
+                                  <Component id="cmbxProducto" min="-2" pref="195" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                          <Component id="lblFacturaNumero" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          <Component id="txtFacturaNumero" min="-2" pref="76" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="lblFechaDeEmision" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtFechaDeEmision" min="-2" pref="122" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Component id="lblCedula" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="txtDireccion" min="-2" pref="295" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="lblTelefono" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                              <Component id="txtTelefono" min="-2" pref="295" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="txtApellido" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
-                                          <Component id="txtNombre" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
-                                          <Component id="txtLocal" alignment="1" min="-2" pref="295" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblApellido" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblDireccion" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblNombre" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblLocal" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="365" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-                      <Component id="botonCrearFactura" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField7" min="-2" pref="90" max="-2" attributes="0"/>
-                          <Component id="jTextField8" min="-2" pref="90" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblSubTotal" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblIVA" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTotal" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField9" min="-2" pref="77" max="-2" attributes="0"/>
-                          <Component id="txtSubTotal" min="-2" pref="77" max="-2" attributes="0"/>
-                          <Component id="txtIVA" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
-                          <Component id="txtTotal" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="botonCrearFactura" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonCalcular" min="-2" pref="114" max="-2" attributes="0"/>
+              <EmptySpace pref="143" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jTextField7" min="-2" pref="90" max="-2" attributes="0"/>
+                  <Component id="jTextField8" min="-2" pref="90" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblSubTotal" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIVA" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTotal" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtSubtotal" min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="txtIVA" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="txtTotal" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblFacturaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFacturaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblFechaDeEmision" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtFechaDeEmision" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblSeleccionarB" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cmbxBodega" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblSeleccionarP" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cmbxProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFacturaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFacturaNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblFechaDeEmision" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFechaDeEmision" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonRegistrarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblSeleccionarB" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbxBodega" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblSeleccionarP" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbxProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton3" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="lblApellido" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="txtSubTotal" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="botonProductos" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="188" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                           <Component id="lblIVA" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtIVA" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblSubTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField7" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSubTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtSubtotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTextField8" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField8" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="botonCrearFactura" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="botonCrearFactura" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="botonCalcular" min="-2" pref="51" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -254,6 +266,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellido">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCedula">
       <Properties>
@@ -262,7 +277,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCedula">
       <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCedulaKeyPressed"/>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCedulaKeyTyped"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblFacturaNumero">
@@ -284,6 +299,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtTelefono">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblFechaDeEmision">
       <Properties>
@@ -348,15 +366,8 @@
         <Property name="text" type="java.lang.String" value="sub Total"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField9">
+    <Component class="javax.swing.JTextField" name="txtSubtotal">
       <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="0.00"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtSubTotal">
-      <Properties>
-        <Property name="editable" type="boolean" value="false"/>
         <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" value="0.00"/>
       </Properties>
@@ -392,6 +403,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar Factura"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCrearFacturaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -401,15 +415,21 @@
         <Property name="text" type="java.lang.String" value="FACTURA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="botonProductos">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/box_full.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Productos"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonProductosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDireccion">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblNombre">
       <Properties>
@@ -422,6 +442,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombre">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblSeleccionarB">
       <Properties>
@@ -466,6 +489,25 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtLocal">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonCalcular">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Calcular"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCalcularActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonRegistrarCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarClienteActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

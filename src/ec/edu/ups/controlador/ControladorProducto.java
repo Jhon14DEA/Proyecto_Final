@@ -23,21 +23,27 @@ public class ControladorProducto {
     private ProductoDAO productoDAO;
 
     public ControladorProducto() {
+        this.productoDAO=productoDAO;
     }
 
-    public ControladorProducto(Bodega bodega, BodegaDAO bodegaDAO, ProductoDAO productoDAO) {
+    public ControladorProducto(Bodega bodega, BodegaDAO bodegaDAO, ProductoDAO productoDAO, Producto producto) {
         this.bodega = bodega;
         this.bodegaDAO = bodegaDAO;
         this.productoDAO = productoDAO;
+        this.producto=producto;
     }
 
     public void crearNuevoProducto(String codigo, String nombreDeProducto, double precioDeProdcuto, int cantidad, String bodega) {
         for (int i = codigo.length(); i < 10; i++) {
             codigo += " ";
         }
+        codigo=codigo.substring(0, 10);
+        
         for (int i = nombreDeProducto.length(); i < 25; i++) {
             nombreDeProducto += " ";
         }
+        nombreDeProducto=nombreDeProducto.substring(0, 25);
+        
         this.bodega=bodegaDAO.read(bodega);
         producto = new Producto(codigo, nombreDeProducto, precioDeProdcuto, cantidad);
         producto.setBodega(this.bodega);
@@ -45,8 +51,8 @@ public class ControladorProducto {
         
     }
 
-    public Producto verProducto(String codigo) {
-        producto = productoDAO.read(codigo);
+    public Producto verProducto(String nombre) {
+        producto = productoDAO.read(nombre);
         return producto;
     }
 
@@ -54,9 +60,13 @@ public class ControladorProducto {
         for (int i = codigo.length(); i < 10; i++) {
             codigo += " ";
         }
+        codigo=codigo.substring(0, 10);
+        
         for (int i = nombreDeProducto.length(); i < 25; i++) {
             nombreDeProducto += " ";
         }
+        nombreDeProducto=nombreDeProducto.substring(0, 25);
+        
         this.bodega=bodegaDAO.read(bodega);
         producto = new Producto(codigo, nombreDeProducto, precioDeProdcuto, cantidad);
         producto.setBodega(this.bodega);
@@ -68,7 +78,8 @@ public class ControladorProducto {
     }
     
     public List<Producto> verProductosGeneral(){
-        return productoDAO.findAllProductos();
+        List <Producto> list =productoDAO.findAllProductos();
+        return list;
     }
     
     public List<Producto> verProductosPorBodega(String bodega){

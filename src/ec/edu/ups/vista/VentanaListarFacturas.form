@@ -27,19 +27,19 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblApellido" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jTextField2" min="-2" pref="207" max="-2" attributes="0"/>
+                              <Component id="txtApellido" min="-2" pref="207" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextField1" min="-2" pref="207" max="-2" attributes="0"/>
+                              <Component id="txtnNombre" min="-2" pref="207" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="0" groupAlignment="1" attributes="0">
                               <Component id="botonListarAnuladas" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Component id="lblCedula" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextField3" min="-2" pref="207" max="-2" attributes="0"/>
+                                  <Component id="txtCedula" min="-2" pref="207" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -52,8 +52,8 @@
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jTextField6" min="-2" pref="207" max="-2" attributes="0"/>
-                                  <Component id="jTextField5" min="-2" pref="207" max="-2" attributes="0"/>
+                                  <Component id="txtTelefono" min="-2" pref="207" max="-2" attributes="0"/>
+                                  <Component id="txtDireccion" min="-2" pref="207" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -61,7 +61,7 @@
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="botonListarValidas" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField4" min="-2" pref="207" max="-2" attributes="0"/>
+                                  <Component id="txtLocal" min="-2" pref="207" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -109,26 +109,26 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtLocal" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField5" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTextField1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtnNombre" alignment="1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                       <Component id="lblApellido" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField6" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jTextField2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtApellido" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="215" max="-2" attributes="0"/>
@@ -212,32 +212,32 @@
         <Property name="text" type="java.lang.String" value="Telefono:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="txtnNombre">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="txtApellido">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="txtCedula">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField4">
+    <Component class="javax.swing.JTextField" name="txtLocal">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField5">
+    <Component class="javax.swing.JTextField" name="txtDireccion">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField6">
+    <Component class="javax.swing.JTextField" name="txtTelefono">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
@@ -262,6 +262,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Clear"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonClearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="botonAnular">
       <Properties>

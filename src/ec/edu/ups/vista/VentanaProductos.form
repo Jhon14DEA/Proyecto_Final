@@ -166,14 +166,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCodigo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=" "/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombreP">
-      <Properties>
-        <Property name="text" type="java.lang.String" value=" "/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPrecio">
       <Properties>
@@ -195,8 +189,8 @@
               <Table columnCount="5" rowCount="0">
                 <Column editable="false" title="Codigo" type="java.lang.String"/>
                 <Column editable="false" title="Nombre" type="java.lang.String"/>
-                <Column editable="false" title="Stock" type="java.lang.Integer"/>
                 <Column editable="false" title="P.V.P" type="java.lang.Double"/>
+                <Column editable="false" title="Stock" type="java.lang.Integer"/>
                 <Column editable="false" title="Bodega" type="java.lang.String"/>
               </Table>
             </Property>
@@ -291,9 +285,6 @@
           <Dimension value="[221, 27]"/>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbxBodegaActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
