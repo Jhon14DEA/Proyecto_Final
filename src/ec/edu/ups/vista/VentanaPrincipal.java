@@ -8,6 +8,8 @@ package ec.edu.ups.vista;
 import ec.edu.ups.DAO.*;
 import ec.edu.ups.controlador.*;
 import ec.edu.ups.modelo.*;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
@@ -28,61 +30,77 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     VentanaUsuario ventanaUsuario;
     VentanaRegistrarCliente ventanaRegistrarCliente;
     VentanaListarFacturas ventanaListarFacturas;
-    
+
     UsuarioDAO usuarioDao;
     ClienteDAO clienteDao;
     ProductoDAO productoDAO;
     BodegaDAO bodegaDAO;
     FacturaDAO facturaDAO;
-    
+
     private Bodega bodega;
     private Producto producto;
     private Cliente cliente;
     private Usuario usuario;
     private Factura factura;
-    
 
     ControladorUsuario controladorUsuario;
     ControladorProducto controladorProducto;
     ControladorBodega controladorBodega;
     ControladorFactura controladorFactura;
     ControladorCliente controladorCliente;
+    //clasees para localizacion 
+    private Locale localizacion;
+    private ResourceBundle recurso;
 
     public VentanaPrincipal() {
         initComponents();
-        
-        bodegaDAO=new BodegaDAO();
-        productoDAO= new ProductoDAO(bodegaDAO);
-        facturaDAO=new FacturaDAO();
+
+        bodegaDAO = new BodegaDAO();
+        productoDAO = new ProductoDAO(bodegaDAO);
+        facturaDAO = new FacturaDAO();
         usuarioDao = new UsuarioDAO();
         clienteDao = new ClienteDAO();
-        
-        bodega=new Bodega();
-        producto=new Producto();
-        factura=new Factura();
-        cliente=new Cliente();
-        usuario=new Usuario();
-        
-        
+
+        bodega = new Bodega();
+        producto = new Producto();
+        factura = new Factura();
+        cliente = new Cliente();
+        usuario = new Usuario();
+
         controladorUsuario = new ControladorUsuario(usuarioDao);
         controladorCliente = new ControladorCliente(clienteDao);
-        controladorProducto=new ControladorProducto(bodega, bodegaDAO, productoDAO,producto);
-        controladorBodega=new ControladorBodega(bodega, bodegaDAO);
-        controladorFactura=new ControladorFactura();
+        controladorProducto = new ControladorProducto(bodega, bodegaDAO, productoDAO, producto);
+        controladorBodega = new ControladorBodega(bodega, bodegaDAO);
+        controladorFactura = new ControladorFactura();
 
         ventanaIniciarSesion = new VentanaIniciarSesion(controladorUsuario, this);
         ventanCliente = new VentanaCliente(controladorCliente);
         ventanaBodega = new VentanaBodega(controladorBodega);
         ventanaProductos = new VentanaProductos(controladorProducto, controladorBodega);
         ventanaFactura = new VentanaFactura(controladorBodega, bodega, controladorCliente, cliente, controladorFactura, factura, controladorProducto, producto);
-        ventanaListarFacturas= new VentanaListarFacturas(controladorBodega,bodega, controladorCliente,cliente, controladorFactura,factura,
+        ventanaListarFacturas = new VentanaListarFacturas(controladorBodega, bodega, controladorCliente, cliente, controladorFactura, factura,
                 controladorProducto, producto);
         ventanaRegistrarUsuario = new VentanaRegistrarseUsuario(controladorUsuario);
         ventanaUsuario = new VentanaUsuario(controladorUsuario);
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
-        
-        
+        //idiomas
+        localizacion = new Locale("es", "EC");
+        recurso = ResourceBundle.getBundle("ec.edu.ups.idioma.mensaje", localizacion);
+    }
 
+    public void cambiarIdioma(String idioma, String localidad) {
+        localizacion = new Locale(idioma, localidad);
+        recurso = ResourceBundle.getBundle("ec.edu.ups.idioma.mensaje", localizacion);
+        if (ventanaRegistrarCliente != null) {
+            ventanaProductos.setRecurso(recurso);
+            ventanaProductos.cambiarIdioma(idioma, localidad);
+            ventanaRegistrarCliente.setRecurso(recurso);
+            ventanaRegistrarCliente.cambiarIdioma(idioma, localidad);
+            ventanaRegistrarUsuario.setRecurso(recurso);
+            ventanaRegistrarUsuario.cambiarIdioma(idioma, localidad);
+            //ventanaUsuario.setRecurso(recurso);
+            //ventanaUsuario.cambiarIdioma(idioma, localidad);
+        }
     }
 
     /**
@@ -115,8 +133,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
-
-        desktopPane.setLayout(null);
 
         menuInicio.setMnemonic('f');
         menuInicio.setText("Inicio");
@@ -228,10 +244,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         menuItemEspaniol.setMnemonic('c');
         menuItemEspaniol.setText("Español");
+        menuItemEspaniol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemEspaniolActionPerformed(evt);
+            }
+        });
         helpMenu.add(menuItemEspaniol);
 
         menuItemIngles.setMnemonic('a');
         menuItemIngles.setText("Ingles");
+        menuItemIngles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemInglesActionPerformed(evt);
+            }
+        });
         helpMenu.add(menuItemIngles);
 
         menuBar.add(helpMenu);
@@ -302,19 +328,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuItemRegistrarUsuarioActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+
         desktopPane.add(ventanaUsuario);
         ventanaUsuario.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void menuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCerrarSesionActionPerformed
-        
+
         menuGestionClientes.setVisible(false);
         menuItemCerrarSesion.setVisible(false);
         menuItemIniciarSesion.setVisible(true);
         menuItemRegistrarUsuario.setVisible(true);
-        
+
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -327,6 +353,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaListarFacturas.setVisible(true);
 
     }//GEN-LAST:event_menuItemListaFActionPerformed
+
+    private void menuItemEspaniolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemEspaniolActionPerformed
+        // TODO add your handling code here:
+        localizacion = new Locale("es", "EC");
+        this.cambiarIdioma("es", "EC");
+    }//GEN-LAST:event_menuItemEspaniolActionPerformed
+
+    private void menuItemInglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemInglesActionPerformed
+        localizacion = new Locale("en", "EU");
+        this.cambiarIdioma("en", "EU");
+    }//GEN-LAST:event_menuItemInglesActionPerformed
 
     public JMenu getMenu() {
 

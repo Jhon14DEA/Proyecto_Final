@@ -6,6 +6,8 @@
 package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorCliente;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +20,10 @@ import javax.swing.JOptionPane;
 public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
 
     ControladorCliente controladorCliente;
+    private Locale localizacion;
+    private ResourceBundle recurso;
+    private String alerta03;
+    private String alerta04;
     /**
      * Creates new form VentanaRegistrarCliente
      */
@@ -25,9 +31,41 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         initComponents();
         
         this.controladorCliente = controladorCliente;
-        
+        alerta03 = "Por favor, Llene todos los campos";
+        alerta04 = "Cliente registrado con exito";
+    }
+  public Locale getLocalizacion() {
+        return localizacion;
     }
 
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(ResourceBundle recurso) {
+        this.recurso = recurso;
+    }
+
+    public void cambiarIdioma(String idioma, String localizacion){
+    
+        lblRegistrarCliente.setText(recurso.getString("Titulo"));
+        lblCedula.setText(recurso.getString("cedula"));
+        lblNombre.setText(recurso.getString("nombre"));
+        lblApellido.setText(recurso.getString("apellido"));
+        lblNombreLocal.setText(recurso.getString("nombreLocal"));
+        lblTelefono.setText(recurso.getString("telefono"));
+        lblDireccion.setText(recurso.getString("direccion"));
+        btnRegistrarse.setText(recurso.getString("registrarse"));
+        btnAtras.setText(recurso.getString("atras"));
+        alerta03 = recurso.getString("alerta01");
+        alerta04 = recurso.getString("alerta04");
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,56 +75,56 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel6 = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
         txtCedulaCliente = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblApellido = new javax.swing.JLabel();
         txtNombreCliente = new javax.swing.JTextField();
         txtApellidoCliente = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblNombreLocal = new javax.swing.JLabel();
         txtNombreLocalCliente = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        lblTelefono = new javax.swing.JLabel();
         txtTelefonoCliente = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        lblDireccion = new javax.swing.JLabel();
         txtDireccionClientes = new javax.swing.JTextField();
-        btnRegistrarCliente = new javax.swing.JButton();
-        btnRegresarCliente = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        btnRegistrarse = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
+        lblRegistrarCliente = new javax.swing.JLabel();
 
         setClosable(true);
 
-        jLabel6.setText("Cedula:");
+        lblCedula.setText("Cedula:");
 
-        jLabel2.setText("Nombre:");
+        lblNombre.setText("Nombre:");
 
-        jLabel3.setText("Apellido:");
+        lblApellido.setText("Apellido:");
 
-        jLabel1.setText("Nombre Local");
+        lblNombreLocal.setText("Nombre Local");
 
-        jLabel4.setText("Telefono");
+        lblTelefono.setText("Telefono");
 
         txtTelefonoCliente.setText(" ");
 
-        jLabel5.setText("Direccion");
+        lblDireccion.setText("Direccion");
 
-        btnRegistrarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/user_group.png"))); // NOI18N
-        btnRegistrarCliente.setText("Registrarse");
-        btnRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/user_group.png"))); // NOI18N
+        btnRegistrarse.setText("Registrarse");
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarClienteActionPerformed(evt);
+                btnRegistrarseActionPerformed(evt);
             }
         });
 
-        btnRegresarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/undo (1).png"))); // NOI18N
-        btnRegresarCliente.setText("Atras");
-        btnRegresarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/undo (1).png"))); // NOI18N
+        btnAtras.setText("Atras");
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegresarClienteActionPerformed(evt);
+                btnAtrasActionPerformed(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel7.setText("REGISTRAR CLIENTE");
+        lblRegistrarCliente.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        lblRegistrarCliente.setText("REGISTRAR CLIENTE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,25 +134,25 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
-                        .addComponent(jLabel7))
+                        .addComponent(lblRegistrarCliente))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnRegistrarCliente)
+                                .addComponent(btnRegistrarse)
                                 .addGap(33, 33, 33)
-                                .addComponent(btnRegresarCliente))
+                                .addComponent(btnAtras))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3)
+                                        .addComponent(lblApellido)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
+                                            .addComponent(lblCedula)
                                             .addGap(9, 9, 9)))
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5))
+                                    .addComponent(lblNombre)
+                                    .addComponent(lblNombreLocal)
+                                    .addComponent(lblTelefono)
+                                    .addComponent(lblDireccion))
                                 .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtNombreCliente)
@@ -129,35 +167,35 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel7)
+                .addComponent(lblRegistrarCliente)
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(lblCedula))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(lblNombre))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(lblApellido))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblNombreLocal)
                     .addComponent(txtNombreLocalCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(lblTelefono)
                     .addComponent(txtTelefonoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(lblDireccion)
                     .addComponent(txtDireccionClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarCliente)
-                    .addComponent(btnRegresarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRegistrarse)
+                    .addComponent(btnAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
@@ -171,7 +209,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
      * botón y envia al controlador.
      * @param evt Evento
      */
-    private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         String cedula = txtCedulaCliente.getText();
         String nombre = txtNombreCliente.getText();
         String apellido = txtApellidoCliente.getText();
@@ -180,14 +218,14 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         String direccion = txtDireccionClientes.getText();
         
         if(cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || nombreLocal.isEmpty() || telefono.isEmpty() || direccion.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Complete todos los campos");
+            JOptionPane.showMessageDialog(this, alerta03);
         }else{
             controladorCliente.crearCliente(cedula, nombre, apellido, nombreLocal, telefono, direccion);
-            JOptionPane.showMessageDialog(this, "Cliente registrado con exito");
+            JOptionPane.showMessageDialog(this,alerta04);
             limpiar();
         }
         
-    }//GEN-LAST:event_btnRegistrarClienteActionPerformed
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     /**
      * Metodo btnRegresarClienteActionPerformed.
@@ -196,10 +234,10 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
      * 
      * @param evt 
      */
-    private void btnRegresarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarClienteActionPerformed
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         limpiar();
         this.hide();
-    }//GEN-LAST:event_btnRegresarClienteActionPerformed
+    }//GEN-LAST:event_btnAtrasActionPerformed
 
     /**
      * Metodo limpiar.
@@ -216,15 +254,15 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrarCliente;
-    private javax.swing.JButton btnRegresarCliente;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton btnAtras;
+    private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JLabel lblApellido;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblDireccion;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNombreLocal;
+    private javax.swing.JLabel lblRegistrarCliente;
+    private javax.swing.JLabel lblTelefono;
     private javax.swing.JTextField txtApellidoCliente;
     private javax.swing.JTextField txtCedulaCliente;
     private javax.swing.JTextField txtDireccionClientes;

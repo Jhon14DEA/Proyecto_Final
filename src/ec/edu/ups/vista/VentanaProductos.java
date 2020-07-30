@@ -9,9 +9,12 @@ import ec.edu.ups.controlador.ControladorBodega;
 import ec.edu.ups.controlador.ControladorProducto;
 import ec.edu.ups.modelo.*;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  * @author Sebastian Uyaguari
@@ -23,19 +26,84 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
     private ControladorProducto controladorProducto;
     private ControladorBodega controladorBodega;
-    
+
     private Producto producto;
     private Bodega bodega;
+    //
+    private Locale localizacion;
+    private ResourceBundle recurso;
+    //
+    private String alerta05;
+    private String alerta06;
+    private String alerta07;
+    private String alerta08;
+    private String alerta09;
+    private String alerta010;
+    private String alerta011;
 
     /**
      * Creates new form VentanaProductos
      */
     public VentanaProductos(ControladorProducto controladorP, ControladorBodega controladorB) {
         initComponents();
-        
+
         controladorProducto = controladorP;
         controladorBodega = controladorB;
         desActivarBotones();
+        alerta05 = "Error";
+        alerta06 = "Por favor, Llene todos los campos";
+        alerta07 = "Por favor, Llene todos los campos";
+        alerta08 = "Desea eliminar este telefono?";
+        alerta09 = "No se ha encontrado el producto";
+        alerta010 = "se encuentra vacio el campo";
+        alerta011 = "--SELECCIONE UNA BODEGA--";
+    }
+
+    public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(ResourceBundle recurso) {
+        this.recurso = recurso;
+    }
+
+    public void cambiarIdioma(String idioma, String localizacion) {
+        lblGestionProductos.setText(recurso.getString("tlGestionProductos"));
+        lblCodigo.setText(recurso.getString("codigo"));
+        lblNombreProducto.setText(recurso.getString("nombreProducto"));
+        lblStock.setText(recurso.getString("stock"));
+        lblCosto.setText(recurso.getString("costo"));
+        lblBodega.setText(recurso.getString("bodega"));
+        lblIngreseCodigo.setText(recurso.getString("ingreseCodigoProducto"));
+        btnBuscar.setText(recurso.getString("buscar"));
+        btnNuevoProducto.setText(recurso.getString("nuevo"));
+        btnActualizarP.setText(recurso.getString("actualizar"));
+        btnEliminarP.setText(recurso.getString("eliminar"));
+        btnCancelar.setText(recurso.getString("cancelar"));
+        //tabla
+        TableColumnModel modelo = tablaDatos.getColumnModel();
+        modelo.getColumn(0).setHeaderValue(recurso.getString("codigo"));
+        modelo.getColumn(1).setHeaderValue(recurso.getString("nombre"));
+        modelo.getColumn(2).setHeaderValue(recurso.getString("PVP"));
+        modelo.getColumn(3).setHeaderValue(recurso.getString("stock"));
+        modelo.getColumn(4).setHeaderValue(recurso.getString("bodega"));
+        //joptaionpane
+        alerta05 = recurso.getString("alerta05");
+        alerta06 = recurso.getString("alerta01");
+        alerta07 = recurso.getString("alerta01");
+        alerta08 = recurso.getString("alerta08");
+        alerta09 = recurso.getString("alerta09");
+        alerta010 = recurso.getString("alerta010");
+        alerta011 = recurso.getString("alerta011");
+
     }
 
     public void limpiar() {
@@ -54,24 +122,25 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         tablaDatos.setModel(modelo);
         Object[] fila = new Object[5];
         for (Producto listaDeProducto : listaDeProductos) {
-            fila[0]=listaDeProducto.getCodigo();
-            fila[1]=listaDeProducto.getNombreDeProducto();
-            fila[2]=listaDeProducto.getPrecioDeProdcuto();
-            fila[3]=listaDeProducto.getCantidad();
-            fila[4]=listaDeProducto.getBodega().getNombre();
+            fila[0] = listaDeProducto.getCodigo();
+            fila[1] = listaDeProducto.getNombreDeProducto();
+            fila[2] = listaDeProducto.getPrecioDeProdcuto();
+            fila[3] = listaDeProducto.getCantidad();
+            fila[4] = listaDeProducto.getBodega().getNombre();
             modelo.addRow(fila);
         }
         tablaDatos.setModel(modelo);
     }
-    
-    public void ActivarBotones(){
+
+    public void ActivarBotones() {
         btnActualizarP.setEnabled(true);
         btnEliminarP.setEnabled(true);
         btnCancelar.setEnabled(true);
         btnBuscar.setEnabled(true);
         txtBuscar.setEditable(true);
     }
-    public void desActivarBotones(){
+
+    public void desActivarBotones() {
         btnActualizarP.setEnabled(false);
         btnEliminarP.setEnabled(false);
         btnCancelar.setEnabled(false);
@@ -84,7 +153,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblCodigo = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
+        lblNombreProducto = new javax.swing.JLabel();
         lblCosto = new javax.swing.JLabel();
         lblBodega = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -95,12 +164,12 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         btnNuevoProducto = new javax.swing.JButton();
         btnActualizarP = new javax.swing.JButton();
         btnEliminarP = new javax.swing.JButton();
-        lblCantidad = new javax.swing.JLabel();
+        lblStock = new javax.swing.JLabel();
         txtCantidad = new javax.swing.JTextField();
         btnBuscar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        lblGestionProductos = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblIngreseCodigo = new javax.swing.JLabel();
         cmbxBodega = new javax.swing.JComboBox<>();
         btnCancelar = new javax.swing.JToggleButton();
 
@@ -121,7 +190,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
 
         lblCodigo.setText("Codigo:");
 
-        lblNombre.setText("Nombre Producto");
+        lblNombreProducto.setText("Nombre Producto");
 
         lblCosto.setText("Costo:");
 
@@ -185,7 +254,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             }
         });
 
-        lblCantidad.setText("stock:");
+        lblStock.setText("stock:");
 
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/toolbar_find (1).png"))); // NOI18N
         btnBuscar.setText("Buscar");
@@ -195,11 +264,11 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Gestion de Productos");
+        lblGestionProductos.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        lblGestionProductos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGestionProductos.setText("Gestion de Productos");
 
-        jLabel7.setText("Ingrese codigo del producto:");
+        lblIngreseCodigo.setText("Ingrese codigo del producto:");
 
         cmbxBodega.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--SELECCIONE UNA BODEGA--" }));
         cmbxBodega.setMaximumSize(new java.awt.Dimension(221, 221));
@@ -221,23 +290,23 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(lblIngreseCodigo)
                         .addGap(18, 18, 18)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnBuscar)
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addComponent(lblGestionProductos)
                         .addGap(164, 164, 164))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombre)
+                            .addComponent(lblNombreProducto)
                             .addComponent(lblCodigo)
-                            .addComponent(lblCantidad))
+                            .addComponent(lblStock))
                         .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -273,7 +342,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(lblGestionProductos)
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigo)
@@ -282,19 +351,19 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
+                    .addComponent(lblNombreProducto)
                     .addComponent(txtNombreP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBodega)
                     .addComponent(cmbxBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCantidad)
+                    .addComponent(lblStock)
                     .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(lblIngreseCodigo))
                 .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
@@ -311,7 +380,7 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoProductoActionPerformed
-        
+
         if (!txtCodigo.getText().equals("") && !txtNombreP.getText().equals("") && !txtPrecio.getText().equals("")
                 && !txtCantidad.getText().equals("") && cmbxBodega.getSelectedIndex() != 0) {
             String codigo = txtCodigo.getText();
@@ -319,16 +388,16 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             double precio = Double.parseDouble(txtPrecio.getText());
             int cantidad = Integer.parseInt(txtCantidad.getText());
             String bodega = cmbxBodega.getSelectedItem() + "";
-            controladorProducto.crearNuevoProducto(codigo, nombreP, precio, cantidad,bodega);
+            controladorProducto.crearNuevoProducto(codigo, nombreP, precio, cantidad, bodega);
             actualizarVista();
             limpiar();
         } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, alerta06, alerta05, JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnNuevoProductoActionPerformed
 
     private void btnActualizarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarPActionPerformed
-       if (!txtCodigo.getText().equals("") && !txtNombreP.getText().equals("") && !txtPrecio.getText().equals("")
+        if (!txtCodigo.getText().equals("") && !txtNombreP.getText().equals("") && !txtPrecio.getText().equals("")
                 && !txtCantidad.getText().equals("") && cmbxBodega.getSelectedIndex() != 0) {
             String codigo = txtCodigo.getText();
             String nombreP = txtNombreP.getText();
@@ -340,38 +409,37 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
             System.out.println(precio);
             System.out.println(cantidad);
             System.out.println(bodega);*/
-            controladorProducto.actualizarProducto(codigo, nombreP, precio, cantidad,bodega);
+            controladorProducto.actualizarProducto(codigo, nombreP, precio, cantidad, bodega);
             actualizarVista();
             desActivarBotones();
             btnNuevoProducto.setEnabled(true);
             limpiar();
         } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } 
+            JOptionPane.showMessageDialog(null, alerta07, alerta05, JOptionPane.ERROR_MESSAGE);
+        }
 
     }//GEN-LAST:event_btnActualizarPActionPerformed
 
     private void tablaDatosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaDatosMouseClicked
         ActivarBotones();
         btnNuevoProducto.setEnabled(false);
-        int filaSelecionada=tablaDatos.getSelectedRow();
-        
-        
-        if(filaSelecionada>=0){
-            String codigo=tablaDatos.getValueAt(filaSelecionada, 0).toString();
-            String nombre=tablaDatos.getValueAt(filaSelecionada, 1).toString();
-            String precio =tablaDatos.getValueAt(filaSelecionada, 2).toString();
-            String cantidad=tablaDatos.getValueAt(filaSelecionada, 3).toString();
-            String bodega=tablaDatos.getValueAt(filaSelecionada, 4).toString();
-            
+        int filaSelecionada = tablaDatos.getSelectedRow();
+
+        if (filaSelecionada >= 0) {
+            String codigo = tablaDatos.getValueAt(filaSelecionada, 0).toString();
+            String nombre = tablaDatos.getValueAt(filaSelecionada, 1).toString();
+            String precio = tablaDatos.getValueAt(filaSelecionada, 2).toString();
+            String cantidad = tablaDatos.getValueAt(filaSelecionada, 3).toString();
+            String bodega = tablaDatos.getValueAt(filaSelecionada, 4).toString();
+
             txtCodigo.setText(codigo);
             txtNombreP.setText(nombre);
             txtCantidad.setText(cantidad);
             txtPrecio.setText(precio);
-            List <Bodega> bodegas=controladorBodega.listarBodegas();
-            int i =1;
+            List<Bodega> bodegas = controladorBodega.listarBodegas();
+            int i = 1;
             for (Bodega bodega1 : bodegas) {
-                if(bodega1.getNombre().equals(bodega)){
+                if (bodega1.getNombre().equals(bodega)) {
                     break;
                 }
                 i++;
@@ -382,10 +450,10 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tablaDatosMouseClicked
 
     private void btnEliminarPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarPActionPerformed
-        int respuesta= JOptionPane.showConfirmDialog(this, "Desea eliminar este telefono?");
-        
-        if(respuesta==JOptionPane.YES_OPTION){
-            String codigo=txtCodigo.getText();
+        int respuesta = JOptionPane.showConfirmDialog(this, alerta08);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            String codigo = txtCodigo.getText();
             controladorProducto.eliminarProducto(codigo);
             actualizarVista();
             limpiar();
@@ -395,29 +463,29 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnEliminarPActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if(!txtBuscar.getText().equals("")){
-        String buscar=txtBuscar.getText();
-        int filas=tablaDatos.getRowCount();
-        boolean encontrado=true;
-        
+        if (!txtBuscar.getText().equals("")) {
+            String buscar = txtBuscar.getText();
+            int filas = tablaDatos.getRowCount();
+            boolean encontrado = true;
+
             for (int i = 0; i < filas; i++) {
-            String codigo= tablaDatos.getValueAt(i,0).toString().trim();
-            if(buscar.equals(codigo)){
-                encontrado=false;
-                tablaDatos.setRowSelectionInterval(i, i);
-                break;
+                String codigo = tablaDatos.getValueAt(i, 0).toString().trim();
+                if (buscar.equals(codigo)) {
+                    encontrado = false;
+                    tablaDatos.setRowSelectionInterval(i, i);
+                    break;
+                }
+
             }
-            
-        }
-        if(encontrado) {
-                JOptionPane.showMessageDialog(null, "No se ha encontrado el producto","Error",JOptionPane.ERROR_MESSAGE);
-                
+            if (encontrado) {
+                JOptionPane.showMessageDialog(null, alerta09, alerta05, JOptionPane.ERROR_MESSAGE);
+
             }
-        txtBuscar.setText("");
-    }else{
-           JOptionPane.showMessageDialog(null, "se encuentra vacio el campo", "Error", JOptionPane.ERROR_MESSAGE); 
+            txtBuscar.setText("");
+        } else {
+            JOptionPane.showMessageDialog(null, alerta010, alerta05, JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -437,19 +505,19 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
         limpiar();
 
     }//GEN-LAST:event_formPropertyChange
-    public void actualizarCmbx(){
+    public void actualizarCmbx() {
         cmbxBodega.removeAllItems();
-        
-            cmbxBodega.addItem("--SELECCIONE UNA BODEGA--");
-        if(controladorBodega.listarBodegas()== null){
+
+        cmbxBodega.addItem(alerta011);
+        if (controladorBodega.listarBodegas() == null) {
         } else {
-            List <Bodega> bodegas=controladorBodega.listarBodegas();   
+            List<Bodega> bodegas = controladorBodega.listarBodegas();
             for (Bodega bodega1 : bodegas) {
                 cmbxBodega.addItem(bodega1.getNombre());
             }
         }
-        
-            cmbxBodega.setSelectedIndex(0);
+
+        cmbxBodega.setSelectedIndex(0);
 
     }
 
@@ -460,14 +528,14 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminarP;
     private javax.swing.JButton btnNuevoProducto;
     private javax.swing.JComboBox<String> cmbxBodega;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBodega;
-    private javax.swing.JLabel lblCantidad;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCosto;
-    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblGestionProductos;
+    private javax.swing.JLabel lblIngreseCodigo;
+    private javax.swing.JLabel lblNombreProducto;
+    private javax.swing.JLabel lblStock;
     private javax.swing.JTable tablaDatos;
     private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCantidad;
