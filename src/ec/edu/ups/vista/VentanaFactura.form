@@ -127,12 +127,12 @@
                                   <Component id="cmbxProducto" min="-2" pref="195" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="botonProductos1" min="-2" max="-2" attributes="0"/>
+                              <Component id="botonbodega" min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="23" max="32767" attributes="0"/>
+              <EmptySpace min="152" pref="17" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -156,37 +156,41 @@
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonRegistrarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtLocal" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblSeleccionarB" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cmbxBodega" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="botonProductos1" alignment="3" min="-2" pref="13" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblSeleccionarP" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cmbxProducto" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtCedula" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonRegistrarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="lblCliente" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="lblLocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="txtLocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="botonbodega" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -236,7 +240,7 @@
                   <Component id="lblTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTotal" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -474,15 +478,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarClienteActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="botonProductos1">
+    <Component class="javax.swing.JButton" name="botonbodega">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/box_full.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Productos"/>
+        <Property name="text" type="java.lang.String" value="Bodega"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonProductos1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonbodegaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

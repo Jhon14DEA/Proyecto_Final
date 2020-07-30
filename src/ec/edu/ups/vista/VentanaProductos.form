@@ -33,7 +33,7 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblIngreseCodigo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="txtBuscar" min="-2" pref="137" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
                       <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblGestionProductos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -51,9 +51,9 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblNombre" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNombreProducto" min="-2" max="-2" attributes="0"/>
                           <Component id="lblCodigo" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCantidad" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblStock" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -102,7 +102,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+              <Component id="lblGestionProductos" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -112,21 +112,21 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNombreProducto" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNombreP" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblBodega" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="cmbxBodega" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblStock" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnBuscar" alignment="3" min="-2" pref="59" max="-2" attributes="0"/>
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIngreseCodigo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="139" max="-2" attributes="0"/>
@@ -150,7 +150,7 @@
         <Property name="text" type="java.lang.String" value="Codigo:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNombre">
+    <Component class="javax.swing.JLabel" name="lblNombreProducto">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre Producto"/>
       </Properties>
@@ -234,7 +234,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarPActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCantidad">
+    <Component class="javax.swing.JLabel" name="lblStock">
       <Properties>
         <Property name="text" type="java.lang.String" value="stock:"/>
       </Properties>
@@ -252,7 +252,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="lblGestionProductos">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="36" style="1"/>
@@ -263,7 +263,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtBuscar">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="lblIngreseCodigo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Ingrese codigo del producto:"/>
       </Properties>

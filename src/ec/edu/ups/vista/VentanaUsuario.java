@@ -8,9 +8,12 @@ package ec.edu.ups.vista;
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.modelo.Usuario;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  * @author Sebastian Uyaguari
@@ -21,6 +24,17 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     ControladorUsuario controladorUsuario;
+    //clases para la internalizacion
+    private Locale localizacion;
+    private ResourceBundle recurso;
+    //internalizacion para los JOprionPane
+    private String alerta012;
+    private String alerta013;
+    private String alerta014;
+    private String alerta015;
+    private String alerta016;
+    private String alerta017;
+    private String alerta018;
 
     DefaultTableModel modelo;
     
@@ -36,9 +50,63 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         modelo.addColumn("Correo");
         modelo.addColumn("Contraseña");
         this.tablaUsuarios.setModel(modelo);
+        alerta012 = "Llene todos los campos solicitados para actualizar el usuario";
+        alerta013 =  "¿Seguro desea actualizar sus datos?";
+        alerta014 ="Sus datos han sido actualizados con exito";
+        alerta015 =  "Sus datos no se han podido actualizar";
+        alerta016 = "Por favor, llene el campo de busqueda";
+        alerta017 =  "El cliente no se encuentra registrado";
+        alerta018 =  "¿Esta seguro de eliminar el usuario?";
                 
     }
 
+     public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(ResourceBundle recurso) {
+        this.recurso = recurso;
+    }
+    
+    public void cambiarIdioma(String idioma, String localizacion){
+        lblGestionUsuarios.setText(recurso.getString("tlGestionUsuarios"));
+        lblBuscarCedula.setText(recurso.getString("cedula"));
+        lblCedula.setText(recurso.getString("cedula"));
+        lblNombre.setText(recurso.getString("nombre"));
+        lblApellido.setText(recurso.getString("apellido"));
+        lblCorreo.setText(recurso.getString("correo"));
+        lblContrasena.setText(recurso.getString("contrasena"));
+        btnBuscar.setText(recurso.getString("buscar"));
+        btnActualizar.setText(recurso.getString("actualizar"));
+        btnListar.setText(recurso.getString("listar"));
+        btnEliminar.setText(recurso.getString("eliminar"));
+        btnLimpiar.setText(recurso.getString("limpiar"));
+// Inter.... para la tabla de datos
+        TableColumnModel modelo = tablaUsuarios.getColumnModel();
+        modelo.getColumn(0).setHeaderValue(recurso.getString("cedula"));
+        modelo.getColumn(1).setHeaderValue(recurso.getString("nombre"));
+        modelo.getColumn(2).setHeaderValue(recurso.getString("apellido"));
+        modelo.getColumn(3).setHeaderValue(recurso.getString("correo"));
+        modelo.getColumn(4).setHeaderValue(recurso.getString("contrasena"));
+
+//Internalizacion para los JOptionPane
+         alerta012 = recurso.getString("alerta012");
+         alerta013 = recurso.getString("alerta013");
+         alerta014 = recurso.getString("alerta014");
+         alerta015 = recurso.getString("alerta015");
+         alerta016 = recurso.getString("alerta01");
+         alerta017 = recurso.getString("alerta017");
+         alerta018 = recurso.getString("alerta018");
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,16 +117,16 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jTextField2 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblGestionUsuarios = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
+        lblApellido = new javax.swing.JLabel();
+        lblCorreo = new javax.swing.JLabel();
+        lblContrasena = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtCorreo = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        lblCedula = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         txtContrasena = new javax.swing.JPasswordField();
         btnActualizar = new javax.swing.JButton();
@@ -68,7 +136,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaUsuarios = new javax.swing.JTable();
         txtCedulaBuscar = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        lblBuscarCedula = new javax.swing.JLabel();
 
         jTextField2.setText("jTextField2");
 
@@ -93,16 +161,16 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("Gestion de Usuarios");
+        lblGestionUsuarios.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblGestionUsuarios.setText("Gestion de Usuarios");
 
-        jLabel2.setText("Nombre:");
+        lblNombre.setText("Nombre:");
 
-        jLabel3.setText("Apellido:");
+        lblApellido.setText("Apellido:");
 
-        jLabel4.setText("Correo:");
+        lblCorreo.setText("Correo:");
 
-        jLabel5.setText("Contraseña:");
+        lblContrasena.setText("Contraseña:");
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/edit_clear (1).png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -112,7 +180,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel6.setText("Cedula:");
+        lblCedula.setText("Cedula:");
 
         txtCedula.setEditable(false);
         txtCedula.setBackground(new java.awt.Color(255, 255, 204));
@@ -154,7 +222,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "Cedula", "Nombre", "Apellido", "Correo", "Contraseña"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -172,7 +240,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(tablaUsuarios);
 
-        jLabel7.setText("Cedula");
+        lblBuscarCedula.setText("Cedula");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,9 +251,9 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblGestionUsuarios)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7)
+                                .addComponent(lblBuscarCedula)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(txtCedulaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -195,11 +263,11 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
+                                    .addComponent(lblNombre)
+                                    .addComponent(lblApellido)
+                                    .addComponent(lblCorreo)
+                                    .addComponent(lblContrasena)
+                                    .addComponent(lblCedula))
                                 .addGap(51, 51, 51)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(txtCorreo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
@@ -228,34 +296,34 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblGestionUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCedulaBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(lblBuscarCedula))
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6)
+                            .addComponent(lblCedula)
                             .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                            .addComponent(lblNombre))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
+                            .addComponent(lblApellido))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
+                            .addComponent(lblCorreo))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
+                            .addComponent(lblContrasena))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,12 +360,12 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         String contrasena = txtContrasena.getText().trim();
 
         if (cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Llene todos los campos solicitados para actualizar el usuario");
+            JOptionPane.showMessageDialog(this,alerta012);
         } else {
 
             Usuario u = new Usuario(cedula, nombre, apellido, correo, contrasena);
 
-            int respuesta = JOptionPane.showConfirmDialog(this, "¿Seguro desea actualizar sus datos?");
+            int respuesta = JOptionPane.showConfirmDialog(this, alerta013);
 
             if (respuesta == JOptionPane.YES_OPTION) {
 
@@ -305,11 +373,11 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
                 if (cent == true) {
 
-                    JOptionPane.showMessageDialog(this, "Sus datos han sido actualizados con exito");
+                    JOptionPane.showMessageDialog(this, alerta014);
 
                 } else {
 
-                    JOptionPane.showMessageDialog(this, "Sus datos no se han podido actualizar");
+                    JOptionPane.showMessageDialog(this, alerta015);
                 }
             }
 
@@ -421,7 +489,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
         if (cedula.isEmpty()) {
             
-            JOptionPane.showMessageDialog(this, "Por favor, llene el campo de busqueda");
+            JOptionPane.showMessageDialog(this,alerta016);
             
         }else{
             
@@ -433,7 +501,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                 
             }else{
                 
-                JOptionPane.showMessageDialog(this, "El cliente no se encuentra registrado");
+                JOptionPane.showMessageDialog(this,alerta017);
                 
             }
             
@@ -453,7 +521,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Esta seguro de eliminar el usuario?");
+        int opcion = JOptionPane.showConfirmDialog(this, alerta018);
 
         if (opcion == JOptionPane.YES_OPTION) {
 
@@ -623,15 +691,15 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnListar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JLabel lblApellido;
+    private javax.swing.JLabel lblBuscarCedula;
+    private javax.swing.JLabel lblCedula;
+    private javax.swing.JLabel lblContrasena;
+    private javax.swing.JLabel lblCorreo;
+    private javax.swing.JLabel lblGestionUsuarios;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JTable tablaUsuarios;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;

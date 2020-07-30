@@ -126,12 +126,18 @@
                 <Property name="mnemonic" type="int" value="99"/>
                 <Property name="text" type="java.lang.String" value="Espa&#xf1;ol"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemEspaniolActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemIngles">
               <Properties>
                 <Property name="mnemonic" type="int" value="97"/>
                 <Property name="text" type="java.lang.String" value="Ingles"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemInglesActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

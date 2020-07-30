@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * @author Sebastian Uyaguari
@@ -44,6 +47,20 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
 
     private Set<Producto> productosTabla;
 
+    //internalizacion 
+     private Locale localizacion;
+    private ResourceBundle recurso;
+    //Joptionpane
+    private String alerta019;
+    private String alerta020;
+    private String alerta021;
+    private String alerta022;
+    private String alerta023;
+    private String alerta024;
+    private String alerta025;
+    private String alerta026;
+    private String alerta027;
+    private String alerta028;
     /**
      * Creates new form VentanaFactura
      */
@@ -73,6 +90,59 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
 
     }
 
+          public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(ResourceBundle recurso) {
+        this.recurso = recurso;
+    }
+    public void cambiarIdioma(String idioma, String localizacion){
+    //lblTlFactura.setText(recurso.getString("factura"));
+    lblFacturaNumero.setText(recurso.getString("numeroFactura"));
+    lblFechaDeEmision.setText(recurso.getString("fechaEmision"));
+    lblCedula.setText(recurso.getString("cedula"));
+    lblCliente.setText(recurso.getString("cliente"));
+    lblLocal.setText(recurso.getString("local"));
+    lblNombre.setText(recurso.getString("nombre"));
+    lblApellido.setText(recurso.getString("apellido"));
+    lblDireccion.setText(recurso.getString("direccion"));
+    lblTelefono.setText(recurso.getString("telefono"));
+    lblSeleccionarB.setText(recurso.getString("seleccionarB"));
+    lblSeleccionarP.setText(recurso.getString("seleccionarP"));
+    lblSubTotal.setText(recurso.getString("subTotal"));
+    lblIVA.setText(recurso.getString("totalIVA"));
+    lblTotal.setText(recurso.getString("total"));
+    botonRegistrarCliente.setText(recurso.getString("registrar"));
+    botonProductos.setText(recurso.getString("productos"));
+    botonCrearFactura.setText(recurso.getString("guardar"));
+    botonCalcular.setText(recurso.getString("calcular"));
+    //TABLA datos factura
+     TableColumnModel modelo = tablaDatos.getColumnModel();
+        modelo.getColumn(0).setHeaderValue(recurso.getString("stock"));
+        modelo.getColumn(1).setHeaderValue(recurso.getString("codigoProducto"));
+        modelo.getColumn(2).setHeaderValue(recurso.getString("nombreProducto"));
+        modelo.getColumn(3).setHeaderValue(recurso.getString("PrecioU"));
+        modelo.getColumn(4).setHeaderValue(recurso.getString("subTotal"));
+        //joptionpane
+        alerta021 = recurso.getString("alerta021");
+        alerta022 = recurso.getString("alerta022");
+        alerta023 = recurso.getString("alerta023");
+        alerta024 = recurso.getString("alerta024");
+        alerta025 = recurso.getString("alerta025");
+        alerta026 = recurso.getString("alerta05");
+        alerta027 = recurso.getString("alerta01");
+        alerta028 = recurso.getString("alerta05");
+            
+    }
     /**
      * limpiar.
      * 
@@ -228,7 +298,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         txtLocal = new javax.swing.JTextField();
         botonCalcular = new javax.swing.JButton();
         botonRegistrarCliente = new javax.swing.JButton();
-        botonProductos1 = new javax.swing.JButton();
+        botonbodega = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -377,11 +447,11 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
             }
         });
 
-        botonProductos1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box_full.png"))); // NOI18N
-        botonProductos1.setText("Productos");
-        botonProductos1.addActionListener(new java.awt.event.ActionListener() {
+        botonbodega.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box_full.png"))); // NOI18N
+        botonbodega.setText("Bodega");
+        botonbodega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonProductos1ActionPerformed(evt);
+                botonbodegaActionPerformed(evt);
             }
         });
 
@@ -467,8 +537,8 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                                     .addComponent(cmbxBodega, 0, 1, Short.MAX_VALUE)
                                     .addComponent(cmbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonProductos1)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(botonbodega, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(17, 17, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,32 +556,34 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
                                 .addComponent(jLabel1)))
-                        .addGap(38, 38, 38)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblCedula)
-                                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonRegistrarCliente))
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCliente)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblLocal)
-                                    .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblNombre)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblSeleccionarB)
-                                    .addComponent(cmbxBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonProductos1, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cmbxBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(35, 35, 35)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblSeleccionarP)
-                                    .addComponent(cmbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cmbxProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblCedula)
+                                            .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(botonRegistrarCliente))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lblCliente)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(lblLocal)
+                                            .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(botonbodega))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblNombre)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -545,7 +617,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotal)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -742,7 +814,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_botonRegistrarClienteActionPerformed
 
-    private void botonProductos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProductos1ActionPerformed
+    private void botonbodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonbodegaActionPerformed
         String bodega = cmbxBodega.getSelectedItem().toString();
         cmbxProducto.removeAllItems();
 
@@ -756,7 +828,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         }
 
         cmbxProducto.setSelectedIndex(0);
-    }//GEN-LAST:event_botonProductos1ActionPerformed
+    }//GEN-LAST:event_botonbodegaActionPerformed
 
     private void txtCedulaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaFocusGained
         txtFacturaNumero.setText(controladorfactura.codigo() + "");
@@ -771,8 +843,8 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
     private javax.swing.JButton botonCalcular;
     private javax.swing.JButton botonCrearFactura;
     private javax.swing.JButton botonProductos;
-    private javax.swing.JButton botonProductos1;
     private javax.swing.JButton botonRegistrarCliente;
+    private javax.swing.JButton botonbodega;
     private javax.swing.JComboBox<String> cmbxBodega;
     private javax.swing.JComboBox<String> cmbxProducto;
     private javax.swing.JLabel jLabel1;

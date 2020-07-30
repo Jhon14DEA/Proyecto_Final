@@ -26,29 +26,29 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRegistrarCliente" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="btnRegistrarCliente" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRegistrarse" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="btnRegresarCliente" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnAtras" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="jLabel3" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblApellido" alignment="1" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                          <Component id="lblCedula" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNombreLocal" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblTelefono" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblDireccion" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -71,41 +71,41 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+              <Component id="lblRegistrarCliente" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtCedulaCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCedula" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtApellidoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblApellido" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblNombreLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtNombreLocalCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtTelefonoCliente" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtDireccionClientes" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnRegistrarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnRegresarCliente" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="btnRegistrarse" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAtras" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="76" max="32767" attributes="0"/>
           </Group>
@@ -113,19 +113,19 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="lblCedula">
       <Properties>
         <Property name="text" type="java.lang.String" value="Cedula:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCedulaCliente">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel2">
+    <Component class="javax.swing.JLabel" name="lblNombre">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="lblApellido">
       <Properties>
         <Property name="text" type="java.lang.String" value="Apellido:"/>
       </Properties>
@@ -134,14 +134,14 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtApellidoCliente">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="lblNombreLocal">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nombre Local"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNombreLocalCliente">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="lblTelefono">
       <Properties>
         <Property name="text" type="java.lang.String" value="Telefono"/>
       </Properties>
@@ -151,14 +151,14 @@
         <Property name="text" type="java.lang.String" value=" "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="lblDireccion">
       <Properties>
         <Property name="text" type="java.lang.String" value="Direccion"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDireccionClientes">
     </Component>
-    <Component class="javax.swing.JButton" name="btnRegistrarCliente">
+    <Component class="javax.swing.JButton" name="btnRegistrarse">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/user_group.png"/>
@@ -166,10 +166,10 @@
         <Property name="text" type="java.lang.String" value="Registrarse"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarClienteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarseActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnRegresarCliente">
+    <Component class="javax.swing.JButton" name="btnAtras">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagenes/undo (1).png"/>
@@ -177,10 +177,10 @@
         <Property name="text" type="java.lang.String" value="Atras"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegresarClienteActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAtrasActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel7">
+    <Component class="javax.swing.JLabel" name="lblRegistrarCliente">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="36" style="1"/>
