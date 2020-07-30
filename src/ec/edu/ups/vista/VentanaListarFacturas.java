@@ -141,7 +141,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
             fila[2] = "";
             fila[3] = "";
             modelo.addRow(fila);
-        tablaDatosFactura.setModel(modelo);
+        tablaDetalleFactura.setModel(modelo);
     }
 
     @SuppressWarnings("unchecked")

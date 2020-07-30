@@ -116,7 +116,7 @@ public class ProductoDAO implements IProducto {
                 String bodega = archivoProductos.readUTF();
                 productoInterno.setBodega(bodegaDao.read(bodega));
                 if (nombre.equals(productoInterno.getNombreDeProducto())) {
-                    return productoInterno;
+                    return productoInterno;                    
                 }
                 salto += tamañoDeArchivo;
             }
@@ -176,6 +176,7 @@ public class ProductoDAO implements IProducto {
         try {
             while (salto < archivoProductos.length()) {
                 archivoProductos.seek(salto);
+                productoInterno=new Producto();
                 productoInterno.setCodigo(archivoProductos.readUTF());
                 if (producto.getCodigo().equals(productoInterno.getCodigo())) {
                     archivoProductos.seek(salto + 12);
@@ -285,7 +286,7 @@ public class ProductoDAO implements IProducto {
                 productoInterno.setCantidad(archivoProductos.readInt());
                 String bodega1 = archivoProductos.readUTF();
                 if (bodega1.equals(bodega)) {
-                  productoInterno.setBodega(bodegaDao.read(bodega1));  
+                    productoInterno.setBodega(bodegaDao.read(bodega1));  
                     todosLosProductos.add(productoInterno);
                 }
                 salto += tamañoDeArchivo;

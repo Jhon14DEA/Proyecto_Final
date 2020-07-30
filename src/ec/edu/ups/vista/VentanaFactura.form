@@ -28,9 +28,28 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="botonCrearFactura" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="botonCalcular" min="-2" pref="114" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="lblSubTotal" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblIVA" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTotal" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="txtSubtotal" min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="txtIVA" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+                  <Component id="txtTotal" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="864" max="-2" attributes="0"/>
                   </Group>
@@ -107,30 +126,13 @@
                                   <Component id="cmbxBodega" pref="0" max="32767" attributes="0"/>
                                   <Component id="cmbxProducto" min="-2" pref="195" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="botonProductos1" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace min="0" pref="43" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Component id="botonCrearFactura" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="botonCalcular" min="-2" pref="114" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="lblSubTotal" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblIVA" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="lblTotal" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="txtSubtotal" min="-2" pref="77" max="-2" attributes="0"/>
-                  <Component id="txtIVA" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
-                  <Component id="txtTotal" alignment="0" min="-2" pref="77" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+              <EmptySpace min="23" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -179,6 +181,7 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblSeleccionarB" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="cmbxBodega" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="botonProductos1" alignment="3" min="-2" pref="13" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -261,6 +264,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCedula">
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtCedulaFocusGained"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtCedulaKeyTyped"/>
       </Events>
     </Component>
@@ -468,6 +472,17 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonRegistrarClienteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="botonProductos1">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/imagenes/box_full.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Productos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonProductos1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
