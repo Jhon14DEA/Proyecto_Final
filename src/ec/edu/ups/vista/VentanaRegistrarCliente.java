@@ -53,6 +53,8 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
         btnRegresarCliente = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
 
+        setClosable(true);
+
         jLabel6.setText("Cedula:");
 
         jLabel2.setText("Nombre:");
