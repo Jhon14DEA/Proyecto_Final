@@ -13,9 +13,12 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 
 /**
  * @author Sebastian Uyaguari
@@ -44,6 +47,21 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
 
     private Set<Producto> productosTabla;
 
+    //internalizacion 
+     private Locale localizacion;
+    private ResourceBundle recurso;
+    //Joptionpane
+    private String alerta019;
+    private String alerta020;
+    private String alerta021;
+    private String alerta022;
+    private String alerta023;
+    private String alerta024;
+    private String alerta025;
+    private String alerta026;
+    private String alerta027;
+    private String alerta028;
+    
     /**
      * Creates new form VentanaFactura
      */
@@ -60,10 +78,72 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         cliente = clienteV;
         txtFacturaNumero.setText(controladorfactura.codigo() + "");
         txtFechaDeEmision.setText(fechaActual(c.getTime()));
-        botonRegistrarCliente.setEnabled(false);
-
+        btnRegistrarCliente.setEnabled(false);
+    //alerta019
+    //alerta020
+    alerta021 = "SI";
+    alerta022 = "CANCELAR";
+    alerta023 = "Desea Crear un cliente ";
+    alerta024 = "CREAR";
+    alerta025 =  "El campo se encuentra vacio";
+    alerta026 = "ERROR";
+    alerta027 =  "Llene todos los campos";
+    alerta028 = "ERROR";
     }
 
+      public Locale getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(Locale localizacion) {
+        this.localizacion = localizacion;
+    }
+
+    public ResourceBundle getRecurso() {
+        return recurso;
+    }
+
+    public void setRecurso(ResourceBundle recurso) {
+        this.recurso = recurso;
+    }
+    public void cambiarIdioma(String idioma, String localizacion){
+    lblTlFactura.setText(recurso.getString("factura"));
+    lblFacturaNumero.setText(recurso.getString("numeroFactura"));
+    lblFechaDeEmision.setText(recurso.getString("fechaEmision"));
+    lblCedula.setText(recurso.getString("cedula"));
+    lblCliente.setText(recurso.getString("cliente"));
+    lblLocal.setText(recurso.getString("local"));
+    lblNombre.setText(recurso.getString("nombre"));
+    lblApellido.setText(recurso.getString("apellido"));
+    lblDireccion.setText(recurso.getString("direccion"));
+    lblTelefono.setText(recurso.getString("telefono"));
+    lblSeleccionarB.setText(recurso.getString("seleccionarB"));
+    lblSeleccionarP.setText(recurso.getString("seleccionarP"));
+    lblSubTotal.setText(recurso.getString("subTotal"));
+    lblIVA.setText(recurso.getString("totalIVA"));
+    lblTotal.setText(recurso.getString("total"));
+    btnRegistrarCliente.setText(recurso.getString("registrar"));
+    botonProductos.setText(recurso.getString("productos"));
+    botonGuardarFactura.setText(recurso.getString("guardar"));
+    botonCalcular.setText(recurso.getString("calcular"));
+    //TABLA datos factura
+     TableColumnModel modelo = tablaDatosFactura.getColumnModel();
+        modelo.getColumn(0).setHeaderValue(recurso.getString("stock"));
+        modelo.getColumn(1).setHeaderValue(recurso.getString("codigoProducto"));
+        modelo.getColumn(2).setHeaderValue(recurso.getString("nombreProducto"));
+        modelo.getColumn(3).setHeaderValue(recurso.getString("PrecioU"));
+        modelo.getColumn(4).setHeaderValue(recurso.getString("subTotal"));
+        //joptionpane
+        alerta021 = recurso.getString("alerta021");
+        alerta022 = recurso.getString("alerta022");
+        alerta023 = recurso.getString("alerta023");
+        alerta024 = recurso.getString("alerta024");
+        alerta025 = recurso.getString("alerta025");
+        alerta026 = recurso.getString("alerta05");
+        alerta027 = recurso.getString("alerta01");
+        alerta028 = recurso.getString("alerta05");
+            
+    }
     /**
      * limpiar.
      * 
@@ -138,7 +218,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         txtLocal.setEditable(true);
         txtDireccion.setEditable(true);
         txtTelefono.setEditable(true);
-        botonRegistrarCliente.setEnabled(true);
+        btnRegistrarCliente.setEnabled(true);
     }
 
     /**
@@ -165,9 +245,9 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      */
     public void actualizarVista() {
 
-        DefaultTableModel modelo = (DefaultTableModel) tablaDatos.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) tablaDatosFactura.getModel();
         modelo.setRowCount(0);
-        tablaDatos.setModel(modelo);
+        tablaDatosFactura.setModel(modelo);
         for (Producto producto1 : productosTabla) {
             Object[] fila = new Object[5];
             fila[0] = null;
@@ -178,7 +258,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
             modelo.addRow(fila);
         }
 
-        tablaDatos.setModel(modelo);
+        tablaDatosFactura.setModel(modelo);
     }
 
     @SuppressWarnings("unchecked")
@@ -197,15 +277,15 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         lblFechaDeEmision = new javax.swing.JLabel();
         txtFechaDeEmision = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaDatos = new javax.swing.JTable();
+        tablaDatosFactura = new javax.swing.JTable();
         lblSubTotal = new javax.swing.JLabel();
         txtSubtotal = new javax.swing.JTextField();
         lblIVA = new javax.swing.JLabel();
         txtIVA = new javax.swing.JTextField();
         lblTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
-        botonCrearFactura = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        botonGuardarFactura = new javax.swing.JButton();
+        lblTlFactura = new javax.swing.JLabel();
         botonProductos = new javax.swing.JButton();
         txtDireccion = new javax.swing.JTextField();
         lblNombre = new javax.swing.JLabel();
@@ -218,7 +298,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         lblLocal = new javax.swing.JLabel();
         txtLocal = new javax.swing.JTextField();
         botonCalcular = new javax.swing.JButton();
-        botonRegistrarCliente = new javax.swing.JButton();
+        btnRegistrarCliente = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -262,7 +342,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         txtFechaDeEmision.setEditable(false);
         txtFechaDeEmision.setBackground(new java.awt.Color(204, 204, 204));
 
-        tablaDatos.setModel(new javax.swing.table.DefaultTableModel(
+        tablaDatosFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -285,7 +365,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tablaDatos);
+        jScrollPane1.setViewportView(tablaDatosFactura);
 
         lblSubTotal.setText("sub Total");
 
@@ -304,16 +384,16 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         txtTotal.setText("0.00");
 
-        botonCrearFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
-        botonCrearFactura.setText("Guardar Factura");
-        botonCrearFactura.addActionListener(new java.awt.event.ActionListener() {
+        botonGuardarFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save.png"))); // NOI18N
+        botonGuardarFactura.setText("Guardar Factura");
+        botonGuardarFactura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCrearFacturaActionPerformed(evt);
+                botonGuardarFacturaActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
-        jLabel1.setText("FACTURA");
+        lblTlFactura.setFont(new java.awt.Font("Arial", 1, 36)); // NOI18N
+        lblTlFactura.setText("FACTURA");
 
         botonProductos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/box_full.png"))); // NOI18N
         botonProductos.setText("Productos");
@@ -355,10 +435,10 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
             }
         });
 
-        botonRegistrarCliente.setText("Registrar");
-        botonRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistrarCliente.setText("Registrar");
+        btnRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonRegistrarClienteActionPerformed(evt);
+                btnRegistrarClienteActionPerformed(evt);
             }
         });
 
@@ -385,7 +465,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                                         .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(botonRegistrarCliente))
+                                        .addComponent(btnRegistrarCliente))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
@@ -414,7 +494,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(116, 116, 116)
-                                .addComponent(jLabel1))
+                                .addComponent(lblTlFactura))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(104, 104, 104)
                                 .addComponent(botonProductos, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -430,7 +510,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                 .addGap(0, 43, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botonCrearFactura)
+                .addComponent(botonGuardarFactura)
                 .addGap(18, 18, 18)
                 .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(129, 129, 129)
@@ -460,14 +540,14 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                                     .addComponent(txtFechaDeEmision, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(37, 37, 37)
-                                .addComponent(jLabel1)))
+                                .addComponent(lblTlFactura)))
                         .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblCedula)
                                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(botonRegistrarCliente))
+                                    .addComponent(btnRegistrarCliente))
                                 .addGap(18, 18, 18)
                                 .addComponent(lblCliente)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -514,7 +594,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                                     .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(32, 32, 32))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(botonCrearFactura)
+                        .addComponent(botonGuardarFactura)
                         .addComponent(botonCalcular, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTotal)
@@ -599,20 +679,20 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
                     txtDireccion.setText(cliente.getDireccion());
                     txtTelefono.setText(cliente.getTelefono());
                 } else {
-                    Object[] opcionesJPanel = {"SI", "CANCELAR"};
+                    Object[] opcionesJPanel = {alerta021, alerta022};
                     /*int confirmar = JOptionPane.showOptionDialog(null,
                             "<html>" + opcion2parte1 + " <strong>" + txtCedula.getText() + "</strong> " + opcion2parte2 + "</html>",
                             opcionTituloConfirmar,
                             JOptionPane.YES_NO_CANCEL_OPTION,
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);*/
-                    int confirmar =JOptionPane.showOptionDialog(null, "Desea Crear un cliente ", "CREAR", JOptionPane.YES_NO_CANCEL_OPTION, 
+                    int confirmar =JOptionPane.showOptionDialog(null, alerta023, alerta024, JOptionPane.YES_NO_CANCEL_OPTION, 
                             JOptionPane.INFORMATION_MESSAGE, null, opcionesJPanel, null);
                     if (JOptionPane.OK_OPTION == confirmar) {
                         ActivarTextBoxs();
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "El campo se encuentra vacio", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,alerta025, alerta026, JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -633,14 +713,14 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         double subtotal = 0;
         double iva = 0;
         double total = 0;
-        for (int i = 0; i < tablaDatos.getRowCount(); i++) {
-            int numero = Integer.parseInt(tablaDatos.getValueAt(i, 0).toString());
-            double precio = Double.parseDouble(tablaDatos.getValueAt(i, 3).toString());
+        for (int i = 0; i < tablaDatosFactura.getRowCount(); i++) {
+            int numero = Integer.parseInt(tablaDatosFactura.getValueAt(i, 0).toString());
+            double precio = Double.parseDouble(tablaDatosFactura.getValueAt(i, 3).toString());
             suma = numero * precio;
-            tablaDatos.setValueAt(suma, i, 4);
+            tablaDatosFactura.setValueAt(suma, i, 4);
         }
-        for (int i = 0; i < tablaDatos.getRowCount(); i++) {
-            double sbtotal = Double.parseDouble(tablaDatos.getValueAt(i, 4).toString());
+        for (int i = 0; i < tablaDatosFactura.getRowCount(); i++) {
+            double sbtotal = Double.parseDouble(tablaDatosFactura.getValueAt(i, 4).toString());
             subtotal += sbtotal;
         }
         iva = (subtotal * 0.12);
@@ -675,17 +755,17 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * 
      * @param evt 
      */
-    private void botonCrearFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearFacturaActionPerformed
+    private void botonGuardarFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarFacturaActionPerformed
          List<Factura> facturas=new ArrayList<>();
          
-         for (int i = 0; i < tablaDatos.getRowCount(); i++) {
+         for (int i = 0; i < tablaDatosFactura.getRowCount(); i++) {
             int numeroF=Integer.parseInt(txtFacturaNumero.getText());
             String cedula = txtCedula.getText();
             double subtotal=Double.parseDouble(txtSubtotal.getText());
-            int cantidad =Integer.parseInt(tablaDatos.getValueAt(i, 0).toString());
+            int cantidad =Integer.parseInt(tablaDatosFactura.getValueAt(i, 0).toString());
             double iva =Double.parseDouble(txtIVA.getText());
             double total=Double.parseDouble(txtTotal.getText());
-            String nombre=tablaDatos.getValueAt(i, 2).toString();
+            String nombre=tablaDatosFactura.getValueAt(i, 2).toString();
             cliente=new Cliente();
             producto=new Producto();
             cliente=controladorCliente.buscarCliente(cedula);
@@ -699,7 +779,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
         limpiar();
         actualizarVista();
 
-    }//GEN-LAST:event_botonCrearFacturaActionPerformed
+    }//GEN-LAST:event_botonGuardarFacturaActionPerformed
 
     /**
      * botonRegistrarClienteActionPerformed.
@@ -709,7 +789,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * 
      * @param evt 
      */
-    private void botonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarClienteActionPerformed
+    private void btnRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarClienteActionPerformed
         if (!txtCedula.getText().equals("") && !txtLocal.getText().equals("") && !txtNombre.getText().equals("")
                 && !txtApellido.getText().equals("") && !txtDireccion.getText().equals("") && !txtTelefono.getText().equals("")) {
             String cedula = txtCedula.getText();
@@ -719,14 +799,14 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
             String direccion = txtDireccion.getText();
             String telefono = txtTelefono.getText();
             controladorCliente.crearCliente(cedula, nombre, apellido, local, telefono, direccion);
-            botonRegistrarCliente.setEnabled(false);
+            btnRegistrarCliente.setEnabled(false);
             desActivarTextBoxs();
         } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, alerta027, alerta028, JOptionPane.ERROR_MESSAGE);
         }
 
 
-    }//GEN-LAST:event_botonRegistrarClienteActionPerformed
+    }//GEN-LAST:event_btnRegistrarClienteActionPerformed
     public void actualizarCmbx() {
         cmbxBodega.removeAllItems();
 
@@ -745,12 +825,11 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonCalcular;
-    private javax.swing.JButton botonCrearFactura;
+    private javax.swing.JButton botonGuardarFactura;
     private javax.swing.JButton botonProductos;
-    private javax.swing.JButton botonRegistrarCliente;
+    private javax.swing.JButton btnRegistrarCliente;
     private javax.swing.JComboBox<String> cmbxBodega;
     private javax.swing.JComboBox<String> cmbxProducto;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblApellido;
     private javax.swing.JLabel lblCedula;
@@ -765,8 +844,9 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblSeleccionarP;
     private javax.swing.JLabel lblSubTotal;
     private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lblTlFactura;
     private javax.swing.JLabel lblTotal;
-    private javax.swing.JTable tablaDatos;
+    private javax.swing.JTable tablaDatosFactura;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtDireccion;
