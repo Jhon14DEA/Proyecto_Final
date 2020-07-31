@@ -7,6 +7,7 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.controlador.ControladorUsuario;
 import ec.edu.ups.modelo.Usuario;
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -37,12 +38,12 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     private String alerta018;
 
     DefaultTableModel modelo;
-    
+
     public VentanaUsuario(ControladorUsuario controladorUsuario) {
         initComponents();
 
         this.controladorUsuario = controladorUsuario;
-        
+
         modelo = new DefaultTableModel();
         modelo.addColumn("Cedula");
         modelo.addColumn("Nombre");
@@ -50,17 +51,18 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         modelo.addColumn("Correo");
         modelo.addColumn("Contraseña");
         this.tablaUsuarios.setModel(modelo);
+
         alerta012 = "Llene todos los campos solicitados para actualizar el usuario";
-        alerta013 =  "¿Seguro desea actualizar sus datos?";
-        alerta014 ="Sus datos han sido actualizados con exito";
-        alerta015 =  "Sus datos no se han podido actualizar";
+        alerta013 = "¿Seguro desea actualizar sus datos?";
+        alerta014 = "Sus datos han sido actualizados con exito";
+        alerta015 = "Sus datos no se han podido actualizar";
         alerta016 = "Por favor, llene el campo de busqueda";
-        alerta017 =  "El cliente no se encuentra registrado";
-        alerta018 =  "¿Esta seguro de eliminar el usuario?";
-                
+        alerta017 = "El cliente no se encuentra registrado";
+        alerta018 = "¿Esta seguro de eliminar el usuario?";
+
     }
 
-     public Locale getLocalizacion() {
+    public Locale getLocalizacion() {
         return localizacion;
     }
 
@@ -75,8 +77,10 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     public void setRecurso(ResourceBundle recurso) {
         this.recurso = recurso;
     }
-    
-    public void cambiarIdioma(String idioma, String localizacion){
+
+    //
+    public void cambiarIdioma(String idioma, String localizacion) {
+        
         lblGestionUsuarios.setText(recurso.getString("tlGestionUsuarios"));
         lblBuscarCedula.setText(recurso.getString("cedula"));
         lblCedula.setText(recurso.getString("cedula"));
@@ -89,7 +93,8 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         btnListar.setText(recurso.getString("listar"));
         btnEliminar.setText(recurso.getString("eliminar"));
         btnLimpiar.setText(recurso.getString("limpiar"));
-// Inter.... para la tabla de datos
+
+        // Inter.... para la tabla de datos
         TableColumnModel modelo = tablaUsuarios.getColumnModel();
         modelo.getColumn(0).setHeaderValue(recurso.getString("cedula"));
         modelo.getColumn(1).setHeaderValue(recurso.getString("nombre"));
@@ -97,16 +102,17 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         modelo.getColumn(3).setHeaderValue(recurso.getString("correo"));
         modelo.getColumn(4).setHeaderValue(recurso.getString("contrasena"));
 
-//Internalizacion para los JOptionPane
-         alerta012 = recurso.getString("alerta012");
-         alerta013 = recurso.getString("alerta013");
-         alerta014 = recurso.getString("alerta014");
-         alerta015 = recurso.getString("alerta015");
-         alerta016 = recurso.getString("alerta01");
-         alerta017 = recurso.getString("alerta017");
-         alerta018 = recurso.getString("alerta018");
-    
+        //Internalizacion para los JOptionPane
+        alerta012 = recurso.getString("alerta012");
+        alerta013 = recurso.getString("alerta013");
+        alerta014 = recurso.getString("alerta014");
+        alerta015 = recurso.getString("alerta015");
+        alerta016 = recurso.getString("alerta01");
+        alerta017 = recurso.getString("alerta017");
+        alerta018 = recurso.getString("alerta018");
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -340,17 +346,16 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
     /**
      * Boton actualizar.
-     * 
-     *Con este boton recuperamos toda la informacion que el usuario ingrese  en el campo 
-     * de texto y lo actualiza.
-     * 
-     * 
+     *
+     * Con este boton recuperamos toda la informacion que el usuario ingrese en
+     * el campo de texto y lo actualiza.
+     *
+     *
      * @param evt Evento
      */
-    
+
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
         String cedula = txtCedula.getText().trim();
@@ -360,7 +365,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         String contrasena = txtContrasena.getText().trim();
 
         if (cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
-            JOptionPane.showMessageDialog(this,alerta012);
+            JOptionPane.showMessageDialog(this, alerta012);
         } else {
 
             Usuario u = new Usuario(cedula, nombre, apellido, correo, contrasena);
@@ -387,16 +392,15 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    
     /**
      * metodo tabla Usuario
-     * 
+     *
      * Este metodo lo utilizamos para seleccionar los datos de la tabla.
-     * 
-     * 
+     *
+     *
      * @param evt evento
      */
-    
+
     private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
 
         int fila = tablaUsuarios.getSelectedRow();
@@ -421,15 +425,15 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         btnActualizar.setEnabled(true);
         btnEliminar.setEnabled(true);
 
-
     }//GEN-LAST:event_tablaUsuariosMouseClicked
 
     /**
      * metodo cargar lista de usuario.
-     * 
-     * Utilizamos este metodo para listar todos los datos que se hayan registrado.
-     * 
-     * 
+     *
+     * Utilizamos este metodo para listar todos los datos que se hayan
+     * registrado.
+     *
+     *
      * @param listaUsuarios Evento
      */
     public void cargarListaUsuario(List<Usuario> listaUsuarios) {
@@ -459,28 +463,27 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     /**
      * boton listar.
-     * 
+     *
      * Al presionar el boton listamos todos los usuarios que se han registrado.
-     * 
-     * 
+     *
+     *
      * @param evt evento
      */
-    
+
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
 
         cargarListaUsuario(controladorUsuario.listarUsuario());
 
     }//GEN-LAST:event_btnListarActionPerformed
 
-    
     /**
      * Boton buscar.
-     * 
-     * Al presionar este boton nos muestra en la tabla los datos del usuario que haya
-     * buscado.
-     * 
-     * 
-     * 
+     *
+     * Al presionar este boton nos muestra en la tabla los datos del usuario que
+     * haya buscado.
+     *
+     *
+     *
      * @param evt evento
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -488,23 +491,23 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         String cedula = txtCedulaBuscar.getText();
 
         if (cedula.isEmpty()) {
-            
-            JOptionPane.showMessageDialog(this,alerta016);
-            
-        }else{
-            
+
+            JOptionPane.showMessageDialog(this, alerta016);
+
+        } else {
+
             Usuario u = controladorUsuario.buscarUsuario(cedula);
-            
+
             if (u != null) {
-                
+
                 listarUsuario(u);
-                
-            }else{
-                
-                JOptionPane.showMessageDialog(this,alerta017);
-                
+
+            } else {
+
+                JOptionPane.showMessageDialog(this, alerta017);
+
             }
-            
+
         }
 
 
@@ -512,13 +515,14 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     /**
      * Boton eliminar.
-     * 
-     * Al presionar este boton eliminamos el usuario que este seleccionado en la tabla
-     * le decimos con JOptionPane.showConfirmDialog si esta seguro de eliminar.
-     * 
-     * @param evt 
+     *
+     * Al presionar este boton eliminamos el usuario que este seleccionado en la
+     * tabla le decimos con JOptionPane.showConfirmDialog si esta seguro de
+     * eliminar.
+     *
+     * @param evt
      */
-    
+
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
         int opcion = JOptionPane.showConfirmDialog(this, alerta018);
@@ -534,23 +538,20 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-    
-    
+
     private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
 
         datosTablaUsuario();
 
     }//GEN-LAST:event_formInternalFrameActivated
 
-    
     /**
      * Metodo cargarUsuarioTabalaUsuario.
-     * 
+     *
      * Este metodo lo estamos utilizando para actualizar la tabla.
-     * 
-     * 
+     *
+     *
      */
-    
     public void cargarUsuarioTablaUsuario() {
 
         DefaultTableModel modelo = (DefaultTableModel) tablaUsuarios.getModel();
@@ -570,15 +571,13 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     }
 
-
-    
     /**
      * Metodo devolver Usuario.
-     * 
-     * Este metodo lo usamos para devolver al usaurio 
-     * 
-     * 
-     * 
+     *
+     * Este metodo lo usamos para devolver al usaurio
+     *
+     *
+     *
      */
     public void datosTablaUsuario() {
 
@@ -587,23 +586,29 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
         Usuario u = controladorUsuario.devolverUsuario();
 
-        Object[] objeto = {u.getCedula().trim(), u.getNombre().trim(), u.getApellido().trim(),
-            u.getCorreo().trim(), u.getContraseña().trim()};
+        try {
 
-        modelo.addRow(objeto);
+            Object[] objeto = {u.getCedula().trim(), u.getNombre().trim(), u.getApellido().trim(),
+                u.getCorreo().trim(), u.getContraseña().trim()};
 
-        tablaUsuarios.setModel(modelo);
+            modelo.addRow(objeto);
+            tablaUsuarios.setModel(modelo);
+
+        } catch (NullPointerException e) {
+
+           
+        }
 
     }
 
     /**
      * Metodo actualizarDatosUsuario.
-     * 
-     * Este metodo nos permite buscar al usaurio y listarlo pasandolo como parametro 
-     * la cedula.
-     * 
-     * 
-     * @param cedula 
+     *
+     * Este metodo nos permite buscar al usaurio y listarlo pasandolo como
+     * parametro la cedula.
+     *
+     *
+     * @param cedula
      */
     public void actualizarDatosUsuario(String cedula) {
 
@@ -612,6 +617,8 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
         Usuario u = controladorUsuario.buscarUsuario(cedula);
 
+        try{
+        
         Object[] objeto = {u.getCedula().trim(), u.getNombre().trim(), u.getApellido().trim(),
             u.getCorreo().trim(), u.getContraseña().trim()};
 
@@ -619,59 +626,60 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
         tablaUsuarios.setModel(modelo);
 
+        
+        }catch(NullPointerException e){
+            
+        }
     }
-    
+
     /**
      * metodo listar Usuario.
-     * 
-     * Le pasamos como parametro al usuario, la utilizamos para buscar al usuario.
-     * 
-     * 
-     * @param usuario 
+     *
+     * Le pasamos como parametro al usuario, la utilizamos para buscar al
+     * usuario.
+     *
+     *
+     * @param usuario
      */
-    
-    public void listarUsuario(Usuario usuario){
-        
-        DefaultTableModel modelo = (DefaultTableModel)tablaUsuarios.getModel();
+    public void listarUsuario(Usuario usuario) {
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaUsuarios.getModel();
         modelo.setRowCount(0);
-        
+
         Object[] objeto = {usuario.getCedula().trim(), usuario.getNombre().trim(), usuario.getApellido().trim(),
             usuario.getCorreo().trim(), usuario.getContraseña().trim()};
-        
+
         modelo.addRow(objeto);
-        
+
         tablaUsuarios.setModel(modelo);
-        
-        
+
     }
 
     /**
      * Metodo limpiarTabla
-     * 
+     *
      * Con este metodo limpiamos la tabla.
-     * 
-     * 
+     *
+     *
      */
-    
-    public void limpiarTabla(){
-        
-        DefaultTableModel modelo = (DefaultTableModel)tablaUsuarios.getModel();
+    public void limpiarTabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaUsuarios.getModel();
         for (int i = 0; i < tablaUsuarios.getRowCount(); i++) {
-            
+
             modelo.removeRow(i);
-            
+
         }
         tablaUsuarios.setModel(modelo);
-        
+
     }
-    
-    
+
     /**
      * Metodo limpiar.
-     * 
+     *
      * Limpiamos todos los campos de texto de la interfaz.
-     * 
-     * 
+     *
+     *
      */
     public void limpiar() {
 
@@ -681,7 +689,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         txtApellido.setText("");
         txtCorreo.setText("");
         txtContrasena.setText("");
-        
+
     }
 
 

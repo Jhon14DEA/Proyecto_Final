@@ -19,7 +19,7 @@ public class VentanaRegistrarseUsuario extends javax.swing.JInternalFrame {
     ControladorUsuario controladorUsuario;
      private Locale localizacion;
     private ResourceBundle recurso;
-   //idioma joptionpane
+    //idioma joptionpane
     private String alerta01;
     private String alerta02;
     
@@ -28,7 +28,7 @@ public class VentanaRegistrarseUsuario extends javax.swing.JInternalFrame {
         initComponents();
 
         this.controladorUsuario = controladorUsuario;
-         alerta01 = "Por favor, Llene todos los campos";
+        alerta01 = "Por favor, Llene todos los campos";
         alerta02 = "Usuario registrado correctamente";
 
     }
