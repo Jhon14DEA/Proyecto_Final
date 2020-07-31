@@ -41,9 +41,6 @@ public class VentanaProductos extends javax.swing.JInternalFrame {
     private String alerta010;
     private String alerta011;
 
-    /**
-     * Creates new form VentanaProductos
-     */
     public VentanaProductos(ControladorProducto controladorP, ControladorBodega controladorB) {
         initComponents();
 

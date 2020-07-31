@@ -70,7 +70,7 @@ public class UsuarioDAO implements IUsuario {
      * en el formato UTF - 8 precidiendo con la longitud del texto.
      *
      *
-     * @param usuario
+     * @param usuario.
      */
     @Override
     public void create(Usuario usuario) {
@@ -103,8 +103,8 @@ public class UsuarioDAO implements IUsuario {
      * numero de bytes.
      *
      *
-     * @param cedula
-     * @return
+     * @param cedula.
+     * @return usuario.
      */
     @Override
     public Usuario read(String cedula) {
@@ -143,8 +143,8 @@ public class UsuarioDAO implements IUsuario {
      * podemos cambiar los datos de la cedula y le damos los nuevos datos al
      * usuario.
      *
-     * @param usuario
-     * @return
+     * @param usuario.
+     * @return boolean.
      */
     @Override
     public boolean update(Usuario usuario) {
@@ -180,7 +180,7 @@ public class UsuarioDAO implements IUsuario {
      * archivos binarios no le podemos eliminar lo que hariamos es
      * sobreescribirle de espacios.
      *
-     * @param usuario
+     * @param usuario.
      */   
     
     @Override
@@ -225,7 +225,7 @@ public class UsuarioDAO implements IUsuario {
      * Con este metodo Listamos todos los usuarios que se hayan registrado y le
      * hacemos con el metodo readUTF leemos los bytes.
      *
-     * @return
+     * @return List de usuarios.
      */
     public List<Usuario> findAll() {
 
@@ -267,9 +267,9 @@ public class UsuarioDAO implements IUsuario {
      * Este metodo es el encargado del inicio de sesion del usuario.
      *
      *
-     * @param correo
-     * @param contraseña
-     * @return
+     * @param correo.
+     * @param contraseña.
+     * @return usuario.
      */
     @Override
     public Usuario login(String correo, String contraseña) {

@@ -24,9 +24,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
     private ResourceBundle recurso;
     private String alerta03;
     private String alerta04;
-    /**
-     * Creates new form VentanaRegistrarCliente
-     */
+
     public VentanaRegistrarCliente(ControladorCliente controladorCliente) {
         initComponents();
         
@@ -207,7 +205,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
      * 
      * Este metodo recupera los datos ingresados en los JtextField al presionar el
      * botón y envia al controlador.
-     * @param evt Evento
+     * @param evt Evento.
      */
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
         String cedula = txtCedulaCliente.getText();
@@ -232,7 +230,7 @@ public class VentanaRegistrarCliente extends javax.swing.JInternalFrame {
      * 
      * Cierra la pantalla que esta visible al hacer click en el boton.
      * 
-     * @param evt 
+     * @param evt.
      */
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         limpiar();

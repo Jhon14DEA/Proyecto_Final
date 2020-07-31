@@ -34,8 +34,9 @@ public class Bodega {
  * y que tiene por objetivo obligar a y controlar cómo se inicializa una instancia de
  * una determinada clase, ya que el lenguaje Java no permite que las variables miembro 
  * de una nueva instancia queden sin inicializar.
- * @param nombre
- * @param direccion 
+ * @param nombre.
+ * @param direccion.
+ * @param cuidad. 
  */
     public Bodega(String nombre, String direccion, String cuidad) {
         this.nombre = nombre;
@@ -48,7 +49,7 @@ public class Bodega {
      * Los métodos getter y setter se utilizan para definir una propiedad, 
      * a estos se accede como propiedades situadas fuera de la clase, aunque
      * las defina dentro de la clase como métodos.
-     * @return 
+     * @return nombre.
      */
  
     public String getNombre() {
@@ -69,7 +70,7 @@ public class Bodega {
       *Getters: Del Inglés Get, que significa obtener, pues nos sirve para obtener
       * (recuperar o acceder) el valor ya asignado a un atributo y utilizarlo para 
       * cierto método. Por lo que devuelven el valor de los atributos
-     * @return 
+     * @return direccion.
      */
    
 
@@ -92,7 +93,7 @@ public class Bodega {
     /**
      * Este metodo sobreescrito dentro de la clase telefonos se encarga de de  crear
      * un codigo unico de una bodega
-     * @return 
+     * @return hashcode
      */
     
     @Override
@@ -106,8 +107,8 @@ public class Bodega {
      * El metodo  equal busca dentro de la clase si existe el nombre de la bodega 
      * si consige su finalidad  tendremos como reultado un retorno de true y de no encontrarlo 
      * nos devolvera un false
-     * @param obj
-     * @return 
+     * @param obj.
+     * @return obj
      */
     @Override
     public boolean equals(Object obj) {
@@ -129,7 +130,7 @@ public class Bodega {
 /**
  * El metodo  to String nos sirve para imprimir los datos de la clase bodega 
  * pero en  en orden
- * @return 
+ * @return String
  */
     @Override
     public String toString() {

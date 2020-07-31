@@ -67,7 +67,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     /**
      * getters y setters
      *
-     * @return evento
+     * @return evento.
      */
     public Locale getLocalizacion() {
         return localizacion;
@@ -91,8 +91,8 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      * Este metodo le pasmos dos parametro el idioma la localizacion,le
      * utilizamos para internacionalizar la interfaz.
      *
-     * @param idioma
-     * @param localizacion
+     * @param idioma.
+     * @param localizacion.
      */
     public void cambiarIdioma(String idioma, String localizacion) {
 
@@ -366,7 +366,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      *
      *
      *
-     * @param evt
+     * @param evt.
      */
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -402,7 +402,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      * Este metodo lo utilizamos para seleccionar los datos de la tabla.
      *
      *
-     * @param evt evento
+     * @param evt evento.
      */
 
     private void tablaUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaUsuariosMouseClicked
@@ -485,7 +485,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      * la tabla de datos.
      *
      *
-     * @param evt
+     * @param evt.
      */
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
@@ -549,7 +549,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      * Este metodo es el encargado de cuando pulsemos el boton haga que se borre
      * todo y que no se pueda acceder a los botones.
      *
-     * @param evt
+     * @param evt.
      */
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -569,7 +569,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      *
      *
      *
-     * @param usuario
+     * @param usuario.
      */
     public void listarUsuario(Usuario usuario) {
         DefaultTableModel modelo = (DefaultTableModel) tablaUsuarios.getModel();

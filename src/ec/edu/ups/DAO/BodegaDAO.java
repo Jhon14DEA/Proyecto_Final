@@ -77,7 +77,7 @@ public class BodegaDAO implements IBodega {
      * en un formato de tipo aString o utf -8 pero claro esto de debe hacer con sus respectivas 
      * limitaciones lanzando y atrpaango las pérdidas
      * 
-     * @param bodega 
+     * @param bodega. 
      */
     @Override
     public void create(Bodega bodega) {
@@ -104,8 +104,8 @@ public class BodegaDAO implements IBodega {
      * en el final del archivo para poder hacer las transacciones específicas especificadas.
      * 
      * 
-     * @param nombre
-     * @return 
+     * @param nombre.
+     * @return Bodega.
      */
     @Override
     public Bodega read(String nombre) {
@@ -139,7 +139,7 @@ public class BodegaDAO implements IBodega {
      * la infomacion antigua sera suplantada por una nueva que sera ingresada por el usuario
      * 
      * 
-     * @param bodega 
+     * @param bodega. 
      */
     
     @Override
@@ -170,14 +170,14 @@ public class BodegaDAO implements IBodega {
     /**
      * 
      * Eliminar Metodo
- * 
- * El metodo eliminar esta resibiendo coomo parametro un nombre de tipo string ya que 
- * para eliminar primero tenemos que buscarle ala bodega y despues de eso estamos
- * indica que bodega sera eliminadaa para que el metodo le elimine desde esa psosicion en a
- * adelante con todos sus atributos incluidos
+     * 
+     * El metodo eliminar esta resibiendo coomo parametro un nombre de tipo string ya que 
+     * para eliminar primero tenemos que buscarle ala bodega y despues de eso estamos
+     * indica que bodega sera eliminadaa para que el metodo le elimine desde esa psosicion en a
+     * adelante con todos sus atributos incluidos
      * 
      * 
-     * @param  nombre
+     * @param  nombre.
      */
     @Override
     public void delete(String nombre) {

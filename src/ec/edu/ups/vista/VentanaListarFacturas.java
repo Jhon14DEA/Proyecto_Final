@@ -104,9 +104,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
         return lblListarFacturas;
     }
     
-    /**
-     * Creates new form VentanaListarFacturas
-     */
+
     public VentanaListarFacturas(ControladorBodega controladorB, Bodega bodegaV, ControladorCliente controladorC, Cliente clienteV, ControladorFactura controladorF,
             Factura factura, ControladorProducto controladorP, Producto productoV) {
         initComponents();
@@ -205,7 +203,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
      * actualiza la tabla de detalles y lista todos los detalles de una factura
      * en especifica.
      *
-     * @param factura
+     * @param factura.
      */
     public void cargarDetalleFactura(int factura) {
         List<Factura> facturas = controladorfactura.buscarDetalleFactura(factura);
@@ -504,7 +502,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
      * método de VistaDatosFacturaAnuladas() la cual actualizara la tabla
      * listando todas las facturas anuladas.
      *
-     * @param evt
+     * @param evt.
      */
     private void botonListarAnuladasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarAnuladasActionPerformed
         VistaDatosFacturaAnuladas();
@@ -518,7 +516,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
      * método de VistaDatosFacturaValida() la cual actualizara la tabla listando
      * todas las facturas validas.
      *
-     * @param evt
+     * @param evt.
      */
     private void botonListarValidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonListarValidasActionPerformed
         VistaDatosFacturaValida();
@@ -532,7 +530,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
      * de la factura seleccionada en la tabla y anule los datos dentro de esa
      * factura.
      *
-     * @param evt
+     * @param evt.
      */
     private void botonAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAnularActionPerformed
         int respuesta = JOptionPane.showConfirmDialog(this, alertaAnular);
@@ -551,7 +549,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
      * Este evento permite que al seleccionar el botón “ver” se cargue los
      * detalles de esa factura en los campos de texto y en la tabla de detalles.
      *
-     * @param evt
+     * @param evt.
      */
     private void botonVerDetallesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerDetallesActionPerformed
         int filaSelecionada = tablaDatosFactura.getSelectedRow();
@@ -575,7 +573,7 @@ public class VentanaListarFacturas extends javax.swing.JInternalFrame {
      * Este evento lo que permite es limpiar los campos de texto y la tabla de
      * detalles.
      *
-     * @param evt
+     * @param evt.
      */
     private void botonClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClearActionPerformed
         limpiar();

@@ -71,7 +71,7 @@ public class ProductoDAO implements IProducto {
      * con anterioridad estableciendo un codigo, producto, cantidad, nombre ala bodega pero dento de
      * la bodega
      * 
-     * @param producto 
+     * @param producto. 
      */
     @Override
     public void create(Producto producto) {
@@ -98,7 +98,7 @@ public class ProductoDAO implements IProducto {
      * crenando un  producto interno donde se  estableceran el codigo, numero, producto, direccion
      * y la cantidad de productos.
      * 
-     * @param nombre
+     * @param nombre.
      * @return productoInterno o null.
      * 
      */
@@ -133,7 +133,7 @@ public class ProductoDAO implements IProducto {
      * clase   producto en ellos analizaremos la manera en que son establecidos los calores alos atributos pero 
      * esta ves solo  podremos observar los datos en caso de que este metodo sea llamado en la GUI
      * 
-     * @param codigo
+     * @param codigo.
      * @return productoInterno o null.
      */
         @Override
@@ -168,7 +168,7 @@ public class ProductoDAO implements IProducto {
      * en este caso iniciara en cero eh ira s aumentando dependiento el usu que se le de al metodo 
      * y donde sea invocado.
      * 
-     * @param producto 
+     * @param producto. 
      */
     @Override
     public void update(Producto producto) {
@@ -200,7 +200,7 @@ public class ProductoDAO implements IProducto {
      * eso esta controlado de que exista el producto dentro de los archivos  punto dat para poder ser ejecutado en metodo de 
      * caso contrario no podra  no servira para el cual fue planteado.
      * 
-     * @param codigo 
+     * @param codigo. 
      */
     @Override
     public void delete(String codigo) {
@@ -269,7 +269,7 @@ public class ProductoDAO implements IProducto {
      * emepzara a ver dentro del arhchivo desde la posisicon 0 eh ira leyendo todo los productos que encuentre para 
      * posteriormente  ser mostrados en la GUI 
      * 
-     * @param bodega
+     * @param bodega.
      * @return List o null.
      */
     @Override

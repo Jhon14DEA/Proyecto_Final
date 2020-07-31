@@ -41,9 +41,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
     
     
     
-    /**
-     * Creates new form VentanaCliente
-     */
+
     
     
     public VentanaCliente(ControladorCliente controladorCliente) {
@@ -459,7 +457,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      * guardados en esa fila y le asigna a los JTextField correspondientes
      * habilitando los botones de eliminar, actualizar, cancelar.
      *
-     * @param evt Evento
+     * @param evt Evento.
      */
     private void tblClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblClienteMouseClicked
         int fila = tblCliente.getSelectedRow();
@@ -494,7 +492,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      *
      * Lista todos los clientes registrados llamando al metodo LlenarDatosTabla
      *
-     * @param evt Evento
+     * @param evt Evento.
      */
     private void btnListarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarClientesActionPerformed
         llenarDatosTabla();
@@ -507,7 +505,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      * buscarCliente donde le envia al controlador y luego retornar el cliente y
      * mostrar en el clliente encontrado en la tabla.
      *
-     * @param evt
+     * @param evt.
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
@@ -533,7 +531,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      * Al presionar el boton este reupera la informacion de los JTextField y
      * actualiza el cliente enviando al controldor.
      *
-     * @param evt Evento
+     * @param evt Evento.
      */
     private void btnActualizarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarClienteActionPerformed
         String cedula = txtCedulaCliente.getText();
@@ -566,7 +564,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      * Al presionar el boton este borra toda la informacion de la interfaz, con
      * ayuda de los metodos limpiar, botones, editables y limpiezaTabla.
      *
-     * @param evt Evento
+     * @param evt Evento.
      */
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         limpiar();
@@ -582,7 +580,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      * informacion de todos los JTextField ademas vuelve a desabilitar los
      * botones.
      *
-     * @param evt Evento
+     * @param evt Evento.
      */
     private void btnCancelarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarClienteActionPerformed
         botones();
@@ -598,7 +596,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      * JTextField cedulaCliente y le envia al controlador para eliminar la
      * informacion ligada a la cedula.
      *
-     * @param evt Evento
+     * @param evt Evento.
      */
     private void btnEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarClienteActionPerformed
         String cedula = txtCedulaCliente.getText();
@@ -694,7 +692,7 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
      * buscar, recibe como parametro el cliente y el metodo le agrega a la
      * tabla.
      *
-     * @param cliente Cliente
+     * @param cliente Cliente.
      */
     public void listarCliente(Cliente cliente) {
         DefaultTableModel modelo = (DefaultTableModel) tblCliente.getModel();

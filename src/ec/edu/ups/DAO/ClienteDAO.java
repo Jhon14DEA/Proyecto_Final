@@ -66,7 +66,7 @@ public class ClienteDAO implements ICliente {
      * Metodo sobrescrio de la clase ICliente con el fin de escribir o ingresar
      * la informacion recibida como parametro en el archivo binario.
      * 
-     * @param cliente Cliente
+     * @param cliente.
      */
     @Override
     public void create(Cliente cliente) {
@@ -94,8 +94,8 @@ public class ClienteDAO implements ICliente {
      * informacion que este ligada a la id, comparando los datos guardados en el 
      * archivo con el parametro recibido.
      * 
-     * @param nombreDelLocal String
-     * @return Cliente:cliente
+     * @param cedula.
+     * @return Cliente.
      */
     @Override
     public Cliente read(String cedula) {
@@ -126,8 +126,8 @@ public class ClienteDAO implements ICliente {
      * del archivo para poder acualizar la informacion que este ligada al id
      * del cliente.
      * 
-     * @param cliente Cliente
-     * @return retorna verdadero o falso
+     * @param cliente.
+     * @return retorna verdadero o falso.
      */
     @Override
     public boolean update(Cliente cliente) {
@@ -163,8 +163,7 @@ public class ClienteDAO implements ICliente {
      * ligada al id para despues remplazar con espacios vacios realizando una 
      * eliminacion logica.
      * 
-     * @param codigo String
-     * @return retorna verdadero o falso
+     * @param cliente.
      */
     @Override
     public void delete(Cliente cliente) {
@@ -197,7 +196,7 @@ public class ClienteDAO implements ICliente {
      * 
      * Metodo sobrescrito de la clase ICLiente, recupera toda la informacion guardada
      * en el archivo para guardar en una lista para ser retornada.
-     * @return List:clienteLista
+     * @return List:clienteLista.
      */
     @Override
     public List<Cliente> findAllClientes() {

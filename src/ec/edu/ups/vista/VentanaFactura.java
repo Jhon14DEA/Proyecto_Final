@@ -61,9 +61,6 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
     private String alerta026;
     private String alerta027;
     private String alerta028;
-    /**
-     * Creates new form VentanaFactura
-     */
     public VentanaFactura(ControladorBodega controladorB, Bodega bodegaV, ControladorCliente controladorC, Cliente clienteV, ControladorFactura controladorF,
             Factura facturaV, ControladorProducto controladorP, Producto productoV) {
         initComponents();
@@ -169,7 +166,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * Este método formatea la manera en la que se quiere visualizar la fecha 
      * del computador al momento de implantarlo en la factura.
      * 
-     * @param fecha
+     * @param fecha.
      * @return String fecha.
      */
     private String fechaActual(Date fecha) {
@@ -637,7 +634,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * combo-box automáticamente, se formatea la fecha de la caja de texto y 
      * también se actualiza el numero de factura.  
      * 
-     * @param evt 
+     * @param evt.
      */
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
         txtFacturaNumero.setText(controladorfactura.codigo() + "");
@@ -658,7 +655,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * actualiza automáticamente el combo-box de producto con los productos que 
      * existen en esa bodega. 
      * 
-     * @param evt 
+     * @param evt. 
      */
     private void cmbxBodegaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbxBodegaFocusLost
         
@@ -677,7 +674,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * registrar el cliente y también se activaran las cajas de texto para que 
      * el usuario pueda ingresar los datos.  
      * 
-     * @param evt 
+     * @param evt. 
      */
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char validar = evt.getKeyChar();
@@ -718,7 +715,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * Este evento permite que se calcule los valores del subtotal, el IVA y el
      * total cuando se presione le botón calcular. 
      * 
-     * @param evt 
+     * @param evt. 
      */
     private void botonCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCalcularActionPerformed
         double suma = 0;
@@ -748,7 +745,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * Este evento lo que hace es cargar el producto seleccionado en el combo-box
      * en la tabla para poder proceder a facturarlo. 
      * 
-     * @param evt 
+     * @param evt.
      */
     private void botonProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonProductosActionPerformed
         String productoElegido = cmbxProducto.getSelectedItem().toString();
@@ -765,7 +762,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * Este evento lo que hace es extraer todos los datos de las cajas de texto
      * y de la tabla, procede a crear una factura. 
      * 
-     * @param evt 
+     * @param evt. 
      */
     private void botonCrearFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCrearFacturaActionPerformed
          List<Factura> facturas=new ArrayList<>();
@@ -799,7 +796,7 @@ public class VentanaFactura extends javax.swing.JInternalFrame {
      * Este evento lo que hace es registrar a un nuevo cliente para poder crear 
      * una factura. 
      * 
-     * @param evt 
+     * @param evt.
      */
     private void botonRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarClienteActionPerformed
         if (!txtCedula.getText().equals("") && !txtLocal.getText().equals("") && !txtNombre.getText().equals("")

@@ -34,14 +34,14 @@ public class Factura {
      * En este constructor se instanció todos los atributos de la clase Factura
      * a excepción de los dos objetos: cliente y producto. 
      * 
-     * @param numeroDeFactura
-     * @param cantidadVendida
-     * @param estado
-     * @param subtotal
-     * @param iva
-     * @param total
-     * @param cedula
-     * @param codigoProducto 
+     * @param numeroDeFactura.
+     * @param cantidadVendida.
+     * @param estado.
+     * @param subtotal.
+     * @param iva.
+     * @param total.
+     * @param cedula.
+     * @param codigoProducto .
      */
     public Factura(int numeroDeFactura, int cantidadVendida, boolean estado, double subtotal, double iva, double total, String cedula, String codigoProducto) {
         this.numeroDeFactura = numeroDeFactura;
@@ -57,14 +57,14 @@ public class Factura {
      * En este constructor se instanció todos los atributos de la clase Factura 
      * incluiendo los objetos Producto y Cliente.
      * 
-     * @param numeroDeFactura
-     * @param cantidadVendida
-     * @param estado
-     * @param subtotal
-     * @param iva
-     * @param total
-     * @param cliente
-     * @param producto 
+     * @param numeroDeFactura.
+     * @param cantidadVendida.
+     * @param estado.
+     * @param subtotal.
+     * @param iva.
+     * @param total.
+     * @param cliente.
+     * @param producto. 
      */
     public Factura(int numeroDeFactura, int cantidadVendida, boolean estado, double subtotal, double iva, double total, Cliente cliente, Producto producto) {
         this.numeroDeFactura = numeroDeFactura;
@@ -84,7 +84,7 @@ public class Factura {
      * 
      * se instanciaron todos los getters y setters para los atributos de la clase 
      * factura.
-     * 
+     * @return int numeroDeFactura.
      */
     public int getNumeroDeFactura() {
         return numeroDeFactura;

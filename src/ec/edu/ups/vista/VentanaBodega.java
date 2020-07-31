@@ -48,7 +48,7 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
      * mismo nombre, aca solo debes de documetar el metodo del ide y listo, ya
      * puedes modificar el initComponents() que haz copiado
      *
-     * @param controladorB
+     * 
      */
     private String alerta029;
     private String alerta30;
@@ -97,7 +97,6 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
         this.recurso = recurso;
     }
 
-    //////
     public void cambiarIdioma(String idioma, String localizacion) {
 
         // Inter.... para la tabla de datos
@@ -447,7 +446,7 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
      * la bodega a gestionar ya que estara avtivado solo este boton y el nuevo
      * en caso de que el usuario quiera agregar otra bodega ala lista de bodegas
      *
-     * @param evt
+     * @param evt.
      */
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         if (!txtNombre.getText().equals("") && !txtDireccion.getText().equals("") && !txtCiudad.getText().equals("")) {
@@ -511,7 +510,7 @@ public class VentanaBodega extends javax.swing.JInternalFrame {
      * elimninar en caso de que se logre desarrollar con exito tendremos como
      * resultado un Bodega eliminado con exito
      *
-     * @param evt
+     * @param evt.
      */
     private void botonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarActionPerformed
 

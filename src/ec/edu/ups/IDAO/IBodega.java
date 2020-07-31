@@ -25,7 +25,7 @@ public interface IBodega {
  * despues de pasar por esto el usuario podra ver sus bodegas ya en la lista cuadno se 
  * actualice la misma 
  * 
- * @param bodega 
+ * @param bodega.
  */
     public void create(Bodega bodega);
     /**
@@ -35,8 +35,8 @@ public interface IBodega {
      * que nos servira para poder leer en los archivos binarios y darnos cuenta de que 
      * su existenica sea confiable y viable pero sobre todo de  sabes si existe ono
      * 
-     * @param nombre
-     * @return 
+     * @param nombre.
+     * @return Bodega.
      */
 
     public Bodega read(String nombre);
@@ -48,7 +48,7 @@ public interface IBodega {
      * la sesion pueda hacer unas determinadas actualizaciones de su bodega ya que en 
      * la implementacion del metodo crud nos da esa facilidad
      * 
-     * @param bodega 
+     * @param bodega. 
      */
 
     public void update(Bodega bodega);
@@ -58,7 +58,7 @@ public interface IBodega {
      * hace que cuando le pasemos un nombre de una bodega determinada este pueda
      * eliminarla con todos sus atributos pertinenes y asosiados a la misma.
      * 
-     * @param nombre 
+     * @param nombre.
      */
 
     public void delete(String nombre);
@@ -70,7 +70,7 @@ public interface IBodega {
      * ususario dentro de los limintes establecidos en la interfaz el podra analizar todo 
      * solo ahi gracias al metodo listar bodegas
      * 
-     * @return 
+     * @return List findAllBodegas.
      */
 
     public List<Bodega> findAllBodegas();

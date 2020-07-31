@@ -88,7 +88,7 @@ public class FacturaDAO implements IFactura {
      * la cedula del cliente, el subtotal, el IVA, el total y el estado 
      * de la factura. 
      * 
-     * @param facturas 
+     * @param facturas. 
      */
     @Override
     public void create(List<Factura> facturas) {
@@ -131,7 +131,7 @@ public class FacturaDAO implements IFactura {
      * Al final retorna la lista de tipo factura o sino retorna un null si es 
      * que nunca lo encontró. 
      * 
-     * @param numeroDeFactura
+     * @param numeroDeFactura.
      * @return listadoDetalle o null.
      */
     @Override
@@ -169,7 +169,7 @@ public class FacturaDAO implements IFactura {
      * en dato. Si es que lo encuentra retorna ese objeto de tipo factura sino 
      * retorna un null. 
      * 
-     * @param numeroDeFactura
+     * @param numeroDeFactura.
      * @return factura o null.
      */
     @Override
@@ -310,7 +310,7 @@ public class FacturaDAO implements IFactura {
      * Por ultimo se retorna todos los objetos dentro de esa factura a 
      * sus bodegas. 
      * 
-     * @param numeroDeFactura 
+     * @param numeroDeFactura. 
      */
     @Override
     public void anularFactura(int numeroDeFactura) {
@@ -344,7 +344,7 @@ public class FacturaDAO implements IFactura {
      * que esta en sus parámetros y después llama al productoDAO para que 
      * actualice ese producto con los datos que se le están agregando. 
      * 
-     * @param numeroFactura 
+     * @param numeroFactura.
      */
     public void regresarProductos(int numeroFactura){
         long inicio = 0;

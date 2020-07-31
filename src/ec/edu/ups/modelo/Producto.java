@@ -107,7 +107,7 @@ public class Producto {
      * dentro de la clase nos  devolvera un true en el caso de econtrarla y false en caso de 
      * que no se encuentre el codigo establacido.
      * 
-     * @param obj
+     * @param obj.
      * @return true o false.
      */
     @Override
@@ -133,7 +133,7 @@ public class Producto {
      * 
      * Nos imprimira los datos de la clase  de forma ordenada.
      * 
-     * @return String 
+     * @return String.
      */
     @Override
     public String toString() {

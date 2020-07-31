@@ -73,7 +73,7 @@ public class ControladorCliente {
      * Recibe un atributo tipo string para enviar al cliienteDao y luego compara
      * la informacion retornada desde el dao, si es diferente de null, retorna al
      * cliente y si es igual a null, retorna null.
-     * @param nombreLocal String
+     * @param cedula.
      * @return Cliente:cliente
      */
     public Cliente buscarCliente(String cedula){
@@ -93,7 +93,7 @@ public class ControladorCliente {
      * Este metodo realiza como inetermediario entre la vista y dao, tecibe como
      * paametro un cliente y este el envia al Dao para que sea modificado en el 
      * archivo.
-     * @param cliente
+     * @param cliente.
      * @return Boolean:cent
      */
     public boolean actualizarCliente(Cliente cliente){
@@ -109,7 +109,7 @@ public class ControladorCliente {
      * Recibe como parametro un String y le envi al dao para buscar el cliente y
      * el cliente retornado se vuelve a enviar al dao para que se elimine del 
      * archivo.
-     * @param cedula
+     * @param cedula.
      * @return tipo de dato boolean
      */
     public boolean eliminarCliente(String cedula){

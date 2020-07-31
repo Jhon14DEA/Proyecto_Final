@@ -44,7 +44,7 @@ public class ControladorUsuario {
      * Controlador en el cual le pasamos al UsuarioDAO como parametro.
      * 
      * 
-     * @param usuarioDAO 
+     * @param usuarioDAO. 
      */
     public ControladorUsuario(UsuarioDAO usuarioDAO) {
 
@@ -61,11 +61,11 @@ public class ControladorUsuario {
      *
      * 
      * 
-     * @param cedula
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param contrasena 
+     * @param cedula.
+     * @param nombre.
+     * @param apellido.
+     * @param correo.
+     * @param contrasena.
      */
     public void registrarUsuario(String cedula, String nombre, String apellido, String correo, String contrasena) {
 
@@ -82,8 +82,8 @@ public class ControladorUsuario {
      * nos retorna al usuario.
      * 
      * 
-     * @param cedula
-     * @return 
+     * @param cedula.
+     * @return usuario.
      */
     public Usuario buscarUsuario(String cedula) {
 
@@ -100,7 +100,7 @@ public class ControladorUsuario {
      * para los datos de l tabla de entrada en la interfaz.
      * 
      * 
-     * @return 
+     * @return  usuario.
      */
 
     public Usuario devolverUsuario() {
@@ -117,9 +117,9 @@ public class ControladorUsuario {
      * que los datos que ingreso sean correctos.
      * 
      * 
-     * @param correo
-     * @param contrasena
-     * @return 
+     * @param correo.
+     * @param contrasena.
+     * @return true o false.
      */
     public boolean validarUsuario(String correo, String contrasena) {
 
@@ -145,8 +145,8 @@ public class ControladorUsuario {
      *que le actualiza en el archivo.
      * 
      * 
-     * @param usuario
-     * @return 
+     * @param usuario.
+     * @return true o false.
      */
     
     public boolean actualizarUsuario(Usuario usuario) {
@@ -165,8 +165,8 @@ public class ControladorUsuario {
      * Le pasamos como parametro la cedula y este le busca a la cedula y le volvemos 
      * a mandar al dao para que este lo elimine en el archivo.
      * 
-     * @param cedula
-     * @return 
+     * @param cedula.
+     * @return true o false.
      */
     
     public boolean eliminarUsuario(String cedula) {

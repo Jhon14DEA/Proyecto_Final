@@ -35,11 +35,11 @@ public class Usuario extends Persona {
      *
      * Inicializamos el objeto y contiene valores siempre validos.
      *
-     * @param correo
-     * @param contraseña
-     * @param cedula
-     * @param nombre
-     * @param apellido
+     * @param correo.
+     * @param contraseña.
+     * @param cedula.
+     * @param nombre.
+     * @param apellido.
      */
     public Usuario(String cedula, String nombre, String apellido,String correo, String contraseña) {
         super(cedula, nombre, apellido);
@@ -53,8 +53,8 @@ public class Usuario extends Persona {
      *
      * Inicializamos el objeto y contiene valores siempre validos.
      *
-     * @param correo
-     * @param contraseña
+     * @param correo.
+     * @param contraseña.
      */
     public Usuario(String correo, String contraseña) {
         this.setCorreo(correo);
@@ -68,7 +68,7 @@ public class Usuario extends Persona {
      * Su funcion es permitir el obtener el valor de una propiedad de la clase.
      *
      *
-     * @return
+     * @return correo.
      */
     public String getCorreo() {
         return correo;
@@ -97,9 +97,9 @@ public class Usuario extends Persona {
      * le falta completar lo llenamos con espacios o si se ha pasado lo cortamos.
      * 
      * 
-     * @param cadena
-     * @param numero
-     * @return 
+     * @param cadena.
+     * @param numero.
+     * @return cadena.
      */
     
     public String validarEspacios(String cadena, int numero) {
@@ -124,7 +124,7 @@ public class Usuario extends Persona {
      * Si dos objetos son iguales deben tener el mismo valor hash.
      * 
      * 
-     * @return 
+     * @return int hashcode.
      */
     
     @Override

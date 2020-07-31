@@ -41,7 +41,7 @@ public class ControladorFactura {
      * Este metodo recibe en su parametro una lista de tipo Factura. Pasa esa lista
      * al facturaDAO.
      * 
-     * @param facturas 
+     * @param facturas. 
      */
     public void crearFactura(List<Factura> facturas){
         facturaDao.create(facturas);
@@ -53,7 +53,7 @@ public class ControladorFactura {
      * Este método llama al FacuturaDAO y le pasa el numero de la factura 
      * para que le retorne el detalle de la factura con el mismo numero. 
      * 
-     * @param factura
+     * @param factura.
      * @return List o null. 
      */
     public List<Factura> buscarDetalleFactura(int factura){
@@ -66,7 +66,7 @@ public class ControladorFactura {
      * Este método llama al FacuturaDAO y le pasa el numero de la factura 
      * para que le retorne el detalle de la factura con el mismo numero. 
      * 
-     * @param factura
+     * @param factura.
      * @return factura o null. 
      */
     public Factura buscarFactura(int factura){
@@ -101,7 +101,7 @@ public class ControladorFactura {
      * al FacturaDAO para que anule la factura que tiene el mismo numero de 
      * factura que se tiene en el parámetro.
      * 
-     * @param factura 
+     * @param factura.
      */
     public void AnularFacturas(int factura){
         facturaDao.anularFactura(factura);
@@ -110,7 +110,7 @@ public class ControladorFactura {
      * codigo.
      * 
      * Este método consigue el siguiente código de la factura y lo retorna. 
-     * @return 
+     * @return  int codigo.
      */
     public int codigo(){
         return facturaDao.getCodigoActual();

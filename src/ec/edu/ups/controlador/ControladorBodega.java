@@ -42,8 +42,8 @@ public class ControladorBodega {
      * una determinada clase, ya que el lenguaje Java no permite que las
      * variables miembro de una nueva instancia queden sin inicializar.
      *
-     * @param bodega
-     * @param bodegaDAO
+     * @param bodega.
+     * @param bodegaDAO.
      */
 
     public ControladorBodega(Bodega bodega, BodegaDAO bodegaDAO) {
@@ -61,8 +61,9 @@ public class ControladorBodega {
      * tendremos la facilidad para crear una bodega llamando ala bodega dao para
      * poder lleva acabo el codigo
      *
-     * @param direccion
-     * @param nombre
+     * @param direccion.
+     * @param cuidad.
+     * @param nombre.
      */
     public void crearBodega(String nombre, String direccion, String cuidad) {
         for (int i =nombre.length(); i < 25; i++) {
@@ -93,8 +94,8 @@ public class ControladorBodega {
      * este metodo es con valores de retorno ya que si contiene una bodega nos
      * retornara una bodega de caso contrario un null
      *
-     * @param nombre
-     * @return
+     * @param nombre.
+     * @return bodega.
      */
     
     public Bodega buscarBodega(String nombre) {
@@ -140,7 +141,7 @@ public class ControladorBodega {
      * necesario llamar al dao que proseda a su busqueda y posteriormente
      * econtrada a ser eliminada
      *
-     * @param nombre
+     * @param nombre.
      */
     public void eliminarBodega(String nombre) {
         bodegaDAO.delete(nombre);
@@ -157,7 +158,7 @@ public class ControladorBodega {
      * funcionalidad de este metodo se debe en su totalidad ala clase llama que
      * esta dentro del paquete DAO (bodegaDAO).
      *
-     * @return
+     * @return list de bodegas.
      */
     public List<Bodega> listarBodegas() {
         List<Bodega> listaBodega = bodegaDAO.findAllBodegas();
