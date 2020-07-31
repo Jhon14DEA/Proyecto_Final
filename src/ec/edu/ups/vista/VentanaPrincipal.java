@@ -50,7 +50,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     ControladorCliente controladorCliente;
     //clasees para localizacion 
     private Locale localizacion;
-    private ResourceBundle recurso;
+    private ResourceBundle mensajes;
 
     public VentanaPrincipal() {
         initComponents();
@@ -85,22 +85,115 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaRegistrarCliente = new VentanaRegistrarCliente(controladorCliente);
         //idiomas
         localizacion = new Locale("es", "EC");
-        recurso = ResourceBundle.getBundle("ec.edu.ups.idioma.mensaje", localizacion);
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensaje", localizacion);
     }
 
     public void cambiarIdioma(String idioma, String localidad) {
         localizacion = new Locale(idioma, localidad);
-        recurso = ResourceBundle.getBundle("ec.edu.ups.idioma.mensaje", localizacion);
+        mensajes = ResourceBundle.getBundle("ec.edu.ups.idioma.mensaje", localizacion);
         if (ventanaRegistrarCliente != null) {
-            ventanaProductos.setRecurso(recurso);
+            ventanaProductos.setRecurso(mensajes);
             ventanaProductos.cambiarIdioma(idioma, localidad);
-            ventanaRegistrarCliente.setRecurso(recurso);
+            ventanaRegistrarCliente.setRecurso(mensajes);
             ventanaRegistrarCliente.cambiarIdioma(idioma, localidad);
-            ventanaRegistrarUsuario.setRecurso(recurso);
+            ventanaRegistrarUsuario.setRecurso(mensajes);
             ventanaRegistrarUsuario.cambiarIdioma(idioma, localidad);
-            //ventanaUsuario.setRecurso(recurso);
-            //ventanaUsuario.cambiarIdioma(idioma, localidad);
+            ventanaUsuario.setRecurso(mensajes);
+            ventanaUsuario.cambiarIdioma(idioma, localidad);
+            ventanaBodega.setRecurso(mensajes);
+            ventanaBodega.cambiarIdioma(idioma, localidad);
+            ventanaFactura.setRecurso(mensajes);
+            ventanaFactura.cambiarIdioma(idioma, localidad);
+            ventanCliente.setRecurso(mensajes);
+            ventanCliente.cambiarIdioma(idioma, localidad);
+            ventanaListarFacturas.setRecurso(mensajes);
+            ventanaListarFacturas.cambiarIdioma(idioma, localidad);
+            ventanaListarFacturas.setRecurso(mensajes);
+            ventanaListarFacturas.cambiarIdiomas(idioma, localidad);
+            ventanaIniciarSesion.setRecurso(mensajes);
+            ventanaIniciarSesion.cambiarIdioma(idioma, localidad);
+            
         }
+        
+        
+        //Ventana Principal
+        
+         menuInicio.setText(mensajes.getString("menuInicio"));
+        menuGestionClientes.setText(mensajes.getString("menuGestionClientes"));
+        menuIdioma.setText(mensajes.getString("menuIdioma"));
+        menuItemIngles.setText(mensajes.getString("menuItemIngles"));
+        menuItemEspaniol.setText(mensajes.getString("menuItemEspaniol"));
+        menuItemIniciarSesion.setText(mensajes.getString("menuItemIniciarSesion"));
+        menuItemRegistrarCliente.setText(mensajes.getString("menuItemRegistrarUsuario"));
+        menuItemRegistrarCliente.setText(mensajes.getString("menuItemRegistrarCliente"));
+        menuItemCerrarSesion.setText(mensajes.getString("menuItemCerrarSesion"));
+        menuItemSalir.setText(mensajes.getString("menuItemSalir"));
+        menuItemClientes.setText(mensajes.getString("menuItemClientes"));
+        menuItemGestionUsuarios.setText(mensajes.getString("menuItemGestionUsuarios"));
+        menuItemProductos.setText(mensajes.getString("menuItemProductos"));
+        menuItemFacturas.setText(mensajes.getString("menuItemFacturas"));
+        menuItemBodega.setText(mensajes.getString("menuItemBodega"));
+        menuItemListaF.setText(mensajes.getString("menuItemListaF"));
+        
+              //Iniciar Sesion
+        ventanaIniciarSesion.setTitle(mensajes.getString("menuItemIniciarSesion"));
+        ventanaIniciarSesion.getIniciarSesion().setText(mensajes.getString("lblIniciarSesion"));
+        ventanaIniciarSesion.getCorreo().setText(mensajes.getString("labelCorreoElectronico"));
+        ventanaIniciarSesion.getPassword().setText(mensajes.getString("lblContrasena"));
+        ventanaIniciarSesion.getBtnInciarSesion().setText(mensajes.getString("btnIniciarSesion"));
+        ventanaIniciarSesion.getLimpiar().setText(mensajes.getString("btnLimpiar"));
+                
+        
+        //Ventana Bodega
+        ventanaBodega.setTitle(mensajes.getString("lblGestionDeBodega"));
+        ventanaBodega.getGestionBodega().setText(mensajes.getString("lblGestionDeBodega"));
+        ventanaBodega.getBodega().setText(mensajes.getString("lblBodega"));
+        ventanaBodega.getBotonBuscar().setText(mensajes.getString("btnBuscar"));
+        ventanaBodega.getInformacion().setText(mensajes.getString("lblInformacion"));
+        ventanaBodega.getNombre().setText(mensajes.getString("lblNombre"));
+        ventanaBodega.getDireccion().setText(mensajes.getString("lblDireccion"));
+        ventanaBodega.getCiudad().setText(mensajes.getString("lblCiudad"));
+        ventanaBodega.getBotonNuevo().setText(mensajes.getString("btnNuevo"));
+        ventanaBodega.getBotonActualizar().setText(mensajes.getString("btnActualizar"));
+        ventanaBodega.getBotonCancelar().setText(mensajes.getString("botonEliminar"));
+        ventanaBodega.getBotonEliminar().setText(mensajes.getString("botonCancelar"));
+        
+           //Ventana Cliente
+           
+        ventanCliente.setTitle(mensajes.getString("lblGestionClientes"));
+        ventanCliente.getGestionClientes().setText(mensajes.getString("lblGestionClientes"));
+        ventanCliente.getCedula().setText(mensajes.getString("lblCedula"));
+        ventanCliente.getBotonBuscar().setText(mensajes.getString("btnBuscar"));
+        ventanCliente.getInformacion().setText(mensajes.getString("lblInformacion"));
+        ventanCliente.getCedulaa().setText(mensajes.getString("lblCedulaa"));
+        ventanCliente.getNombre().setText(mensajes.getString("lblNombre"));
+        ventanCliente.getApellido().setText(mensajes.getString("lblApellido"));
+        ventanCliente.getNombreLocal().setText(mensajes.getString("lblNombreLocal"));
+        ventanCliente.getTelefono().setText(mensajes.getString("lblTelefono"));
+        ventanCliente.getDireccion().setText(mensajes.getString("lblDireccion"));
+        ventanCliente.getBotonActualizar().setText(mensajes.getString("btnActualizarCliente"));
+        ventanCliente.getBotonCancelar().setText(mensajes.getString("btnCancelarCliente"));
+        ventanCliente.getBotonEliminar().setText(mensajes.getString("btnEliminarCliente"));
+        ventanCliente.getListar().setText(mensajes.getString("btnListarClientes"));
+        ventanCliente.getLimpiar().setText(mensajes.getString("btnLimpiar"));
+
+        //Ventana Listar Factura
+        ventanaListarFacturas.getListarFacturas().setText(mensajes.getString("lblListarFacturas"));
+        ventanaListarFacturas.getBotonAnular().setText(mensajes.getString("botonAnular"));
+        ventanaListarFacturas.getVer().setText(mensajes.getString("botonVerDetalles"));
+        ventanaListarFacturas.getLimpiar().setText(mensajes.getString("botonClear"));
+        ventanaListarFacturas.getListarAnuladas().setText(mensajes.getString("botonListarAnuladas"));
+        ventanaListarFacturas.getListarValidas().setText(mensajes.getString("botonListarValidas"));
+        ventanaListarFacturas.getCedula().setText(mensajes.getString("lblCedula"));
+        ventanaListarFacturas.getNombre().setText(mensajes.getString("lblNombre"));
+        ventanaListarFacturas.getApellido().setText(mensajes.getString("lblApellido"));
+        ventanaListarFacturas.getLocal().setText(mensajes.getString("lblLocal"));
+        ventanaListarFacturas.getDireccion().setText(mensajes.getString("lblDireccion"));
+        ventanaListarFacturas.getTelefono().setText(mensajes.getString("lblTelefono"));
+
+   
+        
+        
     }
 
     /**
@@ -116,18 +209,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         menuInicio = new javax.swing.JMenu();
         menuItemIniciarSesion = new javax.swing.JMenuItem();
-        menuItemRegistrarUsuario = new javax.swing.JMenuItem();
+        menuItemRegistrarCliente = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
         menuItemSalir = new javax.swing.JMenuItem();
         menuGestionClientes = new javax.swing.JMenu();
         menuItemClientes = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        menuItemGestionUsuarios = new javax.swing.JMenuItem();
         menuItemProductos = new javax.swing.JMenuItem();
         menuItemFacturas = new javax.swing.JMenuItem();
         menuItemBodega = new javax.swing.JMenuItem();
         menuItemListaF = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
+        menuIdioma = new javax.swing.JMenu();
         menuItemEspaniol = new javax.swing.JMenuItem();
         menuItemIngles = new javax.swing.JMenuItem();
 
@@ -146,13 +239,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menuInicio.add(menuItemIniciarSesion);
 
-        menuItemRegistrarUsuario.setText("Registrar usuario");
-        menuItemRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
+        menuItemRegistrarCliente.setText("Registrar usuario");
+        menuItemRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuItemRegistrarUsuarioActionPerformed(evt);
+                menuItemRegistrarClienteActionPerformed(evt);
             }
         });
-        menuInicio.add(menuItemRegistrarUsuario);
+        menuInicio.add(menuItemRegistrarCliente);
 
         jMenuItem2.setText("Registrar cliente");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -193,13 +286,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menuGestionClientes.add(menuItemClientes);
 
-        jMenuItem1.setText("Gestion Usuarios");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        menuItemGestionUsuarios.setText("Gestion Usuarios");
+        menuItemGestionUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                menuItemGestionUsuariosActionPerformed(evt);
             }
         });
-        menuGestionClientes.add(jMenuItem1);
+        menuGestionClientes.add(menuItemGestionUsuarios);
 
         menuItemProductos.setMnemonic('y');
         menuItemProductos.setText("Gesion Productos");
@@ -239,8 +332,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         menuBar.add(menuGestionClientes);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Idioma");
+        menuIdioma.setMnemonic('h');
+        menuIdioma.setText("Idioma");
 
         menuItemEspaniol.setMnemonic('c');
         menuItemEspaniol.setText("Español");
@@ -249,7 +342,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemEspaniolActionPerformed(evt);
             }
         });
-        helpMenu.add(menuItemEspaniol);
+        menuIdioma.add(menuItemEspaniol);
 
         menuItemIngles.setMnemonic('a');
         menuItemIngles.setText("Ingles");
@@ -258,9 +351,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 menuItemInglesActionPerformed(evt);
             }
         });
-        helpMenu.add(menuItemIngles);
+        menuIdioma.add(menuItemIngles);
 
-        menuBar.add(helpMenu);
+        menuBar.add(menuIdioma);
 
         setJMenuBar(menuBar);
 
@@ -320,26 +413,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menuItemFacturasActionPerformed
 
-    private void menuItemRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegistrarUsuarioActionPerformed
+    private void menuItemRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemRegistrarClienteActionPerformed
 
         desktopPane.add(ventanaRegistrarUsuario);
         ventanaRegistrarUsuario.setVisible(true);
 
-    }//GEN-LAST:event_menuItemRegistrarUsuarioActionPerformed
+    }//GEN-LAST:event_menuItemRegistrarClienteActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void menuItemGestionUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionUsuariosActionPerformed
 
         desktopPane.add(ventanaUsuario);
         ventanaUsuario.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_menuItemGestionUsuariosActionPerformed
 
     private void menuItemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCerrarSesionActionPerformed
 
         menuGestionClientes.setVisible(false);
         menuItemCerrarSesion.setVisible(false);
         menuItemIniciarSesion.setVisible(true);
-        menuItemRegistrarUsuario.setVisible(true);
+        menuItemRegistrarCliente.setVisible(true);
 
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
@@ -379,7 +472,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     public JMenuItem getMenuRegistrarse() {
 
-        return menuItemRegistrarUsuario;
+        return menuItemRegistrarCliente;
     }
 
     public JMenuItem getMenuCerrarSesion() {
@@ -438,22 +531,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuGestionClientes;
+    private javax.swing.JMenu menuIdioma;
     private javax.swing.JMenu menuInicio;
     private javax.swing.JMenuItem menuItemBodega;
     private javax.swing.JMenuItem menuItemCerrarSesion;
     private javax.swing.JMenuItem menuItemClientes;
     private javax.swing.JMenuItem menuItemEspaniol;
     private javax.swing.JMenuItem menuItemFacturas;
+    private javax.swing.JMenuItem menuItemGestionUsuarios;
     private javax.swing.JMenuItem menuItemIngles;
     private javax.swing.JMenuItem menuItemIniciarSesion;
     private javax.swing.JMenuItem menuItemListaF;
     private javax.swing.JMenuItem menuItemProductos;
-    private javax.swing.JMenuItem menuItemRegistrarUsuario;
+    private javax.swing.JMenuItem menuItemRegistrarCliente;
     private javax.swing.JMenuItem menuItemSalir;
     // End of variables declaration//GEN-END:variables
 
