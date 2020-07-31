@@ -40,7 +40,6 @@ public class VentanaCliente extends javax.swing.JInternalFrame {
     private Locale localizacion;
     
     
-
     
     /**
      * Creates new form VentanaCliente

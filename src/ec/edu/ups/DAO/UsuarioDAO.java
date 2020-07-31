@@ -181,8 +181,10 @@ public class UsuarioDAO implements IUsuario {
      * sobreescribirle de espacios.
      *
      * @param usuario
-     */
+     */   
+    
     @Override
+     
     public void delete(Usuario usuario) {
 
         String cadena = "";
@@ -233,24 +235,24 @@ public class UsuarioDAO implements IUsuario {
         try {
             while (salto < archivo.length()) {
                 archivo.seek(salto);
+
                 String cedula = archivo.readUTF().trim();
-                String nombre = archivo.readUTF().trim();
-                String apellido = archivo.readUTF().trim();
-                String correo = archivo.readUTF().trim();
-                String contraseña = archivo.readUTF().trim();
-                
-                cedula = archivo.readUTF().trim();
-                
-                Usuario usuario = new Usuario(cedula, nombre, apellido, correo, contraseña);
-                lista.add(usuario);
-            
-                
-                
-            }    
+                if (!cedula.equals("")) {
+
+                    String nombre = archivo.readUTF().trim();
+                    String apellido = archivo.readUTF().trim();
+                    String correo = archivo.readUTF().trim();
+                    String contraseña = archivo.readUTF().trim();
+
+                    Usuario usuario = new Usuario(cedula, nombre, apellido, correo, contraseña);
+                    lista.add(usuario);
+
+                }
 
                 salto += registro;
 
-            
+            }
+
         } catch (IOException ex) {
             System.out.println("Error lectrura escritura (UsuarioDao:Update)");
             ex.printStackTrace();

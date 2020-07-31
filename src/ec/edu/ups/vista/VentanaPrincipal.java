@@ -55,6 +55,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
 
+        menuGestionClientes.setVisible(false);
+        ItemRegistrarCliente.setVisible(false);
+        menuItemCerrarSesion.setVisible(false);
         bodegaDAO = new BodegaDAO();
         productoDAO = new ProductoDAO(bodegaDAO);
         facturaDAO = new FacturaDAO();
@@ -210,7 +213,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         menuInicio = new javax.swing.JMenu();
         menuItemIniciarSesion = new javax.swing.JMenuItem();
         menuItemRegistrarCliente = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        ItemRegistrarCliente = new javax.swing.JMenuItem();
         menuItemCerrarSesion = new javax.swing.JMenuItem();
         menuItemSalir = new javax.swing.JMenuItem();
         menuGestionClientes = new javax.swing.JMenu();
@@ -247,13 +250,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         menuInicio.add(menuItemRegistrarCliente);
 
-        jMenuItem2.setText("Registrar cliente");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        ItemRegistrarCliente.setText("Registrar cliente");
+        ItemRegistrarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                ItemRegistrarClienteActionPerformed(evt);
             }
         });
-        menuInicio.add(jMenuItem2);
+        menuInicio.add(ItemRegistrarCliente);
 
         menuItemCerrarSesion.setText("Cerrar Sesion");
         menuItemCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -436,10 +439,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_menuItemCerrarSesionActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void ItemRegistrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemRegistrarClienteActionPerformed
         desktopPane.add(ventanaRegistrarCliente);
         ventanaRegistrarCliente.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_ItemRegistrarClienteActionPerformed
 
     private void menuItemListaFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemListaFActionPerformed
         desktopPane.add(ventanaListarFacturas);
@@ -492,6 +495,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         return menuItemSalir;
 
     }
+    public JMenuItem getMenuRegistrarCliente(){
+        
+        return ItemRegistrarCliente;
+        
+    }
+            
 
     /**
      * @param args the command line arguments
@@ -530,8 +539,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem ItemRegistrarCliente;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuGestionClientes;
     private javax.swing.JMenu menuIdioma;

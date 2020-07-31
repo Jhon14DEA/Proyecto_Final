@@ -148,6 +148,8 @@ public class ControladorUsuario {
      */
     
     public boolean actualizarUsuario(Usuario usuario) {
+        
+        //este usuario le mandamos al dao
         boolean cent = usuarioDAO.update(usuario);
         return cent;
 
@@ -193,9 +195,8 @@ public class ControladorUsuario {
      */
     
     public List<Usuario> listarUsuario() {
-
-        List<Usuario> lista = new ArrayList<Usuario>();
-        lista = usuarioDAO.findAll();
+        
+        List<Usuario> lista = usuarioDAO.findAll();
         return lista;
         
         

@@ -208,11 +208,12 @@ public class VentanaIniciarSesion extends javax.swing.JInternalFrame {
             ventanaPrincipal.getMenuIniciarSesion().setVisible(false);
             ventanaPrincipal.getMenuRegistrarse().setVisible(false);
             ventanaPrincipal.getMenuGestionar().setVisible(true);
+            ventanaPrincipal.getMenuRegistrarCliente().setVisible(true);
 
             this.limpiar();
             this.dispose();
 
-            JOptionPane.showMessageDialog(this, alertaLlene);
+            JOptionPane.showMessageDialog(this, alertaIni);
 
         } else {
 
