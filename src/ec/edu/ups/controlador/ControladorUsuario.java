@@ -140,7 +140,9 @@ public class ControladorUsuario {
     /**
      * Metodo actualizar usuario.
      * 
-     * Se encarga de actualizar los datos del usuario.
+     * Se encarga de actualizar los datos del usuario, le estamos recibiendo como
+     * parametro al usuario que nos dan desde la vista y este le envia al usuarioDAO
+     *que le actualiza en el archivo.
      * 
      * 
      * @param usuario
@@ -160,9 +162,8 @@ public class ControladorUsuario {
      * 
      * Es el encargado de eliminar un usuario
      * 
-     * Le pasamos como parametro la cedula, y mandamos a buscar si el usuario 
-     * existe con el metodo delete lo eliminamos.
-     * 
+     * Le pasamos como parametro la cedula y este le busca a la cedula y le volvemos 
+     * a mandar al dao para que este lo elimine en el archivo.
      * 
      * @param cedula
      * @return 
@@ -173,6 +174,7 @@ public class ControladorUsuario {
         usuario = usuarioDAO.read(cedula);
 
         if (usuario != null) {
+            
             usuarioDAO.delete(usuario);
 
             return true;
@@ -187,11 +189,11 @@ public class ControladorUsuario {
     /**
      * metodo listar Usuario.
      * 
-     * Este metodo es el encargado de listar todos los usuario creados, le instanciamos
-     * un ArrayList y mandamos a llamamos al metodo del usuarioDAO findAll.
+     *Recibe datos desde el Dao que es guardado en una variable 
+     * llamada lista y esta lista es retornada para utilizarla en la vista.
      * 
      * 
-     * @return 
+     * @return List: lista.
      */
     
     public List<Usuario> listarUsuario() {

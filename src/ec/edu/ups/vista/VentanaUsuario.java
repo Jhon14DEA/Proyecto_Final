@@ -39,7 +39,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
     private String alerta019;
     private String alerta020;
     private String alerta69;
-    
+
     DefaultTableModel modelo;
 
     public VentanaUsuario(ControladorUsuario controladorUsuario) {
@@ -47,7 +47,6 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
         this.controladorUsuario = controladorUsuario;
 
-        
         //alerta de JOPtionPane
         alerta012 = "Llene todos los campos solicitados para actualizar el usuario";
         alerta013 = "¿Seguro desea actualizar sus datos?";
@@ -59,16 +58,15 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         alerta019 = "Seleccione un usuario a eliminar";
         alerta020 = "Usuario eliminado con exito";
         alerta69 = "Llene el campo";
-                
+
         botones();
         editables();
-        
-        
+
     }
 
     /**
      * getters y setters
-     * 
+     *
      * @return evento
      */
     public Locale getLocalizacion() {
@@ -89,17 +87,15 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     /**
      * Metodo Cambiar Idioma
-     * 
-     * Este metodo le pasmos dos parametro  el idioma la localizacion,le utilizamos 
-     * para internacionalizar la interfaz.
-     * 
+     *
+     * Este metodo le pasmos dos parametro el idioma la localizacion,le
+     * utilizamos para internacionalizar la interfaz.
+     *
      * @param idioma
-     * @param localizacion 
+     * @param localizacion
      */
     public void cambiarIdioma(String idioma, String localizacion) {
-        
-        
-        
+
         lblGestionUsuarios.setText(recurso.getString("tlGestionUsuarios"));
         lblBuscarCedula.setText(recurso.getString("cedula"));
         lblCedula.setText(recurso.getString("cedula"));
@@ -171,23 +167,6 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         setClosable(true);
         setResizable(true);
         setTitle("Gestion de usuarios");
-        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
-            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
-                formInternalFrameActivated(evt);
-            }
-            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
-            }
-            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
-            }
-        });
 
         lblGestionUsuarios.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblGestionUsuarios.setText("Gestion de Usuarios");
@@ -380,24 +359,24 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-/**
- *boton actualizar.
- * 
- * 
- * 
- * 
- * 
- * @param evt 
- */
+    /**
+     * boton actualizar.
+     *
+     *
+     *
+     *
+     *
+     * @param evt
+     */
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
 
-          String cedula = txtCedula.getText();
+        String cedula = txtCedula.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         String correo = txtCorreo.getText();
         String contrasena = txtContrasena.getText();
-        
+
         if (cedula.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || contrasena.isEmpty()) {
             JOptionPane.showMessageDialog(this, alerta012);
         } else {
@@ -414,7 +393,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, alerta015);
             }
         }
-        
+
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
@@ -449,12 +428,11 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
         btnActualizar.setEnabled(true);
         btnEliminar.setEnabled(true);
-        
+
         btnCancelar.setEnabled(true);
 
     }//GEN-LAST:event_tablaUsuariosMouseClicked
 
-   
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
 
@@ -463,7 +441,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-  
+
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
 
         llenarDatosTabla();
@@ -474,7 +452,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      * Boton buscar.
      *
      * Al presionar este boton nos muestra en la tabla los datos del usuario que
-     * haya buscado.
+     * haya buscado, recuperamos la informacion del JTextField .
      *
      *
      *
@@ -482,7 +460,7 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
      */
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
 
-         String cedula = txtCedulaBuscar.getText();
+        String cedula = txtCedulaBuscar.getText();
 
         if (cedula.isEmpty()) {
             JOptionPane.showMessageDialog(this, alerta69);
@@ -496,12 +474,19 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                 limpiarTabla();
             }
         }
-        
-        
-      
+
 
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    /**
+     * Boton Eliminar.
+     *
+     * Al presinar este boton eliminamos un usuario que hayamos seleccionado en
+     * la tabla de datos.
+     *
+     *
+     * @param evt
+     */
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
 
@@ -521,40 +506,51 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, alerta018);
             }
         }
-        
-   
 
 
     }//GEN-LAST:event_btnEliminarActionPerformed
 
-     public void llenarDatosTabla() {
-        
-         DefaultTableModel modelo = (DefaultTableModel) tablaUsuarios.getModel();
+    /**
+     *
+     * Metodo Llenar Datos tabla.
+     *
+     * Lista todos los usuarios que se hayan registrado, Le guardamos en una
+     * variable con el nombre lista.
+     *
+     *
+     *
+     *
+     */
+    public void llenarDatosTabla() {
+
+        DefaultTableModel modelo = (DefaultTableModel) tablaUsuarios.getModel();
         modelo.setRowCount(0);
 
         List<Usuario> lista = controladorUsuario.listarUsuario();
 
         if (lista.isEmpty()) {
             JOptionPane.showMessageDialog(this, alerta017);
-        
-        }else{
 
-        for (Usuario usuario : lista) {
-            Object[] objeto = {usuario.getCedula().trim(), usuario.getNombre().trim(),usuario.getApellido().trim(),
-                usuario.getCorreo().trim(), usuario.getContraseña().trim()};
-            modelo.addRow(objeto);
-        }
+        } else {
 
-        tablaUsuarios.setModel(modelo);
+            for (Usuario usuario : lista) {
+                Object[] objeto = {usuario.getCedula().trim(), usuario.getNombre().trim(), usuario.getApellido().trim(),
+                    usuario.getCorreo().trim(), usuario.getContraseña().trim()};
+                modelo.addRow(objeto);
+            }
+
+            tablaUsuarios.setModel(modelo);
         }
     }
-    
 
-    private void formInternalFrameActivated(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameActivated
-
-        
-
-    }//GEN-LAST:event_formInternalFrameActivated
+    /**
+     * Metodo canccelar.
+     *
+     * Este metodo es el encargado de cuando pulsemos el boton haga que se borre
+     * todo y que no se pueda acceder a los botones.
+     *
+     * @param evt
+     */
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
 
@@ -562,43 +558,58 @@ public class VentanaUsuario extends javax.swing.JInternalFrame {
         editables();
         limpiar();
         tablaUsuarios.clearSelection();
-        
+
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    
-       public void listarUsuario(Usuario usuario) {
+    /**
+     * Metodo Listar Usuario.
+     *
+     * Este metodo el el encargado de obtener la lista del usuario. recibe como
+     * parametro al usuario y le agrega a la tabla.
+     *
+     *
+     *
+     * @param usuario
+     */
+    public void listarUsuario(Usuario usuario) {
         DefaultTableModel modelo = (DefaultTableModel) tablaUsuarios.getModel();
         modelo.setRowCount(0);
 
-        Object[] objeto = {usuario.getCedula().trim(), usuario.getNombre().trim(), usuario.getApellido().trim(), 
+        Object[] objeto = {usuario.getCedula().trim(), usuario.getNombre().trim(), usuario.getApellido().trim(),
             usuario.getCorreo().trim(), usuario.getContraseña().trim()};
         modelo.addRow(objeto);
 
         tablaUsuarios.setModel(modelo);
     }
-    
-     public void botones() {
+
+    /**
+     * metodo botones.
+     *
+     * encargados de ponerle a los botone inactivos.
+     *
+     *
+     */
+    public void botones() {
         btnActualizar.setEnabled(false);
         btnCancelar.setEnabled(false);
         btnEliminar.setEnabled(false);
     }
-     
-      /**
+
+    /**
      * Metodo editables.
      *
      * Este metodo desabilita la opcion de editar los jtext para no realizar
      * ningun cambio si no se desea.
      */
     public void editables() {
-        
+
         txtCedula.setEditable(false);
         txtNombre.setEditable(false);
         txtApellido.setEditable(false);
         txtCorreo.setEditable(false);
         txtContrasena.setEditable(false);
-        
+
     }
-       
 
     /**
      * Metodo limpiarTabla
